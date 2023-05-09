@@ -1,0 +1,152 @@
+# ~/.config/nano/nanorc
+
+#########
+# Options
+
+set minibar
+set nohelp
+set afterends
+set atblanks
+set autoindent
+set brackets ""')>]}"
+set constantshow
+set cutfromcursor
+set emptyline
+set fill -8
+set linenumbers
+set locking
+set matchbrackets "(<[{)>]}"
+unset nonewlines
+set positionlog
+set softwrap
+set stateflags
+set suspend
+set tabsize 3
+set tabstospaces
+set trimblanks
+set multibuffer
+set zap
+#set guidestripe 100
+#set indicator
+#set backup
+#set backupdir ""
+#set boldtext
+#set historylog
+#set speller "aspell -x -c"
+unset mouse
+unset noconvert
+unset breaklonglines
+unset casesensitive
+
+########
+# Colors
+
+set titlecolor brightwhite,blue
+set statuscolor brightwhite,cyan
+set errorcolor brightwhite,red
+set selectedcolor white,blue
+set stripecolor ,yellow
+set numbercolor brightblack
+set keycolor brightblue
+set functioncolor blue
+set promptcolor brightwhite,black
+set spotlightcolor black,brightyellow
+set scrollercolor cyan
+
+
+#####################
+# Syntax highlighting
+
+#include "/home/charles/.config/nano/extra/*.nanorc"
+include "/home/charles/.config/nano/extra/configfiles.nanorc"
+include "/home/charles/.config/nano/extra/nanorc.nanorc"
+include "/home/charles/.config/nano/extra/bash.nanorc"
+include "/home/charles/.config/nano/extra/etc-stuff.nanorc"
+include "/home/charles/.config/nano/extra/initscript.nanorc"
+include "/home/charles/.config/nano/extra/systemd.nanorc"
+include "/home/charles/.config/nano/extra/etc-hosts.nanorc"
+include "/home/charles/.config/nano/extra/passwd.nanorc"
+include "/home/charles/.config/nano/extra/sourceslist.nanorc"
+include "/home/charles/.config/nano/extra/nginx.nanorc"
+include "/home/charles/.config/nano/extra/asciidoc.nanorc"
+include "/home/charles/.config/nano/extra/markdown.nanorc"
+include "/home/charles/.config/nano/extra/sh.nanorc"
+include "/home/charles/.config/nano/extra/todo.nanorc"
+include "/home/charles/.config/nano/extra/git.nanorc"
+include "/home/charles/.config/nano/extra/css.nanorc"
+include "/home/charles/.config/nano/extra/html.nanorc"
+include "/home/charles/.config/nano/extra/javascript.nanorc"
+#include "/home/charles/.config/nano/extra/json.nanorc"
+include "/home/charles/.config/nano/extra/yaml.nanorc"
+#include "/home/charles/.config/nano/extra/xml.nanorc"
+include "/home/charles/.config/nano/extra/zsh.nanorc"
+include "/home/charles/.config/nano/extra/toml.nanorc"
+include "/home/charles/.config/nano/extra/ini.nanorc"
+#include "/home/charles/.config/nano/extra/sql.nanorc"
+include "/home/charles/.config/nano/extra/java.nanorc"
+include "/home/charles/.config/nano/extra/php.nanorc"
+include "/home/charles/.config/nano/extra/c.nanorc"
+include "/home/charles/.config/nano/extra/perl.nanorc"
+include "/home/charles/.config/nano/extra/asm.nanorc"
+include "/home/charles/.config/nano/extra/python.nanorc"
+#include "/home/charles/.config/nano/extra/lua.nanorc"
+include "/home/charles/.config/nano/extra/Dockerfile.nanorc"
+include "/home/charles/.config/nano/extra/makefile.nanorc"
+include "/home/charles/.config/nano/extra/cmake.nanorc"
+include "/home/charles/.config/nano/extra/patch.nanorc"
+include "/home/charles/.config/nano/extra/powershell.nanorc"
+include "/home/charles/.config/nano/extra/dotenv.nanorc"
+
+include "/home/charles/.config/nano/extra/apacheconf.nanorc"
+
+###################
+# Misc Highlighting
+
+include "/home/charles/.config/nano/extra/conf.nanorc"
+include "/home/charles/.config/nano/extra/default.nanorc"
+include "/home/charles/.config/nano/extra/nmap.nanorc"
+include "/home/charles/.config/nano/extra/changelogs.nanorc"
+include "/home/charles/.config/nano/extra/csv.nanorc"
+
+#############
+# Custom TABs
+extendsyntax json tabgives "    "
+extendsyntax YAML tabgives "    "
+extendsyntax xml tabgives "    "
+
+##########
+# Keybinds
+
+bind ^H chopwordleft main
+bind M-K comment main
+
+#bind ^X cut main
+#bind ^C copy main
+#bind ^V paste all
+#bind ^Q exit all
+#bind ^S savefile main
+#bind ^W writeout main
+#bind ^O insert main
+#set multibuffer
+#bind ^H help all
+#bind ^H exit help
+#bind ^F whereis all
+#bind ^G findnext all
+#bind ^B wherewas all
+#bind ^D findprevious all
+#bind ^R replace main
+#bind ^Z undo main
+#bind ^Y redo main
+#unbind ^K main
+#unbind ^U all
+#unbind ^N main
+#unbind ^Y all
+#unbind M-J main
+#unbind M-T main
+#bind ^A mark main
+#bind ^P location main
+#bind ^T gotoline main
+#bind ^T gotodir browser
+#bind ^T cutrestoffile execute
+#bind ^L linter execute
+#bind ^E execute main
