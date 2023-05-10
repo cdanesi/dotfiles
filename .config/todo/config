@@ -1,0 +1,52 @@
+# ~/.config/todo/config
+
+################
+# File locations
+
+export TODO_DIR="$HOME/todo"
+export TODO_FILE="$TODO_DIR/todo.txt"
+export DONE_FILE="$TODO_DIR/done.txt"
+export REPORT_FILE="$TODO_DIR/report.txt"
+
+##################
+# Default behavior
+
+export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -f -k2 -k1'
+export TODOTXT_DEFAULT_ACTION=lsp
+
+##########
+# Colormap
+
+export DEFAULT='\\033[0m'
+export BLACK='\\033[1;90m'
+export GRAY='\\033[0;30m'
+export LIGHTGRAY='\\033[0;37m'
+export WHITE='\\033[1;37m'
+export RED='\\033[0;31m'
+export GREEN='\\033[0;32m'
+export BROWN='\\033[0;33m'
+export BLUE='\\033[0;34m'
+export MAGENTA='\\033[0;35m'
+export CYAN='\\033[0;36m'
+export LIGHTRED='\\033[1;91m'
+export LIGHTGREEN='\\033[1;32m'
+export YELLOW='\\033[1;33m'
+export LIGHTBLUE='\\033[1;34m'
+export LIGHTMAGENTA='\\033[1;35m'
+export LIGHTCYAN='\\033[1;36m'
+export TAG_PRJ='\\033[7;46;36m'
+export TAG_CX='\\033[7;44;34m'
+
+# Colors
+
+export COLOR_DONE=$GRAY
+export COLOR_PROJECT=$TAG_PRJ
+export COLOR_CONTEXT=$TAG_CX
+export COLOR_DATE=$BLUE
+export COLOR_NUMBER=$GRAY
+export COLOR_META=$RED
+export PRI_A=$LIGHTGREEN
+export PRI_B=$LIGHTBLUE
+export PRI_C=$YELLOW
+export PRI_D=$LIGHTMAGENTA
+
