@@ -22,16 +22,17 @@ plugins=(
         zsh-syntax-highlighting
         last-working-dir
         zsh-vi-mode
+        fzf-zsh-plugin
         sudo
         aliases
         alias-finder
         colored-man-pages
         dircycle
         dirhistory
+        zoxide
         dotenv
         genpass
         history
-        fzf-zsh-plugin
         web-search
         command-not-found
         git-prompt
@@ -42,6 +43,10 @@ plugins=(
         docker-compose
 )
 
+# Fix ctrl+r 
+source $HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+
 # Plugin Options
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 
@@ -51,8 +56,7 @@ if [ -f $HOME/.zsh_aliases ]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
-eval "$(zoxide init zsh)"
-#eval "$(starship init zsh)"
+#eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
