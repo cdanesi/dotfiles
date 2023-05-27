@@ -57,7 +57,9 @@ set scrollercolor cyan
 #####################
 # Syntax highlighting
 
-#include "/home/charles/.config/nano/extra/*.nanorc"
+# This is the preferred way to load them, as well as the preferred location for single user systems. (you can also install them systemwide)
+#include "/home/charles/.local/share/nano/*.nanorc"
+
 include "/home/charles/.config/nano/extra/configfiles.nanorc"
 include "/home/charles/.config/nano/extra/nanorc.nanorc"
 include "/home/charles/.config/nano/extra/bash.nanorc"
@@ -110,6 +112,7 @@ include "/home/charles/.config/nano/extra/csv.nanorc"
 
 #############
 # Custom TABs
+
 extendsyntax json tabgives "    "
 extendsyntax YAML tabgives "    "
 extendsyntax xml tabgives "    "
