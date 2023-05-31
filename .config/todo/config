@@ -11,8 +11,8 @@ export REPORT_FILE="$TODO_DIR/report.txt"
 ##################
 # Default behavior
 
-export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -f -k2 -k1'
-export TODOTXT_DEFAULT_ACTION=lsp
+export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -f -k2,2 -k1n'
+export TODOTXT_DEFAULT_ACTION=ls
 
 ##########
 # Colormap
@@ -20,7 +20,7 @@ export TODOTXT_DEFAULT_ACTION=lsp
 export DEFAULT='\\033[0m'
 export BLACK='\\033[1;90m'
 export GRAY='\\033[0;30m'
-export LIGHTGRAY='\\033[0;37m'
+export LIGHTGRAY='\\033[0;90m'
 export WHITE='\\033[1;37m'
 export RED='\\033[0;31m'
 export GREEN='\\033[0;32m'
@@ -34,19 +34,16 @@ export YELLOW='\\033[1;33m'
 export LIGHTBLUE='\\033[1;34m'
 export LIGHTMAGENTA='\\033[1;35m'
 export LIGHTCYAN='\\033[1;36m'
-#export TAG_PRJ='\\033[7;46;36m'
-#export TAG_PRJ='\\033[7;49;96m'
 export TAG_PRJ='\\033[0;46;39m'
 export TAG_CX='\\033[0;44;39m'
-#export TAG_CX='\\033[1;107;94m'
 
 # Colors
 
-export COLOR_DONE=$GRAY
+export COLOR_DONE=$LIGHTGRAY
 export COLOR_PROJECT=$DEFAULT$TAG_PRJ
 export COLOR_CONTEXT=$DEFAULT$TAG_CX
 export COLOR_DATE=$CYAN
-export COLOR_NUMBER=$BLUE
+export COLOR_NUMBER=$GREEN
 export COLOR_META=$RED
 export PRI_A=$LIGHTGREEN
 export PRI_B=$LIGHTBLUE
