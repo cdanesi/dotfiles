@@ -1,12 +1,13 @@
 # ~/.zsh_aliases
 
 # todo.txt
-alias t='$HOME/bin/todo/todo.sh -a -t'
+alias t='/usr/local/bin/todo.sh -a'
 
 # Colored utilities
 alias less='less --use-color'
 alias diff='diff --color'
 alias hexedit='hexedit --color'
+alias ip='ip --color'
 
 # NTH, rarely used
 alias _='sudo '
