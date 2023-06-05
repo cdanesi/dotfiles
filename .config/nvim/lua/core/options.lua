@@ -6,8 +6,10 @@ opt.relativenumber = true
 
 -- tabs & indents
 opt.tabstop = 3
+opt.softtabstop = 3
 opt.shiftwidth = 3
 opt.expandtab = true
+opt.smartindent = true
 opt.autoindent = true
 
 -- disable line wrapping
@@ -16,6 +18,7 @@ opt.wrap = false
 -- search
 opt.ignorecase = true
 opt.smartcase = true
+opt.iskeyword:append("-") -- consider string-string as a whole word
 
 -- cursor line
 opt.cursorline = true
@@ -24,6 +27,7 @@ opt.cursorline = true
 opt.termguicolors = false
 opt.background = "dark"
 opt.signcolumn = "yes"
+opt.colorcolumn = "90"
 
 -- backspace
 opt.backspace = "indent,eol,start"
@@ -35,4 +39,6 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as the default regis
 opt.splitright = true
 opt.splitbelow = true
 
-opt.iskeyword:append("-") -- consider string-string as a whole word
+-- save me
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
