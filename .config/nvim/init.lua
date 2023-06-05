@@ -10,3 +10,4 @@ require("core.colorscheme")
 -- Plugins
 require("plugins.gitsigns")
 require("plugins.autopairs")
+require("plugins.lualine")
