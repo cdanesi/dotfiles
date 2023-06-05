@@ -37,10 +37,6 @@ plugins=(
         command-not-found
         git-prompt
         git
-        ubuntu
-        ansible
-        docker
-        docker-compose
 )
 
 # Fix ctrl+r 
@@ -50,9 +46,9 @@ zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 # Plugin Options
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 
-# Load Aliases
-if [ -f $HOME/.zsh_aliases ]; then
-   source $HOME/.zsh_aliases
+# Load aliases
+if [ -f $HOME/.bash_aliases ]; then
+   source $HOME/.bash_aliases
 fi
 
 source $ZSH/oh-my-zsh.sh
