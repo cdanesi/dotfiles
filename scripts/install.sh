@@ -6,11 +6,14 @@
    I will work on making this a bit more sane - later.
 '
 
+REPO="https://github.com/cdanesi/dotfiles.git"
+
 function init() {
    isAvailable zsh
    isAvailable tmux
    isAvailable nvim
    isAvailable git
+   isAvailable zoxide
 
    # Oh-My-ZSH
    if [[ -f $HOME/.oh-my-zsh/oh-my-zsh.sh ]]; then
@@ -24,6 +27,7 @@ function init() {
         echo "you need to have either curl or wget installed. aborting"
         return -1
      fi
+     exec zsh
    fi
 }
 
@@ -31,30 +35,40 @@ function install_plugins() {
    # tmux plugin manager
    if [[ -d $HOME/.config/tmux/plugins/tpm ]]; then
       echo "updating tmux plugin manager"
+   else
+      echo "installing tmux plugin manager"
    fi
    git clone https://github.com/tmux-plugins/tpm $HOME/.config/tmux/plugins/tpm &> /dev/null
 
    # zsh-autosuggestions
    if [[ -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]]; then
       echo "updating zsh-autosuggestions"
+   else
+      echo "installing zsh-autosuggestions" 
    fi
    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &> /dev/null
 
    # zsh-syntax-highlighting
    if [[ -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]]; then
       echo "updating zsh-syntax-highlighting"
+   else
+      echo "installing zsh-syntax-highlighting" 
    fi
    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &> /dev/null
 
    # fzf-zsh-plugin
    if [[ -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin ]]; then
       echo "updating fzf-zsh-plugin"
+   else
+      echo "installing fzf-zsh-plugin" 
    fi
    git clone --depth 1 https://github.com/unixorn/fzf-zsh-plugin.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin &> /dev/null
 
    # zsh-vi-mode
    if [[ -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode ]]; then
       echo "updating zsh-vi-mode"
+   else
+      echo "installing zsh-vi-mode" 
    fi
    git clone https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode &> /dev/null
 }
@@ -63,6 +77,8 @@ function install_themes() {
    #powerlevel10k zsh theme
    if [[ -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k ]]; then
       echo "updating powerlevel10k zsh theme"
+   else
+      echo "installing powerlevel10k theme" 
    fi
    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k &> /dev/null
 }
@@ -77,3 +93,13 @@ function isAvailable() {
 init
 install_themes
 install_plugins
+
+cat <<EOF
+
+You should be okay to clone the repo now:
+
+git clone $REPO
+
+EOF
+
+exec zsh
