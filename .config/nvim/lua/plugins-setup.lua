@@ -9,9 +9,10 @@ local ensure_packer = function()
   end
   return false
 end
-local packer_bootstrap = ensure_packer()
+local packer_bootstrap = ensure_packer() -- true if packer was just installed
 
--- autoreload
+-- autocommand that reloads neovim and installs/updates/removes plugins
+-- when file is saved
 vim.cmd([[ 
   augroup packer_user_config
     autocmd!
@@ -25,11 +26,26 @@ if not status then
   return
 end
 
--- enable plugins
+-- add list of plugins to install
 return packer.startup(function(use)
-  use("wbthomason/packer.nvim")
-  use("nvim-lua/plenary.nvim")
-  use("rmehri01/onenord.nvim") -- preferred colorscheme
+   use("wbthomason/packer.nvim")
+   use("nvim-lua/plenary.nvim")
+   use("rmehri01/onenord.nvim")
+   use("christoomey/vim-tmux-navigator")
+   use("lewis6991/gitsigns.nvim")
+   use("windwp/nvim-autopairs")
+   use("nvim-lualine/lualine.nvim")
+   use("nvim-tree/nvim-web-devicons")
+   use({
+      "nvim-treesitter/nvim-treesitter",
+      run = function()
+         local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+         ts_update()
+      end,
+   })
+   use("tpope/vim-obsession")
+
+   use("ThePrimeagen/vim-be-good") -- get gud
 
   if packer_bootstrap then
     require("packer").sync()
