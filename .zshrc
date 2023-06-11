@@ -9,6 +9,7 @@ export PATH=$PATH:~/bin:~/.local/bin
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export GPG_TTY=$(tty)
+#export ZVM_INIT_MODE='sourcing'
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME_RANDOM_CANDIDATES=( "cypher" "eastwood" "gallois" )
@@ -56,3 +57,10 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+function zvm_after_init() {
+  autoload add-zle-hook-widget
+  add-zle-hook-widget zle-line-pre-redraw zvm_zle-line-pre-redraw
+}
+
+pfetch
