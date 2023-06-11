@@ -20,7 +20,7 @@ unset nonewlines
 set positionlog
 set softwrap
 set stateflags
-set suspend
+#set suspend
 set tabsize 3
 set tabstospaces
 set trimblanks
@@ -60,62 +60,62 @@ set scrollercolor cyan
 # This is the preferred way to load them, as well as the preferred location for single user systems. (you can also install them systemwide)
 #include "~/.local/share/nano/*.nanorc"
 
-include "~/.config/nano/extra/configfiles.nanorc"
-include "~/.config/nano/extra/nanorc.nanorc"
-include "~/.config/nano/extra/bash.nanorc"
-include "~/.config/nano/extra/etc-stuff.nanorc"
-include "~/.config/nano/extra/initscript.nanorc"
-include "~/.config/nano/extra/systemd.nanorc"
-include "~/.config/nano/extra/etc-hosts.nanorc"
-include "~/.config/nano/extra/passwd.nanorc"
-include "~/.config/nano/extra/sourceslist.nanorc"
-include "~/.config/nano/extra/nginx.nanorc"
-include "~/.config/nano/extra/asciidoc.nanorc"
-include "~/.config/nano/extra/markdown.nanorc"
-include "~/.config/nano/extra/sh.nanorc"
-include "~/.config/nano/extra/todo.nanorc"
-include "~/.config/nano/extra/git.nanorc"
-include "~/.config/nano/extra/css.nanorc"
-include "~/.config/nano/extra/html.nanorc"
-include "~/.config/nano/extra/javascript.nanorc"
-#include "~/.config/nano/extra/json.nanorc"
-include "~/.config/nano/extra/yaml.nanorc"
-#include "~/.config/nano/extra/xml.nanorc"
-include "~/.config/nano/extra/zsh.nanorc"
-include "~/.config/nano/extra/toml.nanorc"
-include "~/.config/nano/extra/ini.nanorc"
-#include "~/.config/nano/extra/sql.nanorc"
-include "~/.config/nano/extra/java.nanorc"
-include "~/.config/nano/extra/php.nanorc"
-include "~/.config/nano/extra/c.nanorc"
-include "~/.config/nano/extra/perl.nanorc"
-include "~/.config/nano/extra/asm.nanorc"
-include "~/.config/nano/extra/python.nanorc"
-#include "~/.config/nano/extra/lua.nanorc"
-include "~/.config/nano/extra/Dockerfile.nanorc"
-include "~/.config/nano/extra/makefile.nanorc"
-include "~/.config/nano/extra/cmake.nanorc"
-include "~/.config/nano/extra/patch.nanorc"
-include "~/.config/nano/extra/powershell.nanorc"
-include "~/.config/nano/extra/dotenv.nanorc"
+include "~/.local/share/nano/configfiles.nanorc"
+include "~/.local/share/nano/nanorc.nanorc"
+include "~/.local/share/nano/bash.nanorc"
+include "~/.local/share/nano/etc-stuff.nanorc"
+include "~/.local/share/nano/initscript.nanorc"
+include "~/.local/share/nano/systemd.nanorc"
+include "~/.local/share/nano/etc-hosts.nanorc"
+include "~/.local/share/nano/passwd.nanorc"
+include "~/.local/share/nano/sourceslist.nanorc"
+include "~/.local/share/nano/nginx.nanorc"
+include "~/.local/share/nano/asciidoc.nanorc"
+include "~/.local/share/nano/markdown.nanorc"
+include "~/.local/share/nano/sh.nanorc"
+include "~/.local/share/nano/todo.nanorc"
+include "~/.local/share/nano/git.nanorc"
+include "~/.local/share/nano/css.nanorc"
+include "~/.local/share/nano/html.nanorc"
+include "~/.local/share/nano/javascript.nanorc"
+#include "~/.local/share/nano/json.nanorc"
+include "~/.local/share/nano/yaml.nanorc"
+#include "~/.local/share/nano/xml.nanorc"
+include "~/.local/share/nano/zsh.nanorc"
+include "~/.local/share/nano/toml.nanorc"
+include "~/.local/share/nano/ini.nanorc"
+#include "~/.local/share/nano/sql.nanorc"
+include "~/.local/share/nano/java.nanorc"
+include "~/.local/share/nano/php.nanorc"
+include "~/.local/share/nano/c.nanorc"
+include "~/.local/share/nano/perl.nanorc"
+include "~/.local/share/nano/asm.nanorc"
+include "~/.local/share/nano/python.nanorc"
+#include "~/.local/share/nano/lua.nanorc"
+include "~/.local/share/nano/Dockerfile.nanorc"
+include "~/.local/share/nano/makefile.nanorc"
+include "~/.local/share/nano/cmake.nanorc"
+include "~/.local/share/nano/patch.nanorc"
+include "~/.local/share/nano/powershell.nanorc"
+include "~/.local/share/nano/dotenv.nanorc"
 
-include "~/.config/nano/extra/apacheconf.nanorc"
+include "~/.local/share/nano/apacheconf.nanorc"
 
 ###################
 # Misc Highlighting
 
-include "~/.config/nano/extra/conf.nanorc"
-include "~/.config/nano/extra/default.nanorc"
-include "~/.config/nano/extra/nmap.nanorc"
-include "~/.config/nano/extra/changelogs.nanorc"
-include "~/.config/nano/extra/csv.nanorc"
+include "~/.local/share/nano/conf.nanorc"
+include "~/.local/share/nano/default.nanorc"
+include "~/.local/share/nano/nmap.nanorc"
+include "~/.local/share/nano/changelogs.nanorc"
+include "~/.local/share/nano/csv.nanorc"
 
 #############
 # Custom TABs
 
-extendsyntax json tabgives "    "
+extendsyntax JSON tabgives "    "
 extendsyntax YAML tabgives "    "
-extendsyntax xml tabgives "    "
+extendsyntax XML tabgives "    "
 
 ##########
 # Keybinds
