@@ -55,8 +55,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 floating_modifier $mod
-floating_minimum_size 1500 x 850
-floating_maximum_size -1 x -1
+#floating_minimum_size 1500 x 850
+#floating_maximum_size -1 x -1
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
@@ -71,7 +71,7 @@ bindsym $mod+q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+Shift+d exec "rofi -modi drun,run -show drun"
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+bindsym $mod+Ctrl+d exec --no-startup-id "xlunch ~/.config/xlunch/default.config"
 
 # change focus
 bindsym $mod+h focus left
@@ -178,7 +178,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Colors
-set $nord0   #2E3440
+set $nord0   #2E344080
 set $nord1   #3B4252
 set $nord2   #434C5E
 set $nord3   #4C566A
@@ -237,7 +237,7 @@ bar {
 
 # Launchers
 bindsym Print exec flameshot gui
-bindsym $mod+b exec firefox
+bindsym $mod+b exec librewolf
 bindsym $mod+m exec dolphin
 
 # Autorun
@@ -250,6 +250,12 @@ exec --no-startup-id volumeicon
 exec --no-startup-id dunst
 
 # Specific windows
+for_window [class="Spotify"] floating enable
+for_window [class="cutefish-calculator"] floating enable
+for_window [class="kcalc"] floating enable
+for_window [class="Galculator"] floating enable
+for_window [class="systemsettings"] floating enable
+for_window [title="Friends List"] floating enable
 
 # Assign workspaces (find class with xprop)
 assign [class="Firefox-esr"] 2
@@ -258,6 +264,7 @@ assign [class="Brave-browser"] 2
 assign [class="firedragon"] 2
 assign [class="Signal"] 4
 assign [class="discord"] 4
+assign [class="Spotify"] 10
 
 # workstation specific overrides
 include ~/.config/i3/`hostname`.conf

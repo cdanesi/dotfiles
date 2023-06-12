@@ -42,11 +42,11 @@ disk "/" {
 }
 
 load {
-        format = "%1min"
+        format = "LOAD: %1min"
 }
 
 memory {
-        format = "%used | %available"
+        format = "MEM: %used | %available"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
