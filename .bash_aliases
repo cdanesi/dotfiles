@@ -29,7 +29,7 @@ alias rd=rmdir
 alias rm='rm -i'
 
 # todo.txt
-alias t='/usr/local/bin/todo.sh -a'
+alias t='/usr/bin/todo.sh -a'
 
 # APT shortcuts
 alias age='sudo apt'
