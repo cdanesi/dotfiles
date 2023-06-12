@@ -40,5 +40,5 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- save me
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
 opt.undofile = true
