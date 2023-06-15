@@ -117,7 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 PATH=$PATH:"~/.local/bin/"
-export EDITOR='nano'
+export EDITOR='nvim'
 export GPG_TTY=$(tty)
 complete -F _todo t
 
