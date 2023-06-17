@@ -57,6 +57,7 @@ assign [class="Firefox-esr"] 2
 assign [class="firefox"] 2
 assign [class="Brave-browser"] 2
 assign [class="firedragon"] 2
+assign [class="obs"] 5
 assign [class="Signal"] 7
 assign [class="discord"] 7
 assign [class="Spotify"] 9
