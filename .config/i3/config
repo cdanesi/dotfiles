@@ -48,6 +48,7 @@ for_window [class="Spotify"] floating enable
 for_window [class="cutefish-calculator"] floating enable
 for_window [class="kcalc"] floating enable
 for_window [class="Galculator"] floating enable
+for_window [class="GParted"] floating enable, resize set 1550 900, border pixel 0, move position center
 for_window [class="systemsettings"] floating enable
 for_window [title="Friends List"] floating enable
 for_window [class="Streamdeck UI"] floating enable, resize set 500 508
