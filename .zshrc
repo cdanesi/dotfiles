@@ -37,7 +37,6 @@ plugins=(
         web-search
         command-not-found
         git-prompt
-        git
 )
 
 # Fix ctrl+r 
@@ -46,11 +45,6 @@ zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
 # Plugin Options
 ZSH_ALIAS_FINDER_AUTOMATIC=true
-
-# Load aliases
-if [ -f $HOME/.bash_aliases ]; then
-   source $HOME/.bash_aliases
-fi
 
 source $ZSH/oh-my-zsh.sh
 #eval "$(zoxide init zsh)"
@@ -62,5 +56,10 @@ function zvm_after_init() {
   autoload add-zle-hook-widget
   add-zle-hook-widget zle-line-pre-redraw zvm_zle-line-pre-redraw
 }
+
+# Load aliases
+if [ -f $HOME/.aliases ]; then
+   source $HOME/.aliases
+fi
 
 pfetch
