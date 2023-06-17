@@ -62,4 +62,6 @@ if [ -f $HOME/.aliases ]; then
    source $HOME/.aliases
 fi
 
-pfetch
+if [ -f /usr/bin/pfetch ]; then
+   /usr/bin/pfetch
+fi
