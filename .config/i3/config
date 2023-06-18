@@ -11,10 +11,11 @@ default_border none
 smart_borders on
 smart_gaps on
 workspace_auto_back_and_forth yes
-focus_follows_mouse no
+focus_follows_mouse yes
 default_border pixel 2
 default_floating_border normal 0
 font pango:monospace 8
+focus_on_window_activation smart
 set $mod Mod4
 floating_modifier $mod
 
@@ -44,24 +45,15 @@ exec_always --no-startup-id pgrep -f '^alacritty --class mus,mus' || alacritty -
 #floating_maximum_size -1 x -1
 no_focus [window_role="pop-up"]
 for_window [class="^.*"] border pixel 2
-for_window [class="Spotify"] floating enable
-for_window [class="cutefish-calculator"] floating enable
-for_window [class="kcalc"] floating enable
-for_window [class="Galculator"] floating enable
-for_window [class="GParted"] floating enable, resize set 1550 900, border pixel 0, move position center
-for_window [class="systemsettings"] floating enable
+for_window [class="Spotify|cutefish-calculator|kcalc|Galculator|systemsettings|Streamdeck UI|Cheese|deepin-camera"] floating enable, border pixel 1
 for_window [title="Friends List"] floating enable
+for_window [class="GParted"] floating enable, resize set 1550 900, border pixel 0, move position center
 for_window [class="Streamdeck UI"] floating enable, resize set 500 508
 for_window [class="fm|vol|mus"] floating enable, resize set 1250 700, move scratchpad, border pixel 0
 
 # Assign workspaces (find class with xprop)
-assign [class="LibreWolf"] 2
-assign [class="Firefox-esr"] 2
-assign [class="firefox"] 2
-assign [class="Brave-browser"] 2
-assign [class="firedragon"] 2
+assign [class="LibreWolf|^[Ff]irefox.*|^Brave.*|firedragon"] 2
 assign [class="obs"] 5
-assign [class="Signal"] 7
-assign [class="discord"] 7
+assign [class="Signal|discord"] 7
 assign [class="Spotify"] 9
-assign [class="Steam"] 10
+assign [class="steam"] 10
