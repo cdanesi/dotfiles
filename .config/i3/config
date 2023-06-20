@@ -38,14 +38,13 @@ bindsym $mod+Shift+s [class="mus"] scratchpad show; move position center
 exec_always --no-startup-id pgrep -f '^alacritty --class fm,fm' || alacritty --class fm,fm -e ranger
 exec_always --no-startup-id pgrep -f '^alacritty --class vol,vol' || alacritty --class vol,vol -e pulsemixer
 exec_always --no-startup-id pgrep -f '^alacritty --class mus,mus' || alacritty --class mus,mus -e ncspot
-# add volmixer, spotify, email (maybe), calendar (maybe)
 
 # Specific windows
 #floating_minimum_size 1500 x 850
 #floating_maximum_size -1 x -1
 no_focus [window_role="pop-up"]
 for_window [class="^.*"] border pixel 2
-for_window [class="Spotify|cutefish-calculator|kcalc|Galculator|systemsettings|Streamdeck UI|Cheese|deepin-camera"] floating enable, border pixel 1
+for_window [class="Spotify|cutefish-calculator|kcalc|Galculator|systemsettings|Streamdeck UI|Cheese|deepin-camera|steam"] floating enable, border pixel 1
 for_window [title="Friends List"] floating enable
 for_window [class="GParted"] floating enable, resize set 1550 900, border pixel 0, move position center
 for_window [class="Streamdeck UI"] floating enable, resize set 500 508
