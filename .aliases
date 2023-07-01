@@ -1,10 +1,10 @@
-# ~/.bash_aliases
+# ~/.aliases
 
 # enable color 
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
 #alias ls='ls -h --color=auto'
-alias ls='exa -h'
+alias ls='exa -h --icons'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -12,12 +12,13 @@ alias less='less --use-color'
 alias diff='diff --color'
 alias hexedit='hexedit --color'
 alias ip='ip --color'
+alias yay='yay --color=auto'
 
 # ls aliases
 alias ll='ls -lFh'
 alias la='ls -laFh'
-alias l='ls -CFh'
-alias lsa='ls -alh'
+alias l='ls -Fh'
+alias lsa='ls -ah'
 
 # handy system cmds 
 alias cp='nocorrect cp -i'

@@ -1,1 +1,114 @@
-fWindowTitle=0
+#=========================================================
+#Terminal Color Codes
+#=========================================================
+WHITE='\[\033[1;37m\]'
+LIGHTGRAY='\[\033[0;37m\]'
+GRAY='\[\033[1;49;90m\]'
+BLACK='\[\033[0;30m\]'
+RED='\[\033[0;31m\]'
+LIGHTRED='\[\033[1;31m\]'
+GREEN='\[\033[0;32m\]'
+LIGHTGREEN='\[\033[1;32m\]'
+ORANGE='\[\033[0;33m\]'
+YELLOW='\[\033[1;33m\]'
+BLUE="\[\033[0;34m\]"
+LIGHTBLUE='\[\033[1;34m\]'
+PURPLE='\[\033[0;35m\]'
+PINK='\[\033[1;35m\]'
+CYAN='\[\033[0;36m\]'
+LIGHTCYAN='\[\033[1;36m\]'
+DEFAULT='\[\033[0m\]'
+CDNET1="\[\e[38;5;27m\]"
+CDNET2="\[\e[38;5;32m\]"
+DARKGRAY="\[\e[38;5;237m\]"
+DARKGRAY2="\[\e[90m\]"
+
+#=========================================================
+# User Configuration
+#=========================================================
+#todoDir = "$HOME/code/todo.txt/"  # This MUST be set for todo.txt to work!
+
+# Colors
+clrLines=$GRAY # Lines and Arrow
+clrBrackets=$GRAY # Brackets around each data item
+clrError=$RED # Error displays when previous command did not return 0
+clrClock=$DARKGRAY # The current time
+clrScreenLabel=$CYAN # Color for terminal multiplexer label
+cMPX1=$YELLOW # Color for terminal multiplexer threshold 1
+cMPX2=$RED # Color for terminal multiplexer threshold 2
+cBGJ=$PURPLE # Color for background job label
+cBGJ1=$YELLOW # Color for background job threshold 1
+cBGJ2=$RED # Color for background job threshold 2
+cSTJ=$RED # Color for stopped job label
+cSTJ1=$YELLOW # Color for background job threshold 1
+cSTJ2=$RED # Color for  background job threshold 2
+clrTaskLabel=$PURPLE # Color for todo.txt tasks label
+clrTasks=$YELLOW # Color for the number of todo.txt tasks
+clrSSH=$PINK # Color for brackets if session is an SSH session
+clrUsername=$CDNET2 # Color of user
+clrHostname=$CDNET2 # Color of hostname
+clrWarnAsRoot=$RED # Color of root warning
+clrWorkingDirectory=$CDNET1 # Color of current directory
+clrCommand=$DEFAULT # Color of the command you type
+clrSeparator=$WHITE # Color for separator for screen/jobs
+clrUserSeperator=$GRAY # Color of the user and hostname separator, probably '@'
+clrDefaultLines=$clrLines # default color
+clrDefaultBrackets=$clrBrackets # default color
+clrGitBranch=$LIGHTGREEN
+clrGitHash=$CDNET1
+clrCmdRunTime=$CYAN
+clrUptime=$CYAN
+GITBG1="\[\e[47m\]"
+GITBG2="\[\e[100m\]"
+
+# Features
+fBlankLine=1  # Have a newline between previous command output and new prompt
+fGitRepo=1 # Show git status
+fGitStatusBar=1 # Show the git status bar above the main prompt (3 lines) NOTE: currently unused
+fGitAfterCWD=1 # Show git status on 2-line prompt NOTE: currently unused
+fReturnErrors=1 # Previous command return status tracker
+fWindowTitle=1 # show uptime/load in titlebar
+fClock=1
+fShowHostname=1
+fScreenTracker=1 # Terminal multiplexer tracker enabled
+fSSHSession=0 # Track if session is SSH
+fBackgroundJobTracker=1 # Track background jobs
+fStoppedJobsTracker=1 # Track stopped jobs
+fShowUserHost=1 # Show user and host  #### NOTE: CURRENTLY UNUSED ####
+fWorkingDirectory=1 # Show current directory
+fPathShortening=1 # Enable directory shortening (configurable)
+fLastCmdRunTime=1 # Display last cmd wall time
+fShowUptime=1 # Display Uptime
+fShowTaskCount=1 # Show task count from todo.txt, if installed
+
+# Settings
+# TODO: add thresholds for cmd wall time
+# TODO: add settings for customizing todo.txt (project/context/priority display only)
+shortDirectoryThreshold="2" # How many folders deep before we start trimming the path
+mpxThresholdMid="0" # Terminal multiplexer threshold 1 value
+mpxThresholdHigh="2" # Terminal multiplexer threshold 2 value
+bgJobThresholdMid="0" # Background job threshold 1 value
+bgJobThresholdHigh="2" # Background job threshold 2 value
+stoppedJobThresholdMid="0" # Stopped job threshold 1 value
+stoppedJobThresholdHigh="2" # Stopped job threshold 2 value
+
+# Symbols/Indicators
+userHostSeparator="@"
+symScreen="s"
+gitBranch="" # 
+gitUntrackedFiles="?"
+gitFilesAdded="A"
+gitFilesRemoved="D"
+gitFilesModified="M"
+gitStagedChanges=""
+gitUnstagedChanges="Δ"
+gitStashedChanges="*"  # 
+gitMerging="‼" #   
+gitUncommittedChanges="✘" # staged, but not committed
+gitClean="✓"
+gitDirty="✘"
+gitPushReady="" # 
+gitBehindRemote=""
+gitLocalOnly=""
+gitLocalRemote=""
+taskLabel="☑"
