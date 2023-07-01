@@ -3,7 +3,6 @@ include $HOME/.config/i3/keybinds.conf
 include $HOME/.config/i3/theme.conf
 include $HOME/.config/i3/i3bar.conf
 include $HOME/.config/i3/autorun.conf
-exec $HOME/.config/i3/i3-restore/i3-restore
 
 #hide_edge_borders smart
 hide_edge_borders both
@@ -48,13 +47,14 @@ no_focus [window_role="pop-up"]
 for_window [window_role="^Preferences$"] floating enable, border pixel 1
 for_window [class="^.*"] border pixel 2
 for_window [class="Spotify|cutefish-calculator|kcalc|Galculator|systemsettings|Streamdeck UI|Cheese|deepin-camera|steam|Cinnamon-settings.py|Bitwarden"] floating enable, border pixel 1
+for_window [class="Nextcloud"] floating enable
 for_window [title="Friends List"] floating enable
 for_window [class="GParted"] floating enable, resize set 1550 900, border pixel 0, move position center
 for_window [class="Streamdeck UI"] floating enable, resize set 500 508
 for_window [class="fm|vol|mus|Bitwarden"] floating enable, resize set 1250 700, move scratchpad, border pixel 0
 
 # Assign workspaces (find class with xprop)
-assign [class="LibreWolf|^[Ff]irefox.*|^Brave.*|firedragon"] 2
+assign [class="LibreWolf|^[Ff]irefox.*|^Brave.*|firedragon|Chromium"] 2
 assign [class="obsidian"] 4
 assign [class="obs$"] 6
 assign [class="Signal|discord"] 7
