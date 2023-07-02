@@ -3,6 +3,7 @@ include $HOME/.config/i3/keybinds.conf
 include $HOME/.config/i3/theme.conf
 include $HOME/.config/i3/i3bar.conf
 include $HOME/.config/i3/autorun.conf
+exec $HOME/.config/i3/i3-restore/i3-restore
 
 #hide_edge_borders smart
 hide_edge_borders both
@@ -47,10 +48,11 @@ no_focus [window_role="pop-up"]
 for_window [window_role="^Preferences$"] floating enable, border pixel 1
 for_window [class="^.*"] border pixel 2
 for_window [class="Spotify|cutefish-calculator|kcalc|Galculator|systemsettings|Streamdeck UI|Cheese|deepin-camera|steam|Cinnamon-settings.py|Bitwarden"] floating enable, border pixel 1
-for_window [class="Nextcloud|Blueman-manager"] floating enable
+for_window [class="Nextcloud|Blueman-manager"] floating enable, border pixel 0
 for_window [title="Friends List"] floating enable
 for_window [class="GParted"] floating enable, resize set 1550 900, border pixel 0, move position center
 for_window [class="Streamdeck UI"] floating enable, resize set 500 508
+for_window [class="org.remmina.Remmina"] floating enable, border pixel 3
 for_window [class="fm|vol|mus|Bitwarden"] floating enable, resize set 1250 700, move scratchpad, border pixel 5
 
 # Assign workspaces (find class with xprop)

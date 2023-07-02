@@ -20,8 +20,10 @@ order += "volume master"
 order += "tztime local"
 
 wireless _first_ {
-   format_up = "󱚽 (%quality at %essid) %ip"
+   format_up = "󱚽 %essid (%quality) %ip"
    format_down = ""
+   format_bitrate = "%g %cb/s"
+   format_quality = "%02d%s"
 }
 
 ethernet _first_ {
@@ -30,14 +32,15 @@ ethernet _first_ {
 }
 
 battery all {
-   format = "%status %percentage %remaining %emptytime"
+   format = "%status %percentage (%remaining)"
    format_down = ""
    status_chr = "󰂄 CHR"
    status_bat = "󰁿 BAT"
    status_unk = "󱉝 UNK"
    status_full = "󰁹 FULL"
    path = "/sys/class/power_supply/BAT%d/uevent"
-   low_threshold = 10
+   low_threshold = 25
+   threshold_type = "percentage"
 	integer_battery_capacity = true
 }
 
@@ -47,16 +50,22 @@ disk "/" {
 
 cpu_usage {
    format = " %usage"
-   format_above_threshold = "  High %usage"
-   max_threshold = 75
+   format_above_degraded_threshold = " High %usage"
+   format_above_threshold = " Warning %usage"
+   degraded_threshold = 50
+   max_threshold = 90
 }
 
 load {
-   format = "󰄧 %1min"
+   format = "󰄧 %1min %5min %15min"
+   max_threshold = 0.8
+   format_above_threshold = "󰄧 Warning: %1min %5min %15min"
+
 }
 
 memory {
-   format = " %used/%free (%available)"
+   memory_used_method = memavailable
+   format = " %free/%total (%used)"
    threshold_degraded = "10%"
    threshold_critical = "5%"
    format_degraded = " LOW < %free"
@@ -70,5 +79,5 @@ volume master {
 }
 
 tztime local {
-   format = "%Y-%m-%d %H:%M "
+   format = "%a %Y-%m-%d %H:%M "
 }
