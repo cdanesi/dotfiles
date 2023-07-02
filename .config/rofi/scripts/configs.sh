@@ -16,6 +16,7 @@ declare -a options=(
    "i3 cheatsheet - $HOME/.config/i3/cheatsheet.md"
    "i3-autorun - $HOME/.config/i3/autorun.conf"
    "i3-keybinds - $HOME/.config/i3/keybinds.conf"
+   "i3-restore - $HOME/.config/i3/i3-restore/config.json"
    "i3-theme - $HOME/.config/i3/theme.conf"
    "i3bar - $HOME/.config/i3/i3bar.conf"
    "i3config - $HOME/.config/i3/config"
