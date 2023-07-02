@@ -3,4 +3,5 @@ require 'colorizer'.setup({
    'javascript';
    'html';
    'conf';
+   'yaml';
 })
