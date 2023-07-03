@@ -5,6 +5,8 @@ DMEDITOR="alacritty -e nvim"
 declare -a options=(
    "alacritty - $HOME/.config/alacritty/alacritty.yml"
    "aliases - $HOME/.aliases"
+   "ansible inventory - $HOME/projects/ansible/inventory.yml"
+   "ansible playbooks - $HOME/projects/ansible/playbooks/"
    "archlinux-logout - $HOME/.config/archlinux-logout/archlinux-logout.conf"
    "bashrc - $HOME/.bashrc"
    "bat - $HOME/.config/bat/config"
