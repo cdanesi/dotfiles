@@ -3,7 +3,10 @@ include $HOME/.config/i3/keybinds.conf
 include $HOME/.config/i3/theme.conf
 include $HOME/.config/i3/i3bar.conf
 include $HOME/.config/i3/autorun.conf
-exec $HOME/.config/i3/i3-restore/i3-restore
+
+set $myTerm             "alacritty"
+set $fileManager        "thunar"
+set $mod                Mod4
 
 #hide_edge_borders smart
 hide_edge_borders both
@@ -16,7 +19,6 @@ default_border pixel 2
 default_floating_border normal 0
 font pango:monospace 8
 focus_on_window_activation smart
-set $mod Mod4
 floating_modifier $mod
 
 # workspace names
@@ -42,9 +44,7 @@ exec_always --no-startup-id pgrep -f '^alacritty --class mus,mus' || alacritty -
 exec_always --no-startup-id bitwarden-desktop
 
 # Specific windows
-#floating_minimum_size 1500 x 850
-#floating_maximum_size -1 x -1
-no_focus [window_role="pop-up"]
+no_focus   [window_role="pop-up"]
 for_window [window_role="^Preferences$"] floating enable, border pixel 1
 for_window [class="^.*"] border pixel 2
 for_window [class="Spotify|cutefish-calculator|kcalc|Galculator|systemsettings|Streamdeck UI|Cheese|deepin-camera|steam|Cinnamon-settings.py|Bitwarden"] floating enable, border pixel 1
@@ -55,7 +55,7 @@ for_window [class="Streamdeck UI"] floating enable, resize set 500 508
 for_window [class="org.remmina.Remmina"] floating enable, border pixel 3
 for_window [class="fm|vol|mus|Bitwarden"] floating enable, resize set 1250 700, move scratchpad, border pixel 5
 
-# Assign workspaces (find class with xprop)
+# Assign workspaces
 assign [class="LibreWolf|^[Ff]irefox.*|^Brave.*|firedragon|Chromium"] 2
 assign [class="obsidian"] 4
 assign [class="obs$"] 6
