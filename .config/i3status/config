@@ -32,15 +32,16 @@ ethernet _first_ {
 }
 
 battery all {
-   format = "%status %percentage (%remaining)"
+   format = "%status %percentage %remaining (%consumption)"
    format_down = ""
    status_chr = "󰂄 CHR"
    status_bat = "󰁿 BAT"
    status_unk = "󱉝 UNK"
    status_full = "󰁹 FULL"
    path = "/sys/class/power_supply/BAT%d/uevent"
-   low_threshold = 25
+   low_threshold = 15
    threshold_type = "percentage"
+   last_full_capacity = true
 	integer_battery_capacity = true
 }
 
@@ -65,7 +66,7 @@ load {
 
 memory {
    memory_used_method = memavailable
-   format = " %free/%total (%used)"
+   format = " %used/%total (%free)"
    threshold_degraded = "10%"
    threshold_critical = "5%"
    format_degraded = " %free/%total (%used)"
