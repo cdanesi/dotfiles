@@ -5,6 +5,7 @@ include $HOME/.config/i3/i3bar.conf
 include $HOME/.config/i3/autorun.conf
 
 set $myTerm             "alacritty"
+set $myBrowser          "chromium"
 set $fileManager        "thunar"
 set $mod                Mod4
 
