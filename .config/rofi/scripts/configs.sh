@@ -3,7 +3,7 @@
 DMEDITOR="alacritty -e nvim"
 
 declare -a options=(
-   "alacritty - $HOME/.config/alacritty/alacritty.yml"
+   "alacritty - $HOME/.config/alacritty/alacritty.toml"
    "aliases - $HOME/.aliases"
    "ansible inventory - $HOME/projects/ansible/inventory.yml"
    "ansible playbooks - $HOME/projects/ansible/playbooks/"
