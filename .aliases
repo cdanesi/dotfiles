@@ -15,18 +15,19 @@ alias ip='ip --color'
 alias yay='yay --color=auto'
 
 # ls aliases
-alias ll='ls -lFh'
-alias la='ls -laFh'
-alias l='ls -Fh'
-alias lsa='ls -ah'
+alias l='ls -hF'
+alias ll='ls -lhF'
+alias la='ls -ah'
+alias lsa='ls -lahF'
 
 # handy system cmds 
 alias cp='nocorrect cp -i'
 alias md='mkdir -p'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv -i'
-alias rd=rmdir
+alias rd='rmdir'
 alias rm='rm -i'
+alias df='duf -hide special'
 
 # command replacements
 alias cat='bat --paging=never --style=plain'
@@ -50,4 +51,4 @@ alias su='nocorrect su'
 alias sudo='nocorrect sudo'
 
 # fzf
-alias fkill=fzf-kill
+alias fkill='fzf-kill'
