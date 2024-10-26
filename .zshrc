@@ -57,7 +57,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 fi
 
 if [[ "$OSTYPE" =~ ^linux ]]; then
-   plugins+-(
+   plugins+=(
       archlinux
       ubuntu
    )
