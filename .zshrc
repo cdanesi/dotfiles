@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH=$PATH:~/bin:~/.local/bin
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export GPG_TTY=$(tty)
@@ -19,26 +19,50 @@ HIST_STAMPS="yyyy-mm-dd"
 HISTSIZE=100000
 
 plugins=(
-        zsh-autosuggestions
-        zsh-syntax-highlighting
-        last-working-dir
-        zsh-vi-mode
-        fzf-zsh-plugin
-        sudo
-        aliases
         alias-finder
+        aliases
+        ansible
+        battery
         colored-man-pages
+        command-not-found
         dircycle
         dirhistory
-        zoxide
+        docker
+        docker-compose
         dotenv
+        fzf-zsh-plugin
         genpass
-        history
-        web-search
-        command-not-found
+        git
         git-prompt
+        history
+        last-working-dir
+        ssh
+        ssh-agent
+        sudo
+        tmux
+        vscode
+        web-search
+        zoxide
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+        zsh-vi-mode
 )
 
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+   plugins+=(
+      brew
+      copypath
+      macos
+   )
+fi
+
+if [[ "$OSTYPE" =~ ^linux ]]; then
+   plugins+-(
+      archlinux
+      ubuntu
+   )
+fi
+   
 # Fix ctrl+r 
 source $HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
@@ -47,6 +71,7 @@ zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 
 source $ZSH/oh-my-zsh.sh
+#eval "$(starship init zsh)"
 #eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
