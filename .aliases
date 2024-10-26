@@ -23,6 +23,7 @@ alias lsd='ls -D --total-size'
 alias lsf='ls -fhF'
 
 # handy system cmds 
+alias cd='z'
 alias cp='nocorrect cp -i'
 alias md='mkdir -p'
 alias mkdir='nocorrect mkdir'
@@ -38,7 +39,7 @@ alias pcat='bat --paging=auto --style=auto'
 # todo.txt
 alias t='/usr/bin/todo.sh -a'
 
-# APT shortcuts
+# APT
 alias age='sudo apt'
 alias agi='sudo apt install'
 alias agr='sudo apt remove'
