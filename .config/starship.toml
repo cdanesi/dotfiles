@@ -1,20 +1,8 @@
 # ~/.config/starship.toml
 
-add_newline = true
+add_newline = true  # Inserts a blank line between shell prompts
 command_timeout = 1000  # Change command timeout from 500 to 1000 ms
-
-#format = """$custom$env_var$all"""  # Add custom formatting before other stuff
-
-format = """
-[┌─](bright black)$battery$cmd_duration─$custom─$time─$os$env_var(USER)@$hostname $git_branch$git_status $directory
-[└──> ](bright black) $sudo """
-
-#format = """
-#[┌─\[[$cmd_duration\]─\[[$time]\]─\[charles@nero\]─\[~\]]
-#[└──> \]
-#"""
-
-continuation_prompt = "[∙](bright-black) "
+format = """${custom.uptime} $env_var $all"""  # Add custom formatting before other stuff
 
 # Drop ugly default prompt characters
 [character]
@@ -22,30 +10,31 @@ success_symbol = ""
 error_symbol = ""
 
 # ---
+
 # Shows an icon depending on what distro it is running on
 [env_var.STARSHIP_DISTRO]
 format = '[$env_value](bold white) '
 variable = "STARSHIP_DISTRO"
-disabled = false
+disabled = true
 
 # Shows the current username
 [env_var.USER]
-format = '[$env_value](bold white) '
+format = '[$env_value](bold blue)'
 variable = "USER"
 disabled = false
 
 # Shows an icon depending on what device it is running on
 [env_var.STARSHIP_DEVICE]
-format = 'on $[env_value](bold yellow)'
+format = ' on $[env_value](bold green)'
 variable = "STARSHIP_DEVICE"
-disabled = false
+disabled = true
 
 # ---
 
 # Shows the hostname
 [hostname]
 ssh_only = false
-format = "[$hostname](bold yellow) "
+format = "[$hostname](bold green) "
 disabled = false
 
 # Shows current directory
@@ -87,16 +76,15 @@ format = 'via [ﴱ $context\($namespace\)](bold purple) '
 disabled = false
 
 [custom.uptime]
-command = "uptime.sh"
+command = "~/bin/uptime.sh"
 when = "true"
-#format = "[$symbol($output)](green) "
-format = '\[[$symbol($output)](green)\] '
+format = "[$symbol($output)](bright-black)"
 
 # ---
 
 # Disable some modules that aren't needed anymore
 [username]
-disabled = false
+disabled = true
 
 [vagrant]
 disabled = true
@@ -258,6 +246,3 @@ symbol = " "
 
 [spack]
 symbol = "🅢 "
-
-[cmd_duration]
-format = '\[[⏱ $duration]($style)\]'
