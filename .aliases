@@ -4,7 +4,6 @@
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
 #alias ls='ls -h --color=auto'
-alias ls='exa -ho --icons --git'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -15,6 +14,7 @@ alias ip='ip --color'
 alias yay='yay --color=auto'
 
 # ls aliases
+alias ls='exa -ho --icons --git'
 alias l='ls -h'
 alias ll='ls -lh'
 alias la='ls -ah'
