@@ -1,4 +1,4 @@
-live_config_reload = true
+# alacritty.toml
 
 [colors]
 transparent_background_colors = false
@@ -109,3 +109,6 @@ opacity = 0.65
 [window.padding]
 x = 6
 y = 6
+
+[general]
+live_config_reload = true
