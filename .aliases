@@ -37,7 +37,7 @@ alias cat='bat --paging=never --style=plain'
 alias pcat='bat --paging=auto --style=auto'
 
 # todo.txt
-alias t='/usr/bin/todo.sh -a'
+alias t='$(which todo.sh) -a'
 
 # APT
 alias age='sudo apt'
