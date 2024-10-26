@@ -4,6 +4,10 @@ if not setup then
 end
 
 gitsigns.setup {
+   _on_attach_pre = 
+      function(_, callback)
+         vequire("gitsigns-yadm").yadm_signs(callback)
+      end,
    signs = {
       add          = { text = '+' },
       change       = { text = '│' },
@@ -41,7 +45,5 @@ gitsigns.setup {
      row = 0,
      col = 1
    },
-   yadm = {
-     enable = true
-   }
+   -- on_attach = function(bufnr)
 }

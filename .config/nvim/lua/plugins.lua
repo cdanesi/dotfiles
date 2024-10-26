@@ -45,6 +45,7 @@ return packer.startup(function(use)
    })
    use("tpope/vim-obsession")
    use("norcalli/nvim-colorizer.lua")
+   use("seanbreckenridge/gitsigns-yadm") -- bring yadm support back to gitsigns
 
    use("ThePrimeagen/vim-be-good") -- get gud
 
