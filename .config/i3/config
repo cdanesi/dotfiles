@@ -1,7 +1,7 @@
 include $HOME/.config/i3/`hostname`.conf
 include $HOME/.config/i3/keybinds.conf
 include $HOME/.config/i3/theme.conf
-include $HOME/.config/i3/i3bar.conf
+include $HOME/.config/i3/i3bar-`hostname`.conf
 include $HOME/.config/i3/autorun.conf
 
 set $myTerm             "alacritty"
