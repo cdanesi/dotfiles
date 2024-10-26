@@ -36,7 +36,6 @@ return packer.startup(function(use)
    use("windwp/nvim-autopairs")
    use("nvim-lualine/lualine.nvim")
    use("nvim-tree/nvim-web-devicons")
-   use("ActivityWatch/aw-watcher-vim")
    use({
       "nvim-treesitter/nvim-treesitter",
       run = function()
