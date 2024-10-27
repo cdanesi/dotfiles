@@ -1,0 +1,9 @@
+# espanso configuration file
+
+toggle_key: RIGHT_ALT
+search_shortcut: ALT+SPACE
+search_trigger: ".search"
+show_icon: false
+show_notifications: false
+backend: auto
+auto_restart: true
