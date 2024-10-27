@@ -18,6 +18,14 @@ ENABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"
 HISTSIZE=100000
 
+# Plugin Options
+ZSH_ALIAS_FINDER_AUTOMATIC=true
+
+function zvm_after_init() {
+  autoload add-zle-hook-widget
+  add-zle-hook-widget zle-line-pre-redraw zvm_zle-line-pre-redraw
+}
+
 plugins=(
         alias-finder
         aliases
@@ -62,31 +70,27 @@ if [[ "$OSTYPE" =~ ^linux ]]; then
       ubuntu
    )
 fi
+
+if [ $(uname -s) = 'Darwin' ]; then
+   eval $(gdircolors $HOME/.dircolors)
+else
+   eval $(dircolors -b $HOME/.dircolors)
+fi
    
-# Fix ctrl+r 
-source $HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
-
-# Plugin Options
-ZSH_ALIAS_FINDER_AUTOMATIC=true
-
-source $ZSH/oh-my-zsh.sh
-#eval "$(starship init zsh)"
-#eval "$(zoxide init zsh)"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-function zvm_after_init() {
-  autoload add-zle-hook-widget
-  add-zle-hook-widget zle-line-pre-redraw zvm_zle-line-pre-redraw
-}
-
 # Load aliases
 if [ -f $HOME/.aliases ]; then
    source $HOME/.aliases
 fi
 
-if [ -f /usr/bin/pfetch ]; then
-   /usr/bin/pfetch
-fi
+# Fix ctrl+r 
+[[ ! -f $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]] || source $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+zvm_after_init_commands+=('[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh')
+
+[[ ! -f $ZSH/oh-my-zsh.sh ]] || source $ZSH/oh-my-zsh.sh
+#eval "$(starship init zsh)"
+#eval "$(zoxide init zsh)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+
+[[ ! -f $(which pfetch) ]] || $(which pfetch)
