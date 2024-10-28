@@ -1,6 +1,5 @@
 # ~/.aliases
 
-#alias ls='ls -h --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -28,6 +27,7 @@ alias mv='nocorrect mv -i'
 alias rd='rmdir'
 alias rm='rm -i'
 alias df='duf -hide special'
+alias rmhost='ssh-keygen -f ~/.ssh/known_hosts -R'
 
 # command replacements
 alias cat='bat --paging=never --style=plain'
