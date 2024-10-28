@@ -71,11 +71,15 @@ if [[ "$OSTYPE" =~ ^linux ]]; then
 fi
 
 # set up dircolors
-if [ $(uname -s) = 'Darwin' ]; then
-   [[ ! -f $(which gdircolors) ]] || $(test -f $HOME/.dir_colors && eval $(gdircolors $HOME/.dir_colors) || eval $(gdircolors))
-else
-   test -f $HOME/.dir_colors && eval $(dircolors -b $HOME/.dir_colors) || eval $(dircolors -b)
-fi
+case $(uname -s) in
+   Darwin)
+      [[ ! -f $(which gdircolors) ]] || $(test -f $HOME/.dir_colors && eval $(gdircolors $HOME/.dir_colors) || eval $(gdircolors))
+      ;;
+   Linux)
+      test -f $HOME/.dir_colors && eval $(dircolors -b $HOME/.dir_colors) || eval $(dircolors -b)
+      ;;
+   *) ;;
+esac
    
 # Fix ctrl+r 
 [[ ! -f $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]] || source $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
