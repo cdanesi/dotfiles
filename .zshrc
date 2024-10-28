@@ -71,17 +71,13 @@ if [[ "$OSTYPE" =~ ^linux ]]; then
    )
 fi
 
+# set up dircolors
 if [ $(uname -s) = 'Darwin' ]; then
-   eval $(gdircolors $HOME/.dircolors)
+   [[ ! -f $(which gdircolors) ]] || $(test -f $HOME/.dircolors && eval $(gdircolors $HOME/.dircolors) || eval $(gdircolors))
 else
-   eval $(dircolors -b $HOME/.dircolors)
+   test -f $HOME/.dircolors && eval $(dircolors -b $HOME/.dircolors) || eval $(dircolors -b)
 fi
    
-# Load aliases
-if [ -f $HOME/.aliases ]; then
-   source $HOME/.aliases
-fi
-
 # Fix ctrl+r 
 [[ ! -f $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]] || source $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 zvm_after_init_commands+=('[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh')
@@ -93,4 +89,8 @@ zvm_after_init_commands+=('[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh')
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
 
+# Load aliases
+[[ ! -f $HOME/.aliases ]] || source $HOME/.aliases
+
+# display mini system info
 [[ ! -f $(which pfetch) ]] || $(which pfetch)
