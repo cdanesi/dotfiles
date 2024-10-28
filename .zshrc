@@ -5,18 +5,17 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export GPG_TTY=$(tty)
 #export ZVM_INIT_MODE='sourcing'
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-#ZSH_THEME_RANDOM_CANDIDATES=( "cypher" "eastwood" "gallois" )
 # DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"
-HISTSIZE=100000
+HISTSIZE=128000
+SAVEHIST=128000
 
 # Plugin Options
 ZSH_ALIAS_FINDER_AUTOMATIC=true
@@ -73,9 +72,9 @@ fi
 
 # set up dircolors
 if [ $(uname -s) = 'Darwin' ]; then
-   [[ ! -f $(which gdircolors) ]] || $(test -f $HOME/.dircolors && eval $(gdircolors $HOME/.dircolors) || eval $(gdircolors))
+   [[ ! -f $(which gdircolors) ]] || $(test -f $HOME/.dir_colors && eval $(gdircolors $HOME/.dir_colors) || eval $(gdircolors))
 else
-   test -f $HOME/.dircolors && eval $(dircolors -b $HOME/.dircolors) || eval $(dircolors -b)
+   test -f $HOME/.dir_colors && eval $(dircolors -b $HOME/.dir_colors) || eval $(dircolors -b)
 fi
    
 # Fix ctrl+r 
