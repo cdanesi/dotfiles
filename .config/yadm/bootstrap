@@ -1,0 +1,55 @@
+#!/bin/sh
+#
+# YADM Bootstrap
+# @CharlesDanesi
+
+case $(uname -s) in
+   Darwin)
+
+      # Install Homebrew
+      if ! command -v brew >/dev/null 2>&1; then
+         echo "Installing Homebrew"
+         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      fi
+   
+      if [ -f "$HOME/.Brewfile" ]; then
+         echo "Installing/Updating homebrew bundle"
+         brew bundle --global
+      fi
+      ;;
+      
+   Linux)
+   
+      # First, we need to distinguish between Arch and Debian/Ubuntu
+      # I'm not sure the best way to do this yet, but as I primarily use Arch and
+      # Debian based distros, I'm going to separate them by package manager..
+      
+      if [ ! command -v pacman >/dev/null 2>&1 ]; then # Arch-based
+   
+         # Add BlackArch repositories
+         if [ ! -f /etc/blackarch-mirrorlist ]; then
+            echo "Installing BlackArch repositories"
+            curl -O https://blackarch.org/strap.sh && sudo sh ./strap.sh
+         fi
+   
+      elif [ $(which apt-get) || $(which apt) ]; then # Debian-based
+
+         echo "nothing to do yet"
+   
+      else
+
+         echo "nothing to do yet"
+   
+      fi
+      ;;
+
+   *) ;;
+esac
+
+if command -v nvim >/dev/null 2>&1; then
+   echo "Setting up neovim environment"
+   nvim --headless '+PackerSync' '+PackerUpdate' '+qall' 
+fi
+
+echo "Setting yadm repo origin to SSH"
+yadm remote set-url origin "git@github.com/cdanesi/dotfiles.git"
