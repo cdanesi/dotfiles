@@ -46,6 +46,14 @@ return packer.startup(function(use)
    })
    use("tpope/vim-obsession")
    use("norcalli/nvim-colorizer.lua")
+   use({
+      "MeanderingProgrammer/render-markdown.nvim",
+      after = { 'nvim-treesitter' },
+      requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+      config = function()
+         require('render-markdown').setup({})
+      end,
+   })
    use("seanbreckenridge/gitsigns-yadm") -- bring yadm support back to gitsigns
 
    use("ThePrimeagen/vim-be-good") -- get gud
