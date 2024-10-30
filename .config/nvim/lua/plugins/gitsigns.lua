@@ -6,7 +6,7 @@ end
 gitsigns.setup {
    _on_attach_pre = 
       function(_, callback)
-         vequire("gitsigns-yadm").yadm_signs(callback)
+         require("gitsigns-yadm").yadm_signs(callback)
       end,
    signs = {
       add          = { text = '+' },
