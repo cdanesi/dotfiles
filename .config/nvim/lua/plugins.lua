@@ -26,6 +26,14 @@ if not status then
   return
 end
 
+packer.init({
+   display = {
+      open_fn = function()
+         return require('packer.util').float({ border = 'rounded' })
+      end,
+   },
+})
+
 -- add list of plugins to install
 return packer.startup(function(use)
    use("wbthomason/packer.nvim")
@@ -50,9 +58,6 @@ return packer.startup(function(use)
       "MeanderingProgrammer/render-markdown.nvim",
       after = { 'nvim-treesitter' },
       requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-      config = function()
-         require('render-markdown').setup({})
-      end,
    })
    use("seanbreckenridge/gitsigns-yadm") -- bring yadm support back to gitsigns
 
