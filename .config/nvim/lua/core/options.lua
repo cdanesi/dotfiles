@@ -1,3 +1,5 @@
+vim.cmd("let g:netrw_liststyle = 3")
+
 local opt = vim.opt
 
 -- line numbers
@@ -24,7 +26,7 @@ opt.iskeyword:append("-") -- consider string-string as a whole word
 opt.cursorline = true
 
 -- appearance
-opt.termguicolors = false
+opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 opt.colorcolumn = "90"
