@@ -5,7 +5,7 @@ return {
       {
          "purarue/gitsigns-yadm.nvim",
          opts = {
-            shell_timeout_ms = 1000,
+            shell_timeout_ms = 2000,
          },
       },
    },
@@ -19,13 +19,28 @@ return {
          end
       end,
       signs = {
-         add = { text = "+" },
-         change = { text = "│" },
+         add = { text = "┃" },
+         change = { text = "┃" },
+         delete = { text = "_" },
+         topdelete = { text = "‾" },
+         changedelete = { text = "~" },
+         untracked = { text = "┆" },
+         -- add = { text = "+" },
+         -- change = { text = "│" },
+         -- delete = { text = "_" },
+         -- topdelete = { text = "‾" },
+         -- changedelete = { text = "~" },
+         -- untracked = { text = "┆" },
+      },
+      signs_staged = {
+         add = { text = "┃" },
+         change = { text = "┃" },
          delete = { text = "_" },
          topdelete = { text = "‾" },
          changedelete = { text = "~" },
          untracked = { text = "┆" },
       },
+      signs_staged_enable = true,
       signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
       numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
       linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
@@ -62,8 +77,8 @@ return {
             vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
          end
 
-         map("n", "]h", gs.next_hunk, "Next Hunk")
-         map("n", "[h", gs.prev_hunk, "Prev Hunk")
+         map("n", "]h", gs.next_hunk, "Next hunk")
+         map("n", "[h", gs.prev_hunk, "Prev hunk")
 
          map("n", "<leader>hs", gs.stage_hunk, "Stage Hunk")
          map("n", "<leader>hr", gs.reset_hunk, "Reset Hunk")
