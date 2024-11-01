@@ -1,4 +1,4 @@
-vim.cmd("let g:netrw_liststyle = 3")
+vim.cmd "let g:netrw_liststyle = 3"
 
 local opt = vim.opt
 
@@ -20,7 +20,7 @@ opt.wrap = false
 -- search
 opt.ignorecase = true
 opt.smartcase = true
-opt.iskeyword:append("-") -- consider string-string as a whole word
+opt.iskeyword:append "-" -- consider string-string as a whole word
 
 -- cursor line
 opt.cursorline = true
@@ -35,12 +35,13 @@ opt.colorcolumn = "90"
 opt.backspace = "indent,eol,start"
 
 -- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as the default register
+opt.clipboard:append "unnamedplus" -- use system clipboard as the default register
 
 -- split windows
 opt.splitright = true
 opt.splitbelow = true
 
 -- save me
-opt.undodir = os.getenv("HOME") .. "/.config/nvim/.undo"
+opt.undodir = os.getenv "HOME" .. "/.config/nvim/.undo"
 opt.undofile = true
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
