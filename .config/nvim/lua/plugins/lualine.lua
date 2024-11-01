@@ -18,8 +18,9 @@ return {
                statusline = {},
                winbar = {},
             },
-            ignore_focus = {},
+            ignore_focus = { "NvimTree" },
             always_divide_middle = true,
+            always_show_tabline = true,
             globalstatus = false,
             refresh = {
                statusline = 1000,
@@ -29,7 +30,18 @@ return {
          },
          sections = {
             lualine_a = { "mode" },
-            lualine_b = { "branch", "diff", "diagnostics" },
+            lualine_b = {
+               "branch",
+               "diff",
+               {
+                  "diagnostics",
+                  sources = { "nvim_lsp", "nvim_workspace_diagnostic", "nvim_diagnostic" },
+                  sections = { "error", "warn", "info", "hint" },
+                  --symbols = { error = " ", warn = " ", info = " ", hint = "󰠠 " },
+                  colored = true,
+                  always_visible = false,
+               },
+            },
             lualine_c = {
                {
                   function()
@@ -42,11 +54,11 @@ return {
                {
                   lazy_status.updates,
                   cond = lazy_status.has_updates,
-                  color = { fg = "#ff9e64" },
+                  color = { fg = "#ebcb8b" },
                },
                { "encoding", "fileformat", "filetype" },
             },
-            lualine_y = { "progress" },
+            lualine_y = { "searchcount", "progress" },
             lualine_z = { "location" },
          },
          inactive_sections = {
@@ -60,7 +72,7 @@ return {
          tabline = {},
          winbar = {},
          inactive_winbar = {},
-         extensions = {},
+         extensions = { "nvim-tree", "lazy", "trouble", "quickfix", "fzf", "mason" },
       }
    end,
 }
