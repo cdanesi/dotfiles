@@ -1,16 +1,34 @@
 return {
    "rmagatti/auto-session",
-   config = function()
-      local auto_session = require("auto-session")
+   lazy = false,
 
-      auto_session.setup({
-         auto_restore_enabled = false,
-         auto_session_suppress_dirs = { "~/", "~/Downloads", "~/Documents", "~/Desktop", "~/Photos" }
-      })
+   -- Configure keybinds
+   keys = {
+      { "<leader>wa", "<cmd>SessionToggleAutoSave<CR>", desc = "Toggle session autosave" },
+      { "<leader>wD", "<cmd>Autosession delete<CR>", desc = "Delete a session" },
+      { "<leader>wd", "<cmd>SessionDelete<CR>", desc = "Delete session for cwd" },
+      { "<leader>wl", "<cmd>SessionSearch<CR>", desc = "Open session picker" },
+      { "<leader>wr", "<cmd>SessionRestore<CR>", desc = "Restore session for cwd" },
+      { "<leader>ws", "<cmd>SessionSave<CR>", desc = "Save session for cwd" },
+   },
 
-      local keymap = vim.keymap
+   ---@module "auto-session"
+   ---@type AutoSession.Config
+   opts = {
+      auto_save = true,
+      auto_restore = false, -- don't auto restore the last session
+      session_lens = {
+         load_on_setup = true,
+         previewer = false,
 
-      keymap.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" })
-      keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for auto session root dir" })
-   end,
+         mappings = {
+            delete_session = { "i", "<C-D>" },
+            alternate_session = { "i", "<C-S>" },
+            copy_session = { "i", "<C-Y>" },
+         },
+      },
+      bypass_save_filetypes = { "alpha", "dashboard" }, -- don't save dashboard/greeter to a session
+      -- Folders listed here will not have sessions created within.
+      suppress_dirs = { "~/", "~/Downloads", "~/Documents", "~/Desktop", "/" },
+   },
 }
