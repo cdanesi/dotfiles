@@ -1,60 +1,47 @@
 return {
    "nvim-tree/nvim-tree.lua",
    dependencies = "nvim-tree/nvim-web-devicons",
-   config = function()
-      local nvimtree = require "nvim-tree"
+   opts = {
+      view = {
+         width = 35,
+         relativenumber = true,
+      },
+      renderer = {
+         indent_markers = {
+            enable = true,
+         },
+         icons = {
+            glyphs = {
+               default = "",
+               folder = {
+                  default = "",
+                  open = "",
+                  empty = "",
+                  empty_open = "",
+                  arrow_closed = "", -- arrow when folder is closed
+                  arrow_open = "", -- arrow when folder is open
+               },
+            },
+         },
+      },
+      actions = {
+         open_file = {
+            window_picker = {
+               enable = false,
+            },
+         },
+      },
+      filters = {
+         custom = { ".DS_Store" },
+      },
+      git = {
+         ignore = false,
+      },
+   },
 
-      vim.g.loaded_netrw = 1
+   config = function(_, opts)
       vim.g.loaded_netrwPlugin = 1
 
-      nvimtree.setup {
-         view = {
-            width = 35,
-            relativenumber = true,
-         },
-         renderer = {
-            indent_markers = {
-               enable = true,
-            },
-            icons = {
-               glyphs = {
-                  default = "",
-                  folder = {
-                     default = "",
-                     open = "",
-                     empty = "",
-                     empty_open = "",
-                     arrow_closed = "", -- arrow when folder is closed
-                     arrow_open = "", -- arrow when folder is open
-                  },
-               },
-            },
-         },
-         actions = {
-            open_file = {
-               window_picker = {
-                  enable = false,
-               },
-            },
-         },
-         filters = {
-            custom = { ".DS_Store" },
-         },
-         git = {
-            ignore = false,
-         },
-      }
-
-      local keymap = vim.keymap
-
-      keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
-      keymap.set(
-         "n",
-         "<leader>ef",
-         "<cmd>NvimTreeFindFileToggle<CR>",
-         { desc = "Toggle file explorer on current file" }
-      )
-      keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
-      keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
+      require("nvim-tree").setup(opts)
    end,
 }

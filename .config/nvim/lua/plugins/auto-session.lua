@@ -2,16 +2,6 @@ return {
    "rmagatti/auto-session",
    lazy = false,
 
-   -- Configure keybinds
-   keys = {
-      { "<leader>wa", "<cmd>SessionToggleAutoSave<CR>", desc = "Toggle session autosave" },
-      { "<leader>wD", "<cmd>Autosession delete<CR>", desc = "Delete a session" },
-      { "<leader>wd", "<cmd>SessionDelete<CR>", desc = "Delete session for cwd" },
-      { "<leader>wl", "<cmd>SessionSearch<CR>", desc = "Open session picker" },
-      { "<leader>wr", "<cmd>SessionRestore<CR>", desc = "Restore session for cwd" },
-      { "<leader>ws", "<cmd>SessionSave<CR>", desc = "Save session for cwd" },
-   },
-
    ---@module "auto-session"
    ---@type AutoSession.Config
    opts = {

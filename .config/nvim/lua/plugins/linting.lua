@@ -3,14 +3,17 @@ return {
    event = { "BufReadPre", "BufNewFile" },
 
    config = function()
-      local lint = require("lint")
+      local lint = require "lint"
 
       lint.linters_by_ft = {
+         markdown = { "markdownlint" },
+         html = { "htmlhint" },
+         json = { "jsonlint" },
+         bash = { "shellcheck", "shellharden" },
          javascript = { "eslint_d" },
          typescript = { "eslint_d" },
          javascriptreact = { "eslint_d" },
          typescriptreact = { "eslint_d" },
-         svelte = { "eslint_d" },
          python = { "pylint" },
       }
 
@@ -22,9 +25,5 @@ return {
             lint.try_lint()
          end,
       })
-
-      vim.keymap.set("n", "<leader>l", function()
-         lint.try_lint()
-      end, { desc = "Trigger linting for current file"})
    end,
 }
