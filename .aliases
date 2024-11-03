@@ -37,7 +37,11 @@ alias pcat='bat --paging=auto --style=auto'
 # todo.txt
 alias t='$(which todo.sh) -a'
 
-# APT
+# Arch
+alias yay='nocorrect yay'
+alias pacman='nocorrect pacman'
+
+# Ubuntu
 alias age='sudo apt'
 alias agi='sudo apt install'
 alias agr='sudo apt remove'
