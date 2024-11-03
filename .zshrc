@@ -8,7 +8,13 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export GPG_TTY=$(tty)
-#export ZVM_INIT_MODE='sourcing'
+export ZVM_INIT_MODE='sourcing'
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
@@ -17,65 +23,65 @@ HIST_STAMPS="yyyy-mm-dd"
 HISTSIZE=128000
 SAVEHIST=128000
 
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1
+    --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1
+    --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac
+    --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b'
+
 # Plugin Options
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 
 function zvm_after_init() {
-  autoload add-zle-hook-widget
-  add-zle-hook-widget zle-line-pre-redraw zvm_zle-line-pre-redraw
+   autoload add-zle-hook-widget
+   add-zle-hook-widget zle-line-pre-redraw zvm_zle-line-pre-redraw
 }
 
 plugins=(
-        alias-finder
-        aliases
-        ansible
-        battery
-        colored-man-pages
-        command-not-found
-        dircycle
-        dirhistory
-        docker
-        docker-compose
-        dotenv
-        fzf-zsh-plugin
-        genpass
-        git
-        git-prompt
-        history
-        last-working-dir
-        ssh
-        ssh-agent
-        sudo
-        tmux
-        vscode
-        web-search
-        zoxide
-        zsh-autosuggestions
-        zsh-syntax-highlighting
-        zsh-vi-mode
+   alias-finder
+   aliases
+   ansible
+   battery
+   colored-man-pages
+   command-not-found
+   dircycle
+   dirhistory
+   docker
+   docker-compose
+   dotenv
+   genpass
+   git
+   git-prompt
+   history
+   last-working-dir
+   ssh
+   ssh-agent
+   sudo
+   tmux
+   vscode
+   web-search
+   zsh-autosuggestions
+   zsh-syntax-highlighting
+   zsh-vi-mode
 )
-
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-   plugins+=(
-      brew
-      copypath
-      macos
-   )
-fi
-
-if [[ "$OSTYPE" =~ ^linux ]]; then
-   plugins+=(
-      archlinux
-      ubuntu
-   )
-fi
 
 # set up dircolors
 case $(uname -s) in
    Darwin)
+      plugins+=(
+         brew
+         copypath
+         macos
+      )
+
       [[ ! -f $(which gdircolors) ]] || $(test -f $HOME/.dir_colors && eval $(gdircolors $HOME/.dir_colors) || eval $(gdircolors))
       ;;
    Linux)
+      plugins+=(
+         archlinux
+         ubuntu
+      )
+
       test -f $HOME/.dir_colors && eval $(dircolors -b $HOME/.dir_colors) || eval $(dircolors -b)
       ;;
    *) ;;
@@ -83,14 +89,42 @@ esac
    
 # Fix ctrl+r 
 [[ ! -f $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]] || source $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-zvm_after_init_commands+=('[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh')
 
 [[ ! -f $ZSH/oh-my-zsh.sh ]] || source $ZSH/oh-my-zsh.sh
-#eval "$(starship init zsh)"
-#eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(fzf --zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+
+
+_fzf_compgen_path() {
+   fd --hidden --exclude .git . "$1"
+}
+
+_fzf_compgen_dir() {
+   fd --type=d --hidden --exclude .git . "$1"
+}
+
+_fzf_comprun() {
+   local command=$1
+   shift
+
+   case "$command" in
+      cd)
+         fzf --preview 'eza --tree --color=always {} | head -200' "$@"
+         ;;
+      export|unset)
+         fzf --preview "eval 'echo \$' {}" "$@"
+         ;;
+      ssh)
+         fzf --preview 'dig {}' "$@"
+         ;;
+      *)
+         fzf --preview "--preview 'bat -n --color=always --line-range :500'" "$@"
+         ;;
+   esac
+}
 
 # Load aliases
 [[ ! -f $HOME/.aliases ]] || source $HOME/.aliases
