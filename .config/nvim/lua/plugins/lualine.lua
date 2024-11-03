@@ -31,8 +31,18 @@ return {
          sections = {
             lualine_a = { "mode" },
             lualine_b = {
+               "filename",
+            },
+            lualine_c = {
                "branch",
                "diff",
+               {
+                  function()
+                     return require("auto-session.lib").current_session_name(true)
+                  end,
+               },
+            },
+            lualine_x = {
                {
                   "diagnostics",
                   sources = { "nvim_lsp", "nvim_workspace_diagnostic", "nvim_diagnostic" },
@@ -41,33 +51,35 @@ return {
                   colored = true,
                   always_visible = false,
                },
-            },
-            lualine_c = {
-               {
-                  function()
-                     return require("auto-session.lib").current_session_name(true)
-                  end,
-               },
-               { "filename" },
-            },
-            lualine_x = {
                {
                   lazy_status.updates,
                   cond = lazy_status.has_updates,
                   color = { fg = "#ebcb8b" },
                },
-               { "encoding", "fileformat", "filetype" },
+               "encoding",
+               "fileformat",
+               "filetype",
+               "hostname",
             },
             lualine_y = { "searchcount", "progress" },
-            lualine_z = { "location" },
+            lualine_z = { "selectioncount", "location" },
          },
          inactive_sections = {
             lualine_a = {},
             lualine_b = {},
             lualine_c = { "filename" },
-            lualine_x = { "location" },
+            lualine_x = {
+               {
+                  "diagnostics",
+                  sources = { "nvim_lsp", "nvim_workspace_diagnostic", "nvim_diagnostic" },
+                  sections = { "error", "warn", "info", "hint" },
+                  --symbols = { error = " ", warn = " ", info = " ", hint = "󰠠 " },
+                  colored = false,
+                  always_visible = false,
+               },
+            },
             lualine_y = {},
-            lualine_z = {},
+            lualine_z = { "location" },
          },
          tabline = {},
          winbar = {},
