@@ -6,11 +6,11 @@ return {
    },
 
    config = function()
-      local mason = require("mason")
-      local mason_lspconfig = require("mason-lspconfig")
-      local mason_tool_installer = require("mason-tool-installer")
+      local mason = require "mason"
+      local mason_lspconfig = require "mason-lspconfig"
+      local mason_tool_installer = require "mason-tool-installer"
 
-      mason.setup({
+      mason.setup {
          ui = {
             icons = {
                package_installed = "✓",
@@ -18,18 +18,18 @@ return {
                package_uninstalled = "✗",
             },
          },
-      })
+      }
 
-      mason_lspconfig.setup({
+      mason_lspconfig.setup {
          ensure_installed = {
             "html",
             "cssls",
             "lua_ls",
             "emmet_ls",
          },
-      })
+      }
 
-      mason_tool_installer.setup({
+      mason_tool_installer.setup {
          ensure_installed = {
             "prettier",
             "stylua",
@@ -37,7 +37,8 @@ return {
             "black",
             "pylint",
             "eslint_d",
+            "beautysh",
          },
-      })
+      }
    end,
 }
