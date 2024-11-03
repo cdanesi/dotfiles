@@ -31,7 +31,16 @@ return {
          sections = {
             lualine_a = { "mode" },
             lualine_b = {
-               "filename",
+               {
+                  "filename",
+                  file_status = true,
+                  newfile_status = true,
+                  path = 4,
+                  symbols = {
+                     modified = "[+]",
+                     readonly = "[-]",
+                  },
+               },
             },
             lualine_c = {
                "branch",
