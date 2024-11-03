@@ -14,7 +14,7 @@ opt.expandtab = true
 opt.smartindent = true
 opt.autoindent = true
 
--- disable line wrapping
+-- line wrapping
 opt.wrap = false
 
 -- search
@@ -30,6 +30,11 @@ opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 opt.colorcolumn = "90"
+vim.diagnostic.config {
+   float = {
+      border = "rounded",
+   },
+}
 
 -- backspace
 opt.backspace = "indent,eol,start"
@@ -42,6 +47,13 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- save me
-opt.undodir = os.getenv "HOME" .. "/.config/nvim/.undo"
+opt.undodir = { os.getenv "HOME" .. "/.config/nvim/.undo/" }
 opt.undofile = true
+
+-- folding
+opt.foldlevel = 20
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- session management
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
