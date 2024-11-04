@@ -68,7 +68,6 @@ return {
                "encoding",
                "fileformat",
                "filetype",
-               "hostname",
             },
             lualine_y = { "searchcount", "progress" },
             lualine_z = { "selectioncount", "location" },
