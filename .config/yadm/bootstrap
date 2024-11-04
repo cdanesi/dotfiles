@@ -47,8 +47,10 @@ case $(uname -s) in
 esac
 
 if command -v nvim >/dev/null 2>&1; then
-   echo "Setting up neovim environment"
-   nvim --headless '+PackerSync' '+PackerUpdate' '+qall' 
+   # NOTE: this is no longer necessary after migrating to Lazy
+   #
+   # echo "Setting up neovim environment"
+   # nvim --headless '+PackerSync' '+PackerUpdate' '+qall' 
 fi
 
 echo "Setting yadm repo origin to SSH"
