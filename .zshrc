@@ -8,13 +8,13 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export GPG_TTY=$(tty)
-export ZVM_INIT_MODE='sourcing'
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+export ZSH_ALIAS_FINDER_AUTOMATIC=true
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
@@ -29,12 +29,15 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac
     --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b'
 
-# Plugin Options
-ZSH_ALIAS_FINDER_AUTOMATIC=true
+zvm_after_init_commands+=(init_env)
 
-function zvm_after_init() {
-   autoload add-zle-hook-widget
-   add-zle-hook-widget zle-line-pre-redraw zvm_zle-line-pre-redraw
+function zvm_config() {
+   export ZVM_INIT_MODE='sourcing'
+   export ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+   export ZVM_VI_EDITOR="$VISUAL"
+   export ZVM_VI_SURROUND_BINDKEY='classic'
+   export ZVM_VI_INSERT_ESCAPE_BINDKEY='jk'
+   export ZVM_ESCAPE_KEYTIMEOUT=0.03
 }
 
 plugins=(
@@ -62,11 +65,11 @@ plugins=(
    web-search
    zsh-autosuggestions
    zsh-syntax-highlighting
-   zsh-vi-mode
 )
 
 # set up dircolors
 case $(uname -s) in
+
    Darwin)
       plugins+=(
          brew
@@ -74,29 +77,41 @@ case $(uname -s) in
          macos
       )
 
-      [[ ! -f $(which gdircolors) ]] || $(test -f $HOME/.dir_colors && eval $(gdircolors $HOME/.dir_colors) || eval $(gdircolors))
+      [[ ! -f $(which gdircolors) ]] || $(test -f "$HOME"/.dircolors && eval $(gdircolors "$HOME"/.dircolors) || eval $(gdircolors))
       ;;
+
    Linux)
       plugins+=(
          archlinux
          ubuntu
       )
 
-      test -f $HOME/.dir_colors && eval $(dircolors -b $HOME/.dir_colors) || eval $(dircolors -b)
+      test -f "$HOME"/.dircolors && eval $(dircolors -b "$HOME"/.dircolors) || eval $(dircolors -b)
       ;;
+
    *) ;;
 esac
+
+function init_env() {
+   eval "$(zoxide init zsh)"
+   eval "$(fzf --zsh)"
    
-# Fix ctrl+r 
-[[ ! -f $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]] || source $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+   # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+   [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+   
+   # Load aliases
+   [[ ! -f $HOME/.aliases ]] || source $HOME/.aliases
+   
+   # display mini system info
+   [[ ! -f $(which pfetch) ]] || $(which pfetch)
+}
 
 [[ ! -f $ZSH/oh-my-zsh.sh ]] || source $ZSH/oh-my-zsh.sh
-eval "$(zoxide init zsh)"
-eval "$(fzf --zsh)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
-
+function zvm_after_init() {
+   autoload add-zle-hook-widget
+   add-zle-hook-widget zle-line-pre-redraw zvm_zle-line-pre-redraw
+}
 
 _fzf_compgen_path() {
    fd --hidden --exclude .git . "$1"
@@ -126,8 +141,4 @@ _fzf_comprun() {
    esac
 }
 
-# Load aliases
-[[ ! -f $HOME/.aliases ]] || source $HOME/.aliases
-
-# display mini system info
-[[ ! -f $(which pfetch) ]] || $(which pfetch)
+[[ ! -f $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]] || source "$ZSH"/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
