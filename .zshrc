@@ -5,16 +5,32 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="$HOME/.oh-my-zsh"
+# Set PATH
+export PATH="$HOME/.bin:$HOME/.local/bin:/usr/local:$PATH"
+
+# Editor
 export EDITOR='nvim'
+export SUDO_EDITOR='nvim'
+export VISUAL='nvim'
+
+export ZSH="$HOME/.oh-my-zsh"
 export GPG_TTY=$(tty)
+export BAT_THEME="Nord"
+
+ZSH_TMUX_AUTOSTART='false'
+ZSH_TMUX_AUTOCONNECT='false'
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-export ZSH_ALIAS_FINDER_AUTOMATIC=true
+
+zstyle ':omz:plugins:alias-finder' autoload yes
+zstyle ':omz:plugins:alias-finder' exact yes
+zstyle ':omz:plugins:ssh-agent' agent-forwarding yes
+zstyle ':omz:plugins:ssh-agent' lifetime 2h
+zstyle ':omz:plugins:ssh-agent' quiet yes
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
@@ -22,6 +38,10 @@ ENABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"
 HISTSIZE=128000
 SAVEHIST=128000
+setopt hist_verify
+setopt share_history
+setopt hist_ignore_all_dups
+setopt pushd_ignore_dups
 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1
@@ -44,24 +64,16 @@ plugins=(
    alias-finder
    aliases
    ansible
-   battery
    colored-man-pages
    command-not-found
-   dircycle
-   dirhistory
-   docker
-   docker-compose
    dotenv
    genpass
    git
-   git-prompt
-   history
    last-working-dir
    ssh
    ssh-agent
    sudo
    tmux
-   vscode
    web-search
    zsh-autosuggestions
    zsh-syntax-highlighting
@@ -73,9 +85,14 @@ case $(uname -s) in
    Darwin)
       plugins+=(
          brew
+         copyfile
          copypath
          macos
       )
+      
+      zstyle ':omz:plugins:ssh-agent' ssh-add-args --apple-load-keychain
+
+      eval "$(brew shellenv)"
 
       [[ ! -f $(which gdircolors) ]] || $(test -f "$HOME"/.dircolors && eval $(gdircolors "$HOME"/.dircolors) || eval $(gdircolors))
       ;;
@@ -83,6 +100,7 @@ case $(uname -s) in
    Linux)
       plugins+=(
          archlinux
+         systemd
          ubuntu
       )
 
@@ -97,13 +115,13 @@ function init_env() {
    eval "$(fzf --zsh)"
    
    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-   [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+   [[ ! -f $HOME/.p10k.zsh ]] || source "$HOME"/.p10k.zsh
    
    # Load aliases
    [[ ! -f $HOME/.aliases ]] || source $HOME/.aliases
    
    # display mini system info
-   [[ ! -f $(which pfetch) ]] || $(which pfetch)
+   [[ ! -f $(which pfetch) ]] || eval "$(which pfetch)"
 }
 
 [[ ! -f $ZSH/oh-my-zsh.sh ]] || source $ZSH/oh-my-zsh.sh
