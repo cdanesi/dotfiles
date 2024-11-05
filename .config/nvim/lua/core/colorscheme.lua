@@ -1,4 +1,3 @@
--- set colorscheme if it's installed
 return {
    "shaunsingh/nord.nvim",
    lazy = false,

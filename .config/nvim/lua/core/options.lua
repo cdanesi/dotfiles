@@ -29,7 +29,7 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
-opt.colorcolumn = "90"
+opt.colorcolumn = "80"
 vim.diagnostic.config {
    float = {
       border = "rounded",
