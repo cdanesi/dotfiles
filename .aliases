@@ -79,3 +79,11 @@ alias yss='yadm status --short'
 alias yst='yadm status'
 alias ylog='yadm log --oneline'
 alias 'ylog!'='yadm log'
+
+# tmux
+alias ta='tmux attach'
+alias tkill='tmux kill-server'
+alias tks='tmux kill-session -t'
+alias tl='tmux list-sessions'
+alias tmv='tmux rename -t'
+alias tns='tmux new -s'
