@@ -17,9 +17,6 @@ export ZSH="$HOME/.oh-my-zsh"
 export GPG_TTY=$(tty)
 export BAT_THEME="Nord"
 
-ZSH_TMUX_AUTOSTART='false'
-ZSH_TMUX_AUTOCONNECT='false'
-
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
@@ -73,7 +70,6 @@ plugins=(
    ssh
    ssh-agent
    sudo
-   tmux
    web-search
    zsh-autosuggestions
    zsh-syntax-highlighting
