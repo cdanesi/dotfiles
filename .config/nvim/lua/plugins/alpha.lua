@@ -30,11 +30,6 @@ return {
          dashboard.button("q", " > Quit NVIM", "<cmd>qa<CR>"),
       }
 
-      local handle = io.popen "fortune"
-      local fortune = handle:read "*a"
-      handle:close()
-      dashboard.section.footer.val = fortune
-      -- Send config to alpha
       alpha.setup(dashboard.opts)
 
       -- Disable folding on alpha buffer
