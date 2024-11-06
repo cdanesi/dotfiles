@@ -1,4 +1,3 @@
-
 [colors]
 transparent_background_colors = true
 
@@ -78,6 +77,17 @@ style = "Italic"
 [font.normal]
 family = "FiraCode Nerd Font"
 style = "Regular"
+
+[window]
+decorations = "buttonless"
+dynamic_padding = false
+opacity = 0.75
+startup_mode = "Maximized"
+option_as_alt = "Both"
+
+[window.padding]
+x = 6
+y = 6
 
 [[keyboard.bindings]]
 chars = "\u0002\""
@@ -258,13 +268,3 @@ mods = "Command"
 chars = "\u00029"
 key = "Key9"
 mods = "Command"
-
-[window]
-decorations = "buttonless"
-dynamic_padding = false
-opacity = 0.75
-startup_mode = "Maximized"
-
-[window.padding]
-x = 6
-y = 6
