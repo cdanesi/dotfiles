@@ -80,6 +80,9 @@ alias yst='yadm status'
 alias ylog='yadm log --oneline'
 alias 'ylog!'='yadm log'
 
+# LazyGit (yadm)
+alias lazyy='lazygit -ucd ~/.local/share/yadm/lazygit -w ~ -g ~/.local/share/yadm/repo.git'
+
 # tmux
 alias ta='tmux attach'
 alias tkill='tmux kill-server'
