@@ -45,11 +45,6 @@ return {
             lualine_c = {
                "branch",
                "diff",
-               {
-                  function()
-                     return require("auto-session.lib").current_session_name(true)
-                  end,
-               },
             },
             lualine_x = {
                {
@@ -65,6 +60,11 @@ return {
                   cond = lazy_status.has_updates,
                   color = { fg = "#ebcb8b" },
                },
+               -- {
+               --    function()
+               --       return require("auto-session.lib").current_session_name(true)
+               --    end,
+               -- },
                "encoding",
                "fileformat",
                "filetype",
