@@ -66,7 +66,6 @@ plugins=(
    dotenv
    genpass
    git
-   last-working-dir
    ssh
    ssh-agent
    sudo
