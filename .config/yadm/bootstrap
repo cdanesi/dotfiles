@@ -46,11 +46,32 @@ case $(uname -s) in
    *) ;;
 esac
 
-if command -v nvim >/dev/null 2>&1; then
-   # NOTE: this is no longer necessary after migrating to Lazy
-   #
-   # echo "Setting up neovim environment"
-   # nvim --headless '+PackerSync' '+PackerUpdate' '+qall' 
+echo "Setting up ZSH"
+if ! [ -d "$HOME/.zsh" ]; then
+   mkdir "$HOME/.zsh"
+fi
+
+if ! [ -d "$HOME/.zsh/zsh-autosuggestions" ]; then
+   echo "Installing zsh-autosuggestions"
+   git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
+fi
+
+if ! [ -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
+   echo "Installing zsh-syntax-highlighting"
+   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.zsh/zsh-syntax-highlighting
+fi
+
+if ! [ -d "$HOME/.zsh/zsh-completions" ]; then
+   echo "Installing zsh-completions"
+   git clone https://github.com/zsh-users/zsh-completions.git $HOME/.zsh/zsh-completions
+   [[ ! -f $HOME/.zcompdump ]] || rm $HOME/.zcompdump
+   echo "Setting up zsh completions"
+   compinit
+fi
+
+if ! [ -d "$HOME/.zsh/zsh-vi-mode" ]; then
+   echo "Installing zsh-vi-mode"
+   git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh/zsh-vi-mode
 fi
 
 echo "Setting yadm repo origin to SSH"
