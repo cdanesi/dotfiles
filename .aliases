@@ -10,7 +10,7 @@ alias ip='ip --color'
 alias yay='yay --color=auto'
 
 # ls aliases
-alias ls='eza -ho --icons --git'
+alias ls="eza -ho --time-style='+%Y-%m-%d %H:%M' --icons --git"
 alias l='ls -h'
 alias ll='ls -lh'
 alias la='ls -ah'
@@ -90,3 +90,6 @@ alias tks='tmux kill-session -t'
 alias tl='tmux list-sessions'
 alias tmv='tmux rename -t'
 alias tns='tmux new -s'
+
+# SSH
+alias ssh='ssh -o AddKeysToAgent=yes'
