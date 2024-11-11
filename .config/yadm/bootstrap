@@ -75,4 +75,4 @@ if ! [ -d "$HOME/.zsh/zsh-vi-mode" ]; then
 fi
 
 echo "Setting yadm repo origin to SSH"
-yadm remote set-url origin "git@github.com/cdanesi/dotfiles.git"
+yadm remote set-url origin "git@github.com:cdanesi/dotfiles.git"
