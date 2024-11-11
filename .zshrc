@@ -6,7 +6,21 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Set PATH
-export PATH="$HOME/.bin:$HOME/.local/bin:/usr/local:$PATH"
+export PATH="/usr/local:$PATH"
+
+if [ -d "$HOME/bin" ]; then
+   export PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ]; then
+   export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/.bin" ]; then
+   export PATH="$HOME/.bin:$PATH"
+fi
+
+fpath=($HOME/.zsh/zsh-completions/src $fpath)
 
 # Editor
 export EDITOR='nvim'
@@ -32,6 +46,8 @@ zstyle ':omz:plugins:ssh-agent' quiet yes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
+
+# Command History
 HIST_STAMPS="yyyy-mm-dd"
 HISTSIZE=128000
 SAVEHIST=128000
@@ -70,8 +86,6 @@ plugins=(
    ssh-agent
    sudo
    web-search
-   zsh-autosuggestions
-   zsh-syntax-highlighting
 )
 
 # set up dircolors
@@ -110,7 +124,7 @@ function init_env() {
    eval "$(fzf --zsh)"
    
    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-   [[ ! -f $HOME/.p10k.zsh ]] || source "$HOME"/.p10k.zsh
+   [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
    
    # Load aliases
    [[ ! -f $HOME/.aliases ]] || source $HOME/.aliases
@@ -122,8 +136,8 @@ function init_env() {
 [[ ! -f $ZSH/oh-my-zsh.sh ]] || source $ZSH/oh-my-zsh.sh
 
 function zvm_after_init() {
-   autoload add-zle-hook-widget
-   add-zle-hook-widget zle-line-pre-redraw zvm_zle-line-pre-redraw
+   autoload -Uz add-zle-hook-widget
+   # add-zle-hook-widget zle-line-pre-redraw zvm_zle-line-pre-redraw
 }
 
 _fzf_compgen_path() {
@@ -154,4 +168,6 @@ _fzf_comprun() {
    esac
 }
 
-[[ ! -f $ZSH/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]] || source "$ZSH"/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+[[ ! -f $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ ! -f $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ ! -f $HOME/.zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]] || source $HOME/.zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
