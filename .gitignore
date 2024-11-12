@@ -14,6 +14,7 @@
 .tldrc/
 .vscode/
 .zcompdump*
+.zsh
 Applications/
 Desktop/
 Documents/
