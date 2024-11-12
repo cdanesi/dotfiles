@@ -15,6 +15,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -f "$HOME/.bash_aliases" ]; then
-  . "$HOME/.bash_aliases"
+if [ -f "$HOME/.aliases" ]; then
+  . "$HOME/.aliases"
 fi
