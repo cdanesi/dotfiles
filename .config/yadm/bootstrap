@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 #
 # YADM Bootstrap
 # @CharlesDanesi
@@ -74,5 +74,16 @@ if ! [ -d "$HOME/.zsh/zsh-vi-mode" ]; then
    git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.zsh/zsh-vi-mode
 fi
 
-echo "Setting yadm repo origin to SSH"
-yadm remote set-url origin "git@github.com:cdanesi/dotfiles.git"
+if ! [ -d "$HOME/.zsh/powerlevel10k" ]; then
+   echo "Installing powerlevel10k"
+   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.zsh/powerlevel10k
+fi
+
+read -qs "ans?Change yadm origin remote to SSH url? (y/N) "
+case $ans in
+   y)
+      echo "\n\nSetting remote origin to use SSH"
+      yadm remote set-url origin "git@github.com:cdanesi/dotfiles.git"
+      ;;
+   *) ;;
+esac
