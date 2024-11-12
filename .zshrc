@@ -43,7 +43,6 @@ zstyle ':omz:plugins:ssh-agent' agent-forwarding yes
 zstyle ':omz:plugins:ssh-agent' lifetime 2h
 zstyle ':omz:plugins:ssh-agent' quiet yes
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 
@@ -124,7 +123,7 @@ function init_env() {
    eval "$(fzf --zsh)"
    
    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-   [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+   [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme && source $HOME/.p10k.zsh
    
    # Load aliases
    [[ ! -f $HOME/.aliases ]] || source $HOME/.aliases
