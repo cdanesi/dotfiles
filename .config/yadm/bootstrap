@@ -87,3 +87,8 @@ case $ans in
       ;;
    *) ;;
 esac
+
+if ! [ -d "$HOME/.config/ranger/plugins/ranger_devicons" ]; then
+   echo "Installing ranger_devicons"
+   git clone https://github.com/alexanderjeurissen/ranger_devicons $HOME/.config/ranger/plugins/ranger_devicons
+fi
