@@ -12,12 +12,14 @@ alias yay='yay --color=auto'
 # ls aliases
 alias ls="eza -ho --time-style='+%Y-%m-%d %H:%M' --icons --git"
 alias l='ls -h'
-alias ll='ls -lh'
+alias lSd='ls -Dl --total-size --git-repos'
 alias la='ls -ah'
-alias lt='ls --tree'
+alias ll='ls -lh'
+alias llsd='ls -Dl --git-repos'
 alias lsa='ls -lah'
-alias lsd='ls -D --total-size'
+alias lsd='ls -D --git-repos'
 alias lsf='ls -fhF'
+alias lt='ls --tree'
 
 # handy system cmds 
 alias cd='z'
