@@ -5,7 +5,6 @@ return {
    opts = {
       options = {
          mode = "tabs",
-         themable = true,
          separator_style = "slant",
          diagnostics = "nvim_lsp",
          -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
@@ -17,7 +16,7 @@ return {
          --    return s
          -- end,
          always_show_bufferline = false,
-         show_tab_indicators = true,
+         show_tab_indicators = false,
          color_icons = true,
          show_buffer_icons = true,
          persist_buffer_sort = true,
