@@ -40,6 +40,14 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
+-- bufferline
+keymap.set("n", "<leader>gb", "<cmd>BufferLinePick<CR>", { desc = "Pick tab" })
+keymap.set("n", "<leader>gB", "<cmd>BufferLinePickClose<CR>", { desc = "Close tab" })
+keymap.set("n", "[b", "<cmd>BufferLineCycleNext<CR>", { desc = "Next tab" })
+keymap.set("n", "b]", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous tab" })
+-- keymap.set("n", "", "<cmd>BufferLineMoveNext<CR>", { desc = "Move tab to the right" })
+-- keymap.set("n", "", "<cmd>BufferLineMovePrev<CR>", { desc = "Move tab to the left" })
+
 -- session management
 keymap.set("n", "<leader>wa", "<cmd>SessionToggleAutoSave<CR>", { desc = "Toggle session autosave" })
 keymap.set("n", "<leader>wD", "<cmd>Autosession delete<CR>", { desc = "Delete a session" })
