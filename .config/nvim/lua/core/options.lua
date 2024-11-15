@@ -2,6 +2,9 @@ vim.cmd "let g:netrw_liststyle = 3"
 
 local opt = vim.opt
 
+-- environment
+opt.showmode = false
+
 -- line numbers
 opt.number = true
 opt.relativenumber = true
@@ -16,6 +19,9 @@ opt.autoindent = true
 
 -- line wrapping
 opt.wrap = false
+
+-- keep cursor line centered
+opt.scrolloff = 999
 
 -- search
 opt.ignorecase = true
@@ -35,6 +41,9 @@ vim.diagnostic.config {
       border = "rounded",
    },
 }
+
+-- virtualedit
+opt.virtualedit = "block"
 
 -- backspace
 opt.backspace = "indent,eol,start"
