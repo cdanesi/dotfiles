@@ -41,6 +41,7 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- bufferline
+keymap.set("n", "<leader>pt", "<cmd>BufferLineTogglePin<CR>", { desc = "Toggle pinned tab" })
 keymap.set("n", "<leader>gb", "<cmd>BufferLinePick<CR>", { desc = "Pick tab" })
 keymap.set("n", "<leader>gB", "<cmd>BufferLinePickClose<CR>", { desc = "Close tab" })
 keymap.set("n", "[b", "<cmd>BufferLineCycleNext<CR>", { desc = "Next tab" })
