@@ -5,6 +5,9 @@ local opt = vim.opt
 -- environment
 opt.showmode = false
 
+-- :cd shows cwd
+opt.cdhome = false
+
 -- line numbers
 opt.number = true
 opt.relativenumber = true
