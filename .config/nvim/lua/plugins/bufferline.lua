@@ -4,7 +4,7 @@ return {
    version = "*",
    opts = {
       options = {
-         mode = "tabs",
+         mode = "buffer",
          separator_style = "slant",
          diagnostics = "nvim_lsp",
          -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
