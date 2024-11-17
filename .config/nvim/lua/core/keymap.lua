@@ -41,11 +41,12 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 --  ────────────────────────────[ bufferline ]─────────────────────────
-keymap.set("n", "<leader>pt", "<cmd>BufferLineTogglePin<CR>", { desc = "Toggle pinned tab" })
-keymap.set("n", "<leader>gb", "<cmd>BufferLinePick<CR>", { desc = "Pick tab" })
-keymap.set("n", "<leader>gB", "<cmd>BufferLinePickClose<CR>", { desc = "Close tab" })
-keymap.set("n", "[b", "<cmd>BufferLineCycleNext<CR>", { desc = "Next tab" })
-keymap.set("n", "b]", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous tab" })
+keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<CR>", { desc = "Toggle pinned tab" })
+keymap.set("n", "<leader>bg", "<cmd>BufferLinePick<CR>", { desc = "Pick tab" })
+keymap.set("n", "<leader>bx", "<cmd>BufferLinePickClose<CR>", { desc = "Pick tab to close" })
+keymap.set("n", "<leader>bX", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close other tabs" })
+keymap.set("n", "]b", "<cmd>BufferLineCycleNext<CR>", { desc = "Next tab" })
+keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous tab" })
 -- keymap.set("n", "", "<cmd>BufferLineMoveNext<CR>", { desc = "Move tab to the right" })
 -- keymap.set("n", "", "<cmd>BufferLineMovePrev<CR>", { desc = "Move tab to the left" })
 
