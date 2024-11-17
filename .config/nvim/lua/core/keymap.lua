@@ -161,5 +161,5 @@ keymap.set({ "n", "v" }, "<leader>Cl", "<cmd>CBccline6<CR>", { desc = "Insert a 
 
 --  ────────────────────────────[ icon picker ]────────────────────────────
 keymap.set("n", "<Leader>i", "<cmd>IconPickerNormal<cr>", { desc = "Open icon picker" })
-keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", { desc = "Yank icon picker" }) --> Yank the selected icon into register
+keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", { desc = "Yank icon into register" }) --> Yank the selected icon into register
 -- keymap.set("i", "<C-i>", "<cmd>IconPickerInsert<cr>", { desc = "Pick Icon to Insert" })
