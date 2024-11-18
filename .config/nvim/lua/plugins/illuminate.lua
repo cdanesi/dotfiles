@@ -1,23 +1,18 @@
 return {
    "RRethy/vim-illuminate",
-   lazy = true,
+   event = { "BufReadPre", "BufNewFile" },
    opts = {
       providers = {
          "lsp",
          "treesitter",
          "regex",
       },
-      delay = 200,
+      delay = 100,
       filetypes_denylist = {
-         "dashboard",
-         "alpha",
-         "NvimTree",
          "help",
+         "man",
          "markdown",
          "md",
-         "dirbuf",
-         "dirvish",
-         "fugitive",
       },
       under_cursor = true,
       min_count_to_highlight = 1,
