@@ -157,4 +157,4 @@ keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Gitsi
 --  ────────────────────────────[ icon picker ]────────────────────────────
 keymap.set("n", "<Leader>i", "<cmd>IconPickerNormal<cr>", { desc = "Open icon picker" })
 keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", { desc = "Yank icon into register" }) --> Yank the selected icon into register
--- keymap.set("i", "<C-i>", "<cmd>IconPickerInsert<cr>", { desc = "Pick Icon to Insert" })
+keymap.set("i", "<C-i>", "<cmd>IconPickerInsert<cr>", { desc = "Pick Icon to Insert" })
