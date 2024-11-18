@@ -11,6 +11,7 @@ return {
       treesitter.setup {
          highlight = {
             enable = true,
+            additional_vim_regex_highlighting = true,
          },
          indent = { enable = true },
          autotag = { enable = true },
@@ -30,7 +31,6 @@ return {
             "lua",
             "markdown",
             "markdown_inline",
-            "perl",
             "python",
             "regex",
             "sql",
@@ -42,6 +42,8 @@ return {
             "toml",
             "yaml",
          },
+         ignore_install = {},
+         sync_install = true,
          auto_install = true,
          incremental_selection = {
             enable = true,
