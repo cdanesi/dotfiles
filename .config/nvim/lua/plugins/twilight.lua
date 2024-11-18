@@ -1,4 +1,14 @@
 return {
    "folke/twilight.nvim",
-   opts = {},
+   opts = {
+      context = 10,
+      treesitter = true,
+      expand = {
+         "function",
+         "method",
+         "table",
+         "if_statement",
+      },
+      exclude = {}, -- filetypes to excluise
+   },
 }
