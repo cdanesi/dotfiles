@@ -18,7 +18,7 @@ keymap.set({ "n", "v" }, "<leader>mp", function()
 end, { desc = "Format file or range (in visual mode)" })
 
 --  ──────────────────────────────[ linting ]──────────────────────────────
-vim.keymap.set("n", "<leader>l", function()
+keymap.set("n", "<leader>l", function()
    require("lint").try_lint()
 end, { desc = "Trigger linting for current file" })
 
@@ -153,12 +153,6 @@ keymap.set("n", "<leader>hB", function()
    require("gitsigns").toggle_current_line_blame()
 end, { desc = "Toggle line blame" })
 keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Gitsigns select hunk" })
-
---  ───────────────────────────[ comment boxes ]───────────────────────────
-keymap.set({ "n", "v" }, "<leader>Cb", "<cmd>CBllbox19<CR>", { desc = "Insert a default comment box" })
-
---  ───────────────────────────[ comment lines ]───────────────────────────
-keymap.set({ "n", "v" }, "<leader>Cl", "<cmd>CBccline6<CR>", { desc = "Insert a default comment line" })
 
 --  ────────────────────────────[ icon picker ]────────────────────────────
 keymap.set("n", "<Leader>i", "<cmd>IconPickerNormal<cr>", { desc = "Open icon picker" })
