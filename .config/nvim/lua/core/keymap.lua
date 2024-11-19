@@ -117,10 +117,10 @@ keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file
 --  ────────────────────────────────[ git ]────────────────────────────────
 keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
 keymap.set("n", "]h", function()
-   require("gitsigns").next_hunk()
+   require("gitsigns").nav_hunk "next"
 end, { desc = "Next hunk" })
 keymap.set("n", "[h", function()
-   require("gitsigns").prev_hunk()
+   require("gitsigns").nav_hunk "prev"
 end, { desc = "Prev hunk" })
 keymap.set("n", "<leader>hs", function()
    require("gitsigns").stage_hunk()
