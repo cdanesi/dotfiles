@@ -20,7 +20,7 @@ if [ -d "$HOME/.bin" ]; then
    export PATH="$HOME/.bin:$PATH"
 fi
 
-fpath=($HOME/.zsh/zsh-completions/src $fpath)
+fpath=("$HOME/.zsh/zsh-completions/src" $fpath)
 
 # Editor
 export EDITOR='nvim'
@@ -77,7 +77,6 @@ plugins=(
    aliases
    ansible
    colored-man-pages
-   command-not-found
    dotenv
    genpass
    git
@@ -102,17 +101,18 @@ case $(uname -s) in
 
       eval "$(brew shellenv)"
 
-      [[ ! -f $(which gdircolors) ]] || $(test -f "$HOME"/.dircolors && eval $(gdircolors "$HOME"/.dircolors) || eval $(gdircolors))
+      [[ ! -f $(which gdircolors) ]] || $(test -f "$HOME/.dircolors" && eval $(gdircolors "$HOME/.dircolors") || eval $(gdircolors))
       ;;
 
    Linux)
       plugins+=(
          archlinux
+         command-not-found
          systemd
          ubuntu
       )
 
-      test -f "$HOME"/.dircolors && eval $(dircolors -b "$HOME"/.dircolors) || eval $(dircolors -b)
+      test -f "$HOME/.dircolors" && eval $(dircolors -b "$HOME/.dircolors") || eval $(dircolors -b)
       ;;
 
    *) ;;
@@ -123,16 +123,13 @@ function init_env() {
    eval "$(fzf --zsh)"
    
    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-   [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme && source $HOME/.p10k.zsh
+   [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme" && source "$HOME/.p10k.zsh"
    
    # Load aliases
-   [[ ! -f $HOME/.aliases ]] || source $HOME/.aliases
-   
-   # display mini system info
-   [[ ! -f $(which pfetch) ]] || eval "$(which pfetch)"
+   [[ ! -f "$HOME/.aliases" ]] || source "$HOME/.aliases"
 }
 
-[[ ! -f $ZSH/oh-my-zsh.sh ]] || source $ZSH/oh-my-zsh.sh
+[[ ! -f "$ZSH/oh-my-zsh.sh" ]] || source "$ZSH/oh-my-zsh.sh"
 
 function zvm_after_init() {
    autoload -Uz add-zle-hook-widget
@@ -167,6 +164,6 @@ _fzf_comprun() {
    esac
 }
 
-[[ ! -f $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ ! -f $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] || source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-[[ ! -f $HOME/.zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]] || source $HOME/.zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+[[ ! -f "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] || source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ ! -f "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] || source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ ! -f "$HOME/.zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ]] || source "$HOME/.zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
