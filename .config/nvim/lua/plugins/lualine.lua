@@ -49,7 +49,7 @@ return {
             lualine_x = {
                {
                   "diagnostics",
-                  sources = { "nvim_lsp", "nvim_workspace_diagnostic", "nvim_diagnostic" },
+                  sources = { "nvim_workspace_diagnostic" },
                   sections = { "error", "warn", "info", "hint" },
                   --symbols = { error = " ", warn = " ", info = " ", hint = "󰠠 " },
                   colored = true,
