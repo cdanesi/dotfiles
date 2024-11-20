@@ -7,14 +7,13 @@ return {
          char = "┊",
          smart_indent_cap = true,
          highlight = {
-            -- indent coloring for nord theme
-            -- FIX: set these up manually?
-            "Headline6",
-            "Headline5",
-            "Headline4",
-            "Headline3",
-            "Headline2",
-            "Headline1",
+            "RainbowDelimiterCyan", -- #88c0d0
+            "RainbowDelimiterBlue", -- #81a1c1
+            "RainbowDelimiterGreen", -- #a3be8c
+            "RainbowDelimiterViolet", -- #b48ead
+            "RainbowDelimiterYellow", -- #ebcb8b
+            "RainbowDelimiterRed", -- #d08770
+            -- "RainbowDelimiterOrange", -- #d08770
          },
       },
       scope = {
