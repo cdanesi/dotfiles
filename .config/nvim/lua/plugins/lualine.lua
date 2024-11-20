@@ -45,6 +45,7 @@ return {
             lualine_c = {
                "branch",
                "diff",
+               "b:gitsigns_status",
             },
             lualine_x = {
                {
