@@ -12,6 +12,10 @@ return {
             enabled = true,
             font = "16",
          },
+         kitty = {
+            enabled = true,
+            font = "+4",
+         },
       },
    },
 }
