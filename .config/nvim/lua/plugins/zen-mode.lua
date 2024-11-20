@@ -1,7 +1,7 @@
 return {
    "folke/zen-mode.nvim",
    opts = {
-      window = { signcolumn = true },
+      window = { signcolumn = false },
       plugins = {
          options = { enabled = true },
          twilight = { enabled = true },
