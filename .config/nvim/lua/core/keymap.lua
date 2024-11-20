@@ -10,11 +10,11 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 --  ────────────────────────────[ formatting ]─────────────────────────
 keymap.set({ "n", "v" }, "<leader>mp", function()
-   require("conform").format {
+   require("conform").format({
       lsp_fallback = true,
       async = false,
       timeout_ms = 1000,
-   }
+   })
 end, { desc = "Format file or range (in visual mode)" })
 
 --  ──────────────────────────────[ linting ]──────────────────────────────
@@ -63,7 +63,7 @@ keymap.set("n", "<leader>hd", function()
    require("gitsigns").diffthis()
 end, { desc = "Diff this" })
 keymap.set("n", "<leader>hD", function()
-   require("gitsigns").diffthis "~"
+   require("gitsigns").diffthis("~")
 end, { desc = "Diff this ~" })
 
 --  ───────────────────────────[ todo comments ]───────────────────────────
@@ -117,10 +117,10 @@ keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file
 --  ────────────────────────────────[ git ]────────────────────────────────
 keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
 keymap.set("n", "]h", function()
-   require("gitsigns").nav_hunk "next"
+   require("gitsigns").nav_hunk("next")
 end, { desc = "Next hunk" })
 keymap.set("n", "[h", function()
-   require("gitsigns").nav_hunk "prev"
+   require("gitsigns").nav_hunk("prev")
 end, { desc = "Prev hunk" })
 keymap.set("n", "<leader>hs", function()
    require("gitsigns").stage_hunk()
@@ -129,10 +129,10 @@ keymap.set("n", "<leader>hr", function()
    require("gitsigns").reset_hunk()
 end, { desc = "Reset Hunk" })
 keymap.set("v", "<leader>hs", function()
-   require("gitsigns").stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+   require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 end, { desc = "Stage Hunk" })
 keymap.set("v", "<leader>hr", function()
-   require("gitsigns").reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+   require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 end, { desc = "Reset Hunk" })
 keymap.set("n", "<leader>hS", function()
    require("gitsigns").stage_buffer()
@@ -147,7 +147,7 @@ keymap.set("n", "<leader>hp", function()
    require("gitsigns").preview_hunk()
 end, { desc = "Preview hunk" })
 keymap.set("n", "<leader>hb", function()
-   require("gitsigns").blame_line { full = true }
+   require("gitsigns").blame_line({ full = true })
 end, { desc = "Blame line" })
 keymap.set("n", "<leader>hB", function()
    require("gitsigns").toggle_current_line_blame()
@@ -157,4 +157,4 @@ keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Gitsi
 --  ────────────────────────────[ icon picker ]────────────────────────────
 keymap.set("n", "<Leader>i", "<cmd>IconPickerNormal<cr>", { desc = "Open icon picker" })
 keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", { desc = "Yank icon into register" }) --> Yank the selected icon into register
-keymap.set("i", "<C-i>", "<cmd>IconPickerInsert<cr>", { desc = "Pick Icon to Insert" })
+-- keymap.set("i", "<C-.>", "<cmd>IconPickerInsert<cr>", { desc = "Open icon picker" })
