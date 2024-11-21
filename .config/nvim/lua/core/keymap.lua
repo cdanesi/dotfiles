@@ -47,8 +47,8 @@ keymap.set("n", "<leader>bx", "<cmd>bdelete<CR>", { desc = "Close tab" })
 keymap.set("n", "<leader>bX", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close other tabs" })
 keymap.set("n", "]b", "<cmd>BufferLineCycleNext<CR>", { desc = "Next tab" })
 keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous tab" })
--- keymap.set("n", "", "<cmd>BufferLineMoveNext<CR>", { desc = "Move tab to the right" })
--- keymap.set("n", "", "<cmd>BufferLineMovePrev<CR>", { desc = "Move tab to the left" })
+keymap.set("n", "<S-L>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move tab to the right" })
+keymap.set("n", "<S-H>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move tab to the left" })
 
 --  ────────────────────────[ session management ]─────────────────────
 keymap.set("n", "<leader>wa", "<cmd>SessionToggleAutoSave<CR>", { desc = "Toggle session autosave" })
@@ -100,7 +100,8 @@ keymap.set(
   "<cmd>Telescope oldfiles initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>",
   { desc = "Fuzzy find recent files" }
 )
-keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+keymap.set("n", "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Find string in this buffer" })
+keymap.set("n", "<leader>fS", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 keymap.set(
   "n",
