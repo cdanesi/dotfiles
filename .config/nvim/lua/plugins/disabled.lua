@@ -1,5 +1,9 @@
 return {
    {
+      "ThePrimeagen/harpoon",
+      enabled = false,
+   },
+   {
       "tadmccorkle/markdown.nvim",
       enabled = false,
    },
