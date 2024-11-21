@@ -10,16 +10,16 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 --  ────────────────────────────[ formatting ]─────────────────────────
 keymap.set({ "n", "v" }, "<leader>mp", function()
-   require("conform").format({
-      lsp_fallback = true,
-      async = false,
-      timeout_ms = 1000,
-   })
+  require("conform").format({
+    lsp_fallback = true,
+    async = false,
+    timeout_ms = 1000,
+  })
 end, { desc = "Format file or range (in visual mode)" })
 
 --  ──────────────────────────────[ linting ]──────────────────────────────
 keymap.set("n", "<leader>l", function()
-   require("lint").try_lint()
+  require("lint").try_lint()
 end, { desc = "Trigger linting for current file" })
 
 --  ──────────────────────────[ inc/dec numbers ]──────────────────────────
@@ -60,52 +60,73 @@ keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for
 
 --  ───────────────────────────────[ diff ]────────────────────────────
 keymap.set("n", "<leader>hd", function()
-   require("gitsigns").diffthis()
+  require("gitsigns").diffthis()
 end, { desc = "Diff this" })
 keymap.set("n", "<leader>hD", function()
-   require("gitsigns").diffthis("~")
+  require("gitsigns").diffthis("~")
 end, { desc = "Diff this ~" })
 
 --  ───────────────────────────[ todo comments ]───────────────────────────
 keymap.set("n", "]t", function()
-   require("todo-comments").jump_next()
+  require("todo-comments").jump_next()
 end, { desc = "Next todo comment" })
 
 keymap.set("n", "[t", function()
-   require("todo-comments").jump_prev()
+  require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 
 --  ──────────────────────────────[ trouble ]──────────────────────────────
 keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Open trouble workspace diagnostics" })
 keymap.set(
-   "n",
-   "<leader>xd",
-   "<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
-   { desc = "Open trouble document diagnostics" }
+  "n",
+  "<leader>xd",
+  "<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
+  { desc = "Open trouble document diagnostics" }
 )
 keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix toggle<CR>", { desc = "Open trouble quickfix list" })
 keymap.set("n", "<leader>xl", "<cmd>Trouble loclist toggle<CR>", { desc = "Open trouble location list" })
 keymap.set("n", "<leader>xt", "<cmd>Trouble todo toggle<CR>", { desc = "Open todos in trouble" })
 
 --  ─────────────────────────────[ telescope ]─────────────────────────────
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
+keymap.set(
+  "n",
+  "<leader>ff",
+  "<cmd>Telescope find_files initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>",
+  { desc = "Fuzzy find files in cwd" }
+)
+keymap.set(
+  "n",
+  "<leader>fr",
+  "<cmd>Telescope oldfiles initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>",
+  { desc = "Fuzzy find recent files" }
+)
 keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
-keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
+keymap.set(
+  "n",
+  "<leader>ft",
+  "<cmd>TodoTelescope initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>",
+  { desc = "Find todos" }
+)
+keymap.set(
+  "n",
+  "<leader>bb",
+  "<cmd>Telescope buffers initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>",
+  { desc = "Select from open buffers" }
+)
 
 --  ────────────────────────────[ substitute ]─────────────────────────
 keymap.set("n", "s", function()
-   require("substitute").operator()
+  require("substitute").operator()
 end, { desc = "Substitute with motion" })
 keymap.set("n", "ss", function()
-   require("substitute").line()
+  require("substitute").line()
 end, { desc = "Substitute line" })
 keymap.set("n", "S", function()
-   require("substitute").line()
+  require("substitute").line()
 end, { desc = "Substitute to end of line" })
 keymap.set("x", "s", function()
-   require("substitute").visual()
+  require("substitute").visual()
 end, { desc = "Substitute in visual mode" })
 
 --  ─────────────────────────────[ nvim-tree ]─────────────────────────────
@@ -117,40 +138,40 @@ keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file
 --  ────────────────────────────────[ git ]────────────────────────────────
 keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
 keymap.set("n", "]h", function()
-   require("gitsigns").nav_hunk("next")
+  require("gitsigns").nav_hunk("next")
 end, { desc = "Next hunk" })
 keymap.set("n", "[h", function()
-   require("gitsigns").nav_hunk("prev")
+  require("gitsigns").nav_hunk("prev")
 end, { desc = "Prev hunk" })
 keymap.set("n", "<leader>hs", function()
-   require("gitsigns").stage_hunk()
+  require("gitsigns").stage_hunk()
 end, { desc = "Stage Hunk" })
 keymap.set("n", "<leader>hr", function()
-   require("gitsigns").reset_hunk()
+  require("gitsigns").reset_hunk()
 end, { desc = "Reset Hunk" })
 keymap.set("v", "<leader>hs", function()
-   require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+  require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 end, { desc = "Stage Hunk" })
 keymap.set("v", "<leader>hr", function()
-   require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+  require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 end, { desc = "Reset Hunk" })
 keymap.set("n", "<leader>hS", function()
-   require("gitsigns").stage_buffer()
+  require("gitsigns").stage_buffer()
 end, { desc = "Stage buffer" })
 keymap.set("n", "<leader>hR", function()
-   require("gitsigns").reset_buffer()
+  require("gitsigns").reset_buffer()
 end, { desc = "Reset buffer" })
 keymap.set("n", "<leader>hu", function()
-   require("gitsigns").undo_stage_hunk()
+  require("gitsigns").undo_stage_hunk()
 end, { desc = "Undo stage hunk" })
 keymap.set("n", "<leader>hp", function()
-   require("gitsigns").preview_hunk()
+  require("gitsigns").preview_hunk()
 end, { desc = "Preview hunk" })
 keymap.set("n", "<leader>hb", function()
-   require("gitsigns").blame_line({ full = true })
+  require("gitsigns").blame_line({ full = true })
 end, { desc = "Blame line" })
 keymap.set("n", "<leader>hB", function()
-   require("gitsigns").toggle_current_line_blame()
+  require("gitsigns").toggle_current_line_blame()
 end, { desc = "Toggle line blame" })
 keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Gitsigns select hunk" })
 
