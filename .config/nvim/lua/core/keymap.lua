@@ -177,6 +177,11 @@ end, { desc = "Toggle line blame" })
 keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Gitsigns select hunk" })
 
 --  ────────────────────────────[ icon picker ]────────────────────────────
-keymap.set("n", "<Leader>i", "<cmd>IconPickerNormal<cr>", { desc = "Open icon picker" })
-keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", { desc = "Yank icon into register" }) --> Yank the selected icon into register
--- keymap.set("i", "<C-.>", "<cmd>IconPickerInsert<cr>", { desc = "Open icon picker" })
+keymap.set(
+  "n",
+  "<Leader>i",
+  "<cmd>Telescope symbols initial_mode=normal theme=get_ivy<cr>",
+  { desc = "Open icon picker" }
+)
+-- keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", { desc = "Yank icon into register" }) --> Yank the selected icon into register
+-- keymap.set("i", "<C-i>", "<cmd>Telescope symbols initial_mode=normal theme=get_ivy<cr>", { desc = "Open icon picker" })
