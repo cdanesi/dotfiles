@@ -21,6 +21,11 @@ return {
         color = '#f1502f',
         name = 'Gitignore',
       },
+      ['init.lua'] = {
+        icon = '',
+        name = 'nvim',
+        color = '#a3be8c',
+      },
     },
     override_by_extension = {
       ['log'] = {
