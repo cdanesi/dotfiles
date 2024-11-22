@@ -5,7 +5,8 @@ return {
   event = 'VeryLazy',
   opts = {
     options = {
-      mode = 'buffer',
+      mode = 'buffers',
+      numbers = 'both', -- or buffer_id
       separator_style = 'slant',
       diagnostics = 'nvim_lsp',
       -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
@@ -24,6 +25,11 @@ return {
       indicator = {
         style = 'underline',
       },
+      buffer_close_icon = '󰅖',
+      modified_icon = '● ',
+      close_icon = ' ',
+      left_trunc_marker = ' ',
+      right_trunc_marker = ' ',
       offsets = {
         {
           filetype = 'NvimTree',
@@ -34,6 +40,7 @@ return {
           separator = true,
         },
       },
+      sort_by = 'insert_at_end',
       custom_areas = {
         right = function()
           local result = {}
