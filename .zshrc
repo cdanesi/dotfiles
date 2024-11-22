@@ -79,7 +79,6 @@ plugins=(
    colored-man-pages
    dotenv
    genpass
-   git
    ssh
    ssh-agent
    sudo
