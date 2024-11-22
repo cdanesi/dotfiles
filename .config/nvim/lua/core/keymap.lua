@@ -58,14 +58,6 @@ keymap.set('n', '<leader>wl', '<cmd>SessionSearch<CR>', { desc = 'Open session p
 keymap.set('n', '<leader>wr', '<cmd>SessionRestore<CR>', { desc = 'Restore session for cwd' })
 keymap.set('n', '<leader>ws', '<cmd>SessionSave<CR>', { desc = 'Save session for cwd' })
 
---  ───────────────────────────────[ diff ]────────────────────────────
-keymap.set('n', '<leader>hd', function()
-  require('gitsigns').diffthis()
-end, { desc = 'Diff this' })
-keymap.set('n', '<leader>hD', function()
-  require('gitsigns').diffthis('~')
-end, { desc = 'Diff this ~' })
-
 --  ───────────────────────────[ todo comments ]───────────────────────────
 keymap.set('n', ']t', function()
   require('todo-comments').jump_next()
@@ -91,13 +83,13 @@ keymap.set('n', '<leader>xt', '<cmd>Trouble todo toggle<CR>', { desc = 'Open tod
 keymap.set(
   'n',
   '<leader>ff',
-  '<cmd>Telescope find_files initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>',
+  '<cmd>Telescope find_files initial_mode=insert sort_mru=true sort_lastused=true select_current=true<cr>',
   { desc = 'Fuzzy find files in cwd' }
 )
 keymap.set(
   'n',
   '<leader>fr',
-  '<cmd>Telescope oldfiles initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>',
+  '<cmd>Telescope oldfiles initial_mode=insert sort_mru=true sort_lastused=true select_current=true<cr>',
   { desc = 'Fuzzy find recent files' }
 )
 keymap.set('n', '<leader>fs', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { desc = 'Find string in this buffer' })
@@ -124,7 +116,7 @@ keymap.set('n', 'ss', function()
   require('substitute').line()
 end, { desc = 'Substitute line' })
 keymap.set('n', 'S', function()
-  require('substitute').line()
+  require('substitute').eol()
 end, { desc = 'Substitute to end of line' })
 keymap.set('x', 's', function()
   require('substitute').visual()
@@ -135,6 +127,14 @@ keymap.set('n', '<leader>ee', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file e
 keymap.set('n', '<leader>ef', '<cmd>NvimTreeFindFileToggle<CR>', { desc = 'Toggle file explorer on current file' })
 keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', { desc = 'Collapse file explorer' })
 keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', { desc = 'Refresh file explorer' })
+
+--  ───────────────────────────────[ diff ]────────────────────────────
+keymap.set('n', '<leader>hd', function()
+  require('gitsigns').diffthis()
+end, { desc = 'Diff this' })
+keymap.set('n', '<leader>hD', function()
+  require('gitsigns').diffthis('~')
+end, { desc = 'Diff this ~' })
 
 --  ────────────────────────────────[ git ]────────────────────────────────
 keymap.set('n', '<leader>lg', '<cmd>LazyGit<cr>', { desc = 'Open LazyGit' })
