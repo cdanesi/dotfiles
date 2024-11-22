@@ -60,6 +60,29 @@ alias sudo='nocorrect sudo'
 # fzf
 alias fkill='fzf-kill'
 
+# git
+alias g='git'
+alias gP='git push'
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gco='git checkout'
+alias gd='git diff'
+alias gf='git fetch'
+alias glog='git log --oneline'
+alias gp='git pull'
+alias gr='git remote'
+alias grm='git rm'
+alias grmc='git rm --cached'
+alias grs='git restore'
+alias grset='git remote set-url'
+alias grst='git restore --staged'
+alias grup='git remote update'
+alias gsb='git status --short --branch'
+alias gss='git status --short'
+alias gst='git status'
+alias 'glog!'='git log'
+
 # yadm
 alias y=yadm
 alias ya='yadm add'
