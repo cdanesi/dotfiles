@@ -1,4 +1,4 @@
-vim.cmd "let g:netrw_liststyle = 3"
+vim.cmd('let g:netrw_liststyle = 3')
 
 local opt = vim.opt
 
@@ -29,43 +29,43 @@ opt.scrolloff = 999
 -- search
 opt.ignorecase = true
 opt.smartcase = true
-opt.iskeyword:append "-" -- consider string-string as a whole word
+opt.iskeyword:append('-') -- consider string-string as a whole word
 
 -- cursor line
 opt.cursorline = true
 
 -- appearance
 opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "yes"
-opt.colorcolumn = "80"
-vim.diagnostic.config {
-   float = {
-      border = "rounded",
-   },
-}
+opt.background = 'dark'
+opt.signcolumn = 'yes'
+opt.colorcolumn = '80'
+vim.diagnostic.config({
+  float = {
+    border = 'rounded',
+  },
+})
 
 -- virtualedit
-opt.virtualedit = "block"
+opt.virtualedit = 'block'
 
 -- backspace
-opt.backspace = "indent,eol,start"
+opt.backspace = 'indent,eol,start'
 
 -- clipboard
-opt.clipboard:append "unnamedplus" -- use system clipboard as the default register
+opt.clipboard:append('unnamedplus') -- use system clipboard as the default register
 
 -- split windows
 opt.splitright = true
 opt.splitbelow = true
 
 -- save me
-opt.undodir = { os.getenv "HOME" .. "/.config/nvim/.undo/" }
+-- opt.undodir = { os.getenv("HOME") .. "/.config/nvim/.undo/" }
 opt.undofile = true
 
 -- folding
 opt.foldlevel = 20
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldmethod = 'expr'
+opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- session management
-opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
