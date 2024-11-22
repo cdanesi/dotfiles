@@ -4,16 +4,25 @@ return {
     "nvim-tree/nvim-web-devicons",
     "rmehri01/onenord.nvim",
   },
+  event = "VeryLazy",
   config = function()
     local lualine = require("lualine")
     local lazy_status = require("lazy.status")
 
     local custom_components = {
+      -- ┌
+      -- │ do not show encoding if UTF-8
+      -- │ from https://github.com/wookayin/dotfiles/blob/master/nvim/lua/config/statusline.lua
+      -- └
       encoding = function()
         local ret, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")
         return ret
       end,
 
+      -- ┌
+      -- │ only show non-unix file format
+      -- │ from https://github.com/wookayin/dotfiles/blob/master/nvim/lua/config/statusline.lua
+      -- └
       fileformat = function()
         local ret, _ = vim.bo.fileformat:gsub("^unix$", "")
         return ret

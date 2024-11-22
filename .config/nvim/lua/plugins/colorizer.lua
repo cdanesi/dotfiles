@@ -1,17 +1,24 @@
 return {
-   "norcalli/nvim-colorizer.lua",
-
-   config = function()
-      local colorizer = require "colorizer"
-
-      colorizer.setup {
-         "css",
-         "javascript",
-         "python",
-         "json",
-         "lua",
-         "toml",
-         "yaml",
-      }
-   end,
+  'norcalli/nvim-colorizer.lua',
+  -- event = { 'BufEnter', 'BufNewFile' },
+  ft = {
+    'markdown',
+    'javascript',
+    'css',
+    'python',
+    'json',
+    'lua',
+    'toml',
+    'yaml',
+  },
+  opts = {
+    'css',
+    'javascript',
+    'markdown',
+    'python',
+    'json',
+    'lua',
+    'toml',
+    'yaml',
+  },
 }
