@@ -59,7 +59,11 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- save me
--- opt.undodir = { os.getenv("HOME") .. "/.config/nvim/.undo/" }
+-- opt.undodir = { os.getenv("HOME") .. "/.undo/" }
+-- set undo dir under nvim app folder
+-- opt.undodir = { vim.fn.stdpath('config') .. '/.undo/' }
+-- undodir is in .local/state/nvim/undo (default)
+opt.undodir = { vim.fn.stdpath('state') .. '/undo/' }
 opt.undofile = true
 
 -- folding
