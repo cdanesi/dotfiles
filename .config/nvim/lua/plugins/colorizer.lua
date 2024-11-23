@@ -4,6 +4,7 @@ return {
   ft = {
     'markdown',
     'javascript',
+    'html',
     'css',
     'python',
     'json',
@@ -14,6 +15,7 @@ return {
   opts = {
     'css',
     'javascript',
+    'html',
     'markdown',
     'python',
     'json',
