@@ -20,7 +20,7 @@ if [ -d "$HOME/.bin" ]; then
    export PATH="$HOME/.bin:$PATH"
 fi
 
-fpath=("$HOME/.zsh/zsh-completions/src" $fpath)
+fpath=("$HOME/.zsh/zsh-completions/src" "$fpath")
 
 # Editor
 export EDITOR='nvim'
@@ -100,7 +100,7 @@ case $(uname -s) in
 
       eval "$(brew shellenv)"
 
-      [[ ! -f $(which gdircolors) ]] || $(test -f "$HOME/.dircolors" && eval $(gdircolors "$HOME/.dircolors") || eval $(gdircolors))
+      [[ ! -f "$(which gdircolors)" ]] || test -f "$HOME/.dircolors" && eval "$(gdircolors "$HOME/.dircolors")" || eval "$(gdircolors)"
       ;;
 
    Linux)
@@ -111,7 +111,7 @@ case $(uname -s) in
          ubuntu
       )
 
-      test -f "$HOME/.dircolors" && eval $(dircolors -b "$HOME/.dircolors") || eval $(dircolors -b)
+      test -f "$HOME/.dircolors" && eval "$(dircolors -b "$HOME/.dircolors")" || eval "$(dircolors -b)"
       ;;
 
    *) ;;
