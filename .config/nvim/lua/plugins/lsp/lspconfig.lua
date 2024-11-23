@@ -86,7 +86,7 @@ return {
       ['bashls'] = function()
         lspconfig['bashls'].setup({
           capabilities = capabilities,
-          filetypes = { 'sh', 'zsh' },
+          filetypes = { 'sh', 'bash', 'zsh' },
         })
       end,
       ['lua_ls'] = function()
