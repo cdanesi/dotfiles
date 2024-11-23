@@ -126,6 +126,9 @@ function init_env() {
    
    # Load aliases
    [[ ! -f "$HOME/.aliases" ]] || source "$HOME/.aliases"
+
+   # temporarily used to load nvm on my desktop
+   [[ ! -f "$HOME/.zinit.$(hostname)" ]] || source "$HOME/.zinit.$(hostname)"
 }
 
 [[ ! -f "$ZSH/oh-my-zsh.sh" ]] || source "$ZSH/oh-my-zsh.sh"
