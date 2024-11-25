@@ -6,17 +6,20 @@ return {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-calc',
+      'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lsp-document-symbol',
       'hrsh7th/cmp-nvim-lsp-signature-help',
-      'saadparwaiz1/cmp_luasnip',
-      'rafamadriz/friendly-snippets',
+      'davidsierradz/cmp-conventionalcommits',
       'onsails/lspkind.nvim',
       {
          'L3MON4D3/LuaSnip',
          version = 'v2.*',
          build = 'make install_jsregexp',
       },
+      'saadparwaiz1/cmp_luasnip',
+      'rafamadriz/friendly-snippets',
    },
 
    config = function()
@@ -63,8 +66,8 @@ return {
             -- ┌
             -- │ if completion menu is visible, move prev/next with
             -- │ tab/s-tab
-            -- │ if we're not attached to anything, then insert a tab
-            -- │ if we're inside a word, trigger the completion menu
+            -- │ if not attached to anything, then insert a tab
+            -- │ if inside a word, trigger the completion menu
             -- └
             ['<Tab>'] = cmp.mapping(function(fallback)
                local col = vim.fn.col('.') - 1
@@ -103,10 +106,15 @@ return {
          }),
          sources = cmp.config.sources({
             { name = 'nvim_lsp', priority = 1 },
+            { name = 'nvim_lua' },
             { name = 'luasnip', priority = 2 },
+            { name = 'nvim_lsp_signature_help' },
+            { name = 'conventionalcommits' },
             { name = 'buffer', keyword_length = 3 },
             { name = 'path' },
+            { name = 'calc' },
          }),
+         ---@diagnostic disable-next-line: missing-fields
          formatting = {
             -- fields = { 'abbr', 'kind', 'menu' },
             expandable_indicator = true,
@@ -137,7 +145,8 @@ return {
                })(entry, vim_item)
             end,
          },
-         -- VSCode-like, kind specific highlights
+
+         --  ───────────────[ VSCode-like, kind specific highlights ]───────────────
          vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg = 'NONE', strikethrough = true, fg = '#4c566a' }),
          vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg = 'NONE', fg = '#81a1c1' }),
          vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link = 'CmpIntemAbbrMatch' }),
@@ -160,6 +169,7 @@ return {
             },
          },
          sources = {
+            { name = 'nvim_lsp_document_symbol' },
             { name = 'buffer' },
          },
       })
@@ -179,6 +189,7 @@ return {
             { name = 'path' },
             { name = 'cmdline' },
          }),
+         ---@diagnostic disable-next-line: missing-fields
          matching = {
             disallow_fullfuzzy_matching = false,
             disallow_fuzzy_matching = false,
