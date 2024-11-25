@@ -46,10 +46,11 @@ return {
             selection_order = 'near_cursor',
          },
          window = {
+            completion = cmp.config.window.bordered(),
             documentation = cmp.config.window.bordered(),
          },
          completion = {
-            completeopt = 'menu,menuone,preview,noselect',
+            completeopt = 'menu,preview,noselect',
          },
          snippet = {
             expand = function(args)
