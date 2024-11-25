@@ -1,44 +1,46 @@
-vim.cmd('let g:netrw_liststyle = 3')
-
-local opt = vim.opt
+local o = vim.opt
+local g = vim.g
 
 -- environment
-opt.showmode = false
+o.showmode = false
+g.netrw_liststyle = 3
+g.netrw_banner = 0
 
 -- :cd shows cwd
-opt.cdhome = false
+o.cdhome = false
 
 -- line numbers
-opt.number = true
-opt.relativenumber = true
+o.number = true
+o.relativenumber = true
 
 -- tabs & indents
-opt.tabstop = 3
-opt.softtabstop = 3
-opt.shiftwidth = 3
-opt.expandtab = true
-opt.smartindent = true
-opt.autoindent = true
+o.tabstop = 3
+o.softtabstop = 3
+o.shiftwidth = 3
+o.expandtab = true
+o.smartindent = true
+o.autoindent = true
 
 -- line wrapping
-opt.wrap = false
+o.wrap = false
+o.breakindent = true
 
 -- keep cursor line centered
-opt.scrolloff = 999
+o.scrolloff = 999
 
 -- search
-opt.ignorecase = true
-opt.smartcase = true
-opt.iskeyword:append('-') -- consider string-string as a whole word
+o.ignorecase = true
+o.smartcase = true
+o.iskeyword:append('-') -- consider string-string as a whole word
 
 -- cursor line
-opt.cursorline = true
+o.cursorline = true
 
 -- appearance
-opt.termguicolors = true
-opt.background = 'dark'
-opt.signcolumn = 'yes'
-opt.colorcolumn = '80'
+o.termguicolors = true
+o.background = 'dark'
+o.signcolumn = 'yes'
+o.colorcolumn = '80'
 vim.diagnostic.config({
   float = {
     border = 'rounded',
@@ -46,30 +48,38 @@ vim.diagnostic.config({
 })
 
 -- virtualedit
-opt.virtualedit = 'block'
+o.virtualedit = 'block'
 
 -- backspace
-opt.backspace = 'indent,eol,start'
+o.backspace = 'indent,eol,start'
 
 -- clipboard
-opt.clipboard:append('unnamedplus') -- use system clipboard as the default register
+o.clipboard:append('unnamedplus') -- use system clipboard as the default register
 
 -- split windows
-opt.splitright = true
-opt.splitbelow = true
+o.splitright = true
+o.splitbelow = true
 
 -- save me
--- opt.undodir = { os.getenv("HOME") .. "/.undo/" }
+-- o.undodir = { os.getenv("HOME") .. "/.undo/" }
 -- set undo dir under nvim app folder
--- opt.undodir = { vim.fn.stdpath('config') .. '/.undo/' }
+-- o.undodir = { vim.fn.stdpath('config') .. '/.undo/' }
 -- undodir is in .local/state/nvim/undo (default)
-opt.undodir = { vim.fn.stdpath('state') .. '/undo/' }
-opt.undofile = true
+o.undodir = { vim.fn.stdpath('state') .. '/undo/' }
+o.undofile = true
 
 -- folding
-opt.foldlevel = 20
-opt.foldmethod = 'expr'
-opt.foldexpr = 'nvim_treesitter#foldexpr()'
+o.foldcolumn = '0'
+o.foldlevel = 5
+o.foldmethod = 'expr'
+o.foldexpr = 'nvim_treesitter#foldexpr()'
+o.fillchars = {
+  foldopen = '',
+  foldclose = '',
+  fold = ' ',
+  foldsep = ' ',
+  eob = ' ',
+}
 
 -- session management
-opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
