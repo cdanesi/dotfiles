@@ -61,10 +61,10 @@ return {
             component_separators = { left = '', right = '' },
             section_separators = { left = '', right = '' },
             disabled_filetypes = {
-               statusline = { 'alpha', 'dashboard', 'Outline' },
+               statusline = { 'alpha', 'dashboard', 'Outline', 'NvimTree' },
                winbar = {},
             },
-            ignore_focus = { 'NvimTree' },
+            ignore_focus = {},
             always_divide_middle = true,
             always_show_tabline = true,
             globalstatus = false,
