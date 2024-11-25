@@ -75,7 +75,7 @@ return {
             },
          },
          sections = {
-            lualine_a = { 'mode', { cond = custom_components.min_window_width(40) } },
+            lualine_a = { { 'mode', cond = custom_components.min_window_width(40) } },
             lualine_b = {
                {
                   'filename',
@@ -86,17 +86,25 @@ return {
                      modified = '[+]',
                      readonly = '[-]',
                   },
+                  cond = custom_components.min_window_width(100),
                },
             },
             lualine_c = {
-               'branch',
+               {
+                  'branch',
+                  cond = custom_components.min_window_width(180),
+               },
                {
                   'b:gitsigns_head',
-                  icon = '',
+                  icon = '',
                   color = { fg = '#9bcb8b' },
-                  { cond = custom_components.min_window_width(120) },
+                  cond = custom_components.min_window_width(180),
                },
-               { 'diff', source = custom_components.gitsigns_diff },
+               {
+                  'diff',
+                  source = custom_components.gitsigns_diff,
+                  cond = custom_components.min_window_width(60),
+               },
             },
             lualine_x = {
                -- TODO: spell indicator (when on)
@@ -109,6 +117,7 @@ return {
                   --symbols = { error = " ", warn = " ", info = " ", hint = "󰠠 " },
                   colored = true,
                   always_visible = false,
+                  cond = custom_components.min_window_width(120),
                },
                {
                   lazy_status.updates,
@@ -120,12 +129,18 @@ return {
                --       return require("auto-session.lib").current_session_name(true)
                --    end,
                -- },
-               { custom_components.encoding, { cond = custom_components.min_window_width(120) } },
-               { custom_components.fileformat, { cond = custom_components.min_window_width(120) } },
-               'filetype',
+               { custom_components.encoding, { cond = custom_components.min_window_width(190) } },
+               { custom_components.fileformat, { cond = custom_components.min_window_width(180) } },
+               { 'filetype', cond = custom_components.min_window_width(120) },
             },
-            lualine_y = { 'searchcount', 'progress' },
-            lualine_z = { 'selectioncount', 'location' },
+            lualine_y = {
+               { 'searchcount', cond = custom_components.min_window_width(180) },
+               { 'progress', cond = custom_components.min_window_width(180) },
+            },
+            lualine_z = {
+               { 'selectioncount', cond = custom_components.min_window_width(180) },
+               { 'location', cond = custom_components.min_window_width(190) },
+            },
          },
          inactive_sections = {
             lualine_a = {},
