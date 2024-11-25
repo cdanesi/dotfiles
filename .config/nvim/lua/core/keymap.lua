@@ -9,13 +9,13 @@ keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
 keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
 
 --  ────────────────────────────[ formatting ]─────────────────────────
-keymap.set({ 'n', 'v' }, '<leader>mp', function()
+keymap.set({ 'n', 'v' }, '<leader>F', function()
   require('conform').format({
     lsp_fallback = true,
     async = false,
     timeout_ms = 1000,
   })
-end, { desc = 'Format file or range (in visual mode)' })
+end, { desc = 'Format file or selection' })
 
 --  ──────────────────────────────[ linting ]──────────────────────────────
 keymap.set('n', '<leader>l', function()
