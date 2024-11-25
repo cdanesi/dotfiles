@@ -97,7 +97,7 @@ return {
                {
                   'b:gitsigns_head',
                   icon = '',
-                  color = { fg = '#9bcb8b' },
+                  color = { fg = '#8fbcbb' },
                   cond = custom_components.min_window_width(180),
                },
                {
