@@ -42,9 +42,9 @@ o.background = 'dark'
 o.signcolumn = 'yes'
 o.colorcolumn = '80'
 vim.diagnostic.config({
-  float = {
-    border = 'rounded',
-  },
+   float = {
+      border = 'rounded',
+   },
 })
 
 -- virtualedit
@@ -70,15 +70,15 @@ o.undofile = true
 
 -- folding
 o.foldcolumn = '0'
-o.foldlevel = 5
+o.foldlevel = 10
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
 o.fillchars = {
-  foldopen = '',
-  foldclose = '',
-  fold = ' ',
-  foldsep = ' ',
-  eob = ' ',
+   foldopen = '',
+   foldclose = '',
+   fold = ' ',
+   foldsep = ' ',
+   eob = ' ',
 }
 
 -- session management
