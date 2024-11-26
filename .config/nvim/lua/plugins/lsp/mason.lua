@@ -1,7 +1,6 @@
 return {
    'williamboman/mason.nvim',
    dependencies = {
-      'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
    },
    cmd = 'Mason',
@@ -16,6 +15,8 @@ return {
          ui = {
             -- style = 'minimal',
             border = 'rounded',
+            width = 0.7,
+            height = 0.8,
             icons = {
                package_installed = '✓',
                package_pending = '➜',
