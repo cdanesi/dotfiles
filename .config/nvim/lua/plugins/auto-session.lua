@@ -11,13 +11,13 @@ return {
       session_lens = {
          load_on_setup = true,
          previewer = false,
-
          mappings = {
-            delete_session = { 'i', '<C-D>' },
-            alternate_session = { 'i', '<C-S>' },
-            copy_session = { 'i', '<C-Y>' },
+            delete_session = { { 'n', 'i' }, '<C-D>' },
+            alternate_session = { { 'n', 'i' }, '<C-S>' },
+            copy_session = { { 'n', 'i' }, '<C-Y>' },
          },
       },
+      show_auto_restore_notif = true,
       bypass_save_filetypes = { 'alpha', 'dashboard' }, -- don't save dashboard/greeter to a session
       -- Folders listed here will not have sessions created within.
       suppress_dirs = { '~/', '~/Downloads', '~/Desktop', '/' },
