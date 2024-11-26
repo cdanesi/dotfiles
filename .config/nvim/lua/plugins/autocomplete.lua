@@ -12,6 +12,7 @@ return {
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'davidsierradz/cmp-conventionalcommits',
       'chrisgrieser/cmp-nerdfont', -- triggered by ':' (insert mode)
+      'Dynge/gitmoji.nvim',
       'onsails/lspkind.nvim',
       {
          'L3MON4D3/LuaSnip',
@@ -114,6 +115,7 @@ return {
             { name = 'luasnip', priority = 2 },
             { name = 'nvim_lsp_signature_help' },
             { name = 'nerdfont' },
+            { name = 'gitmoji' },
             { name = 'conventionalcommits' },
             { name = 'buffer', keyword_length = 3 },
             { name = 'path' },
