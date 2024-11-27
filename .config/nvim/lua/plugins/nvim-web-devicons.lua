@@ -32,7 +32,7 @@ return {
             color = '#a3be8c',
          },
          ['plugins'] = {
-            icon = '󰚥',
+            icon = '',
          },
       },
       override_by_extension = {
