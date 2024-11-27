@@ -2,8 +2,6 @@
 .Trash/
 .cache/
 .cargo/
-.config/raycast/extensions/
-.config/tmux/plugins/
 .docker/
 .gitkraken/
 .local/share/

@@ -1,0 +1,12 @@
+**/AppSupport
+**/*backup*/**
+btop/themes/**
+espanso/match/packages/**
+**/plugins/**
+!nvim/lua/plugins/**
+raycast/extensions/**
+nvim.**/
+gtkfilechooser.ini
+*.bak
+*.log
+*.tmp
