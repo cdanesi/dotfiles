@@ -6,6 +6,7 @@
 .gitkraken/
 .local/share/
 .local/state/nvim/
+.local/pipx/**
 .npm/
 .platformio/
 .quokka/
@@ -13,6 +14,7 @@
 .vscode/
 .zcompdump*
 .zsh
+.ssh/**
 Applications/
 Desktop/
 Documents/
