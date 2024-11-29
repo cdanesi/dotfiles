@@ -181,22 +181,6 @@ keymap.set('n', '<leader>hB', function()
 end, opts('Toggle line blame'))
 keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', opts('Gitsigns select hunk'))
 
---  ────────────────────────────────────────────────( fancy comments )─
-keymap.set({ 'n', 'v' }, '<leader>Cd', '<cmd>CBd<CR>', opts('Delete comment decoration'))
-keymap.set({ 'n', 'v' }, '<leader>Cy', '<cmd>CBy<CR>', opts('Yank comment'))
---  ────────────────────────────────────────────────── comment boxes ──
-keymap.set({ 'n', 'v' }, '<leader>Cbl', '<cmd>CBllbox12<CR>', opts('Insert a comment box'))
-keymap.set({ 'n', 'v' }, '<leader>Cbc', '<cmd>CBccbox18<CR>', opts('Insert a comment box'))
-keymap.set({ 'n', 'v' }, '<leader>Cbr', '<cmd>CBrrbox15<CR>', opts('Insert a comment box'))
-keymap.set({ 'n', 'v' }, '<leader>Cba', '<cmd>CBccbox6<CR>', opts('Insert a callout'))
---  ────────────────────────────────────────────────── comment lines ──
-keymap.set({ 'n', 'v' }, '<leader>Cll', '<cmd>CBclline7<CR>', opts('Insert a left-aligned comment line'))
-keymap.set({ 'n', 'v' }, '<leader>Clc', '<cmd>CBccline7<CR>', opts('Insert a centered comment line'))
-keymap.set({ 'n', 'v' }, '<leader>Clr', '<cmd>CBcrline7<CR>', opts('Insert a right-aligned comment line'))
-keymap.set({ 'n', 'v' }, '<leader>ClL', '<cmd>CBclline<CR>', opts('Insert a simple comment line'))
-keymap.set({ 'n', 'v' }, '<leader>ClC', '<cmd>CBccline<CR>', opts('Insert a simple comment line'))
-keymap.set({ 'n', 'v' }, '<leader>ClR', '<cmd>CBcrline<CR>', opts('Insert a simple comment line'))
-
 --  ───────────────────────────────────────────────────( icon picker )─
 keymap.set('n', '<Leader>i', '<cmd>Telescope symbols initial_mode=normal theme=get_ivy<cr>', opts('Open icon picker'))
 -- keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", opts("Yank icon into register")) --> Yank the selected icon into register

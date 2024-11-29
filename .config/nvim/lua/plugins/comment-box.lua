@@ -1,6 +1,5 @@
 return {
    'LudoPinelli/comment-box.nvim',
-   event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
    opts = {
       doc_width = 80,
       box_width = 60,
@@ -8,5 +7,19 @@ return {
       outer_blank_lines_above = true,
       outer_blank_lines_below = true,
       inner_blank_lines = true,
+   },
+   keys = {
+      { '<leader>Cd', '<cmd>CBd<CR>', desc = 'Delete comment decoration' },
+      { '<leader>Cy', '<cmd>CBy<CR>', desc = 'Yank comment' },
+      { '<leader>Cbl', '<cmd>CBllbox12<CR>', desc = 'Insert a comment box' },
+      { '<leader>Cbc', '<cmd>CBccbox18<CR>', desc = 'Insert a comment box' },
+      { '<leader>Cbr', '<cmd>CBrrbox15<CR>', desc = 'Insert a comment box' },
+      { '<leader>Cba', '<cmd>CBccbox6<CR>', desc = 'Insert a callout' },
+      { '<leader>Cll', '<cmd>CBclline7<CR>', desc = 'Insert a left-aligned comment line' },
+      { '<leader>Clc', '<cmd>CBccline7<CR>', desc = 'Insert a centered comment line' },
+      { '<leader>Clr', '<cmd>CBcrline7<CR>', desc = 'Insert a right-aligned comment line' },
+      { '<leader>ClL', '<cmd>CBclline<CR>', desc = 'Insert a simple comment line' },
+      { '<leader>ClC', '<cmd>CBccline<CR>', desc = 'Insert a simple comment line' },
+      { '<leader>ClR', '<cmd>CBcrline<CR>', desc = 'Insert a simple comment line' },
    },
 }
