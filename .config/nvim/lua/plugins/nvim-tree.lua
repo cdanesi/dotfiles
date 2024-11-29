@@ -8,12 +8,16 @@ return {
       'NvimTreeRefresh',
    },
    init = function()
-      vim.g.loaded_netrwPlugin = 1
+      vim.g.disable_netrw = false
+      vim.g.loaded_netrwPlugin = true
    end,
    opts = {
       respect_buf_cwd = false,
       view = {
-         width = 35,
+         width = {
+            min = 25,
+            max = 45,
+         },
          relativenumber = true,
          signcolumn = 'yes',
       },
@@ -80,7 +84,7 @@ return {
          enable = true,
          git_ignored = true,
          dotfiles = false,
-         custom = { '.DS_Store' },
+         -- custom = { '.DS_Store' },
       },
       git = {
          enable = true,
