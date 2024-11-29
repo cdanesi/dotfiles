@@ -10,9 +10,7 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lsp-document-symbol',
       'hrsh7th/cmp-nvim-lsp-signature-help',
-      'davidsierradz/cmp-conventionalcommits',
       'chrisgrieser/cmp-nerdfont', -- triggered by ':' (insert mode)
-      'Dynge/gitmoji.nvim',
       'onsails/lspkind.nvim',
       {
          'L3MON4D3/LuaSnip',
@@ -111,12 +109,10 @@ return {
          }),
          sources = cmp.config.sources({
             { name = 'nvim_lsp', priority = 1 },
-            { name = 'nvim_lua' },
-            { name = 'luasnip', priority = 2 },
+            { name = 'luasnip' },
             { name = 'nvim_lsp_signature_help' },
+            { name = 'nvim_lua' },
             { name = 'nerdfont' },
-            { name = 'gitmoji' },
-            { name = 'conventionalcommits' },
             { name = 'buffer', keyword_length = 3 },
             { name = 'path' },
             { name = 'calc' },
@@ -127,7 +123,7 @@ return {
             expandable_indicator = true,
             format = function(entry, vim_item)
                if vim.tbl_contains({ 'path' }, entry.source.name) then
-                  local icon, hl_group = require('nvim-web-devicons').get_icon(entry.completion_item().label)
+                  local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
                   if icon then
                      vim_item.kind = icon
                      vim_item.kind_hl_group = hl_group
@@ -135,7 +131,7 @@ return {
                   end
                end
                return lspkind.cmp_format({
-                  with_text = true,
+                  with_text = false,
                   mode = 'symbol_text',
                   maxwidth = 50,
                   ellipsis_char = '...',
@@ -144,10 +140,11 @@ return {
                      -- add name of source to the menu
                      nvim_lsp = '[LSP]',
                      nvim_lua = '[Lua]',
-                     luasnip = '[LuaSnip]',
-                     buffer = '[Buffer]',
+                     luasnip = '[Snip]',
+                     buffer = '[Buf]',
                      path = '[Path]',
                      latex_symbols = '[Latex]',
+                     spell = '[Spell]',
                   },
                })(entry, vim_item)
             end,
@@ -172,7 +169,7 @@ return {
          view = {
             entries = {
                name = 'wildmenu',
-               separator = '|',
+               separator = '',
             },
          },
          sources = {
@@ -181,6 +178,8 @@ return {
          },
       })
 
+      -- FIX: on my Arch laptop, 't' as first character on cmdline escapes
+      -- the cmdline and destructively prints xx:xx to the document
       cmp.setup.cmdline(':', {
          enabled = function()
             local disabled = {
@@ -192,10 +191,10 @@ return {
             return not disabled[cmd] or cmp.close()
          end,
          mapping = cmp.mapping.preset.cmdline(),
-         sources = cmp.config.sources({
-            { name = 'path' },
+         sources = {
             { name = 'cmdline' },
-         }),
+            { name = 'path' },
+         },
          ---@diagnostic disable-next-line: missing-fields
          matching = {
             disallow_fullfuzzy_matching = false,
