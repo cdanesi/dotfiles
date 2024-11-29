@@ -90,10 +90,10 @@ return {
                },
             },
             lualine_c = {
-               {
-                  'branch',
-                  cond = custom_components.min_window_width(180),
-               },
+               -- {
+               --    'branch',
+               --    cond = custom_components.min_window_width(180),
+               -- },
                {
                   'b:gitsigns_head',
                   icon = '',
