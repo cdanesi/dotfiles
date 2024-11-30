@@ -3,7 +3,7 @@ return {
    dependencies = {
       'nvim-treesitter/nvim-treesitter',
    },
-   event = { 'BufReadPost', 'BufWritePost', 'BufNewFile', 'VeryLazy' },
+   event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
 
    opts = {
       textobjects = {
