@@ -25,12 +25,9 @@ return {
       local cmp = require('cmp')
       local snippet = require('luasnip')
       local lspkind = require('lspkind')
-      local autopairs = require('nvim-autopairs.completion.cmp')
       local select_opts = { behavior = cmp.SelectBehavior.Select }
 
       require('luasnip.loaders.from_vscode').lazy_load()
-
-      cmp.event:on('confirm_done', autopairs.on_confirm_done())
 
       cmp.setup({
          enabled = function()
