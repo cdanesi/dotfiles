@@ -6,7 +6,7 @@ return {
       vim.o.timeoutlen = 500
    end,
    opts = {
-      preset = 'modern',
+      preset = 'modern', -- may set this back to 'classic'
       sort = { 'local', 'order', 'group', 'alphanum', 'mod' },
       notify = true,
       win = {
