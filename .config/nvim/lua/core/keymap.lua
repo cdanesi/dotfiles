@@ -80,6 +80,18 @@ keymap.set(
    '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
    opts('Open trouble document diagnostics')
 )
+keymap.set(
+   'n',
+   '<leader>xl',
+   '<cmd>Trouble lsp toggle focus=false win.position=right<CR>',
+   opts('Open trouble lsp reference')
+)
+keymap.set(
+   'n',
+   '<leader>xs',
+   '<cmd>Trouble symbols toggle focus=false win.position=right<CR>',
+   opts('Open trouble symbols list')
+)
 keymap.set('n', '<leader>xq', '<cmd>Trouble quickfix toggle<CR>', opts('Open trouble quickfix list'))
 keymap.set('n', '<leader>xl', '<cmd>Trouble loclist toggle<CR>', opts('Open trouble location list'))
 keymap.set('n', '<leader>xt', '<cmd>Trouble todo toggle<CR>', opts('Open todos in trouble'))
@@ -184,5 +196,9 @@ keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', opts('Gitsigns 
 
 --  ───────────────────────────────────────────────────( icon picker )─
 keymap.set('n', '<Leader>i', '<cmd>Telescope symbols initial_mode=normal theme=get_ivy<cr>', opts('Open icon picker'))
--- keymap.set("n", "<Leader>iy", "<cmd>IconPickerYank<cr>", opts("Yank icon into register")) --> Yank the selected icon into register
--- keymap.set("i", "<C-i>", "<cmd>Telescope symbols initial_mode=normal theme=get_ivy<cr>", opts("Open icon picker"))
+keymap.set(
+   'i',
+   '<M-.>',
+   '<cmd>Telescope symbols initial_mode=normal theme=get_ivy<cr>',
+   opts('Icon picker (Insert Mode)')
+)

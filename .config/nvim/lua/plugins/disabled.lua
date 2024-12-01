@@ -1,5 +1,8 @@
 return {
    {
+      'ziontee113/icon-picker.nvim',
+   },
+   {
       'renerocksai/telekasten.nvim',
       enabled = false,
    },
