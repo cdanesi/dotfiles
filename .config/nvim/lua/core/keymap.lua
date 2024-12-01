@@ -132,6 +132,7 @@ keymap.set('n', '<leader>ee', '<cmd>NvimTreeToggle<CR>', opts('Toggle file explo
 keymap.set('n', '<leader>ef', '<cmd>NvimTreeFindFileToggle<CR>', opts('Toggle file explorer on current file'))
 keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', opts('Collapse file explorer'))
 keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', opts('Refresh file explorer'))
+keymap.set('n', '<leader>eo', '<cmd>Oil --float<CR>', opts('Browse with Oil'))
 
 --  ──────────────────────────────────────────────────────────( diff )─
 keymap.set('n', '<leader>hd', function()
