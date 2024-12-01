@@ -1,9 +1,14 @@
 return {
    {
       'ziontee113/icon-picker.nvim',
+      enabled = false,
    },
    {
       'renerocksai/telekasten.nvim',
+      enabled = false,
+   },
+   {
+      'epwalsh/obsidian.nvim',
       enabled = false,
    },
    {
