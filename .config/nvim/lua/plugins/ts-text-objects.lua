@@ -102,13 +102,19 @@ return {
                ['[I'] = { query = '@conditional.outer', desc = 'Prev conditional end' },
                ['[L'] = { query = '@loop.outer', desc = 'Prev loop end' },
             },
+            goto_next = {
+               [']-'] = { query = '@comment.outer', desc = 'Next comment' },
+            },
+            goto_previous = {
+               ['[-'] = { query = '@comment.outer', desc = 'Prev comment' },
+            },
          },
          lsp_interop = {
             enable = true,
             border = 'rounded',
             peek_definition_code = {
-               ['<leader>df'] = '@function.outer',
-               ['<leader>dF'] = '@class.outer',
+               ['<leader>pd'] = '@function.outer',
+               ['<leader>pD'] = '@class.outer',
             },
          },
       },
@@ -121,7 +127,35 @@ return {
 
       -- Repeat movement with ; and ,
       -- ensure ; goes forward and , goes backward regardless of the last direction
-      vim.keymap.set({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move)
+      vim.keymap.set({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
       vim.keymap.set({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
+
+      -- make builtin f, F, t, T repeatable
+      vim.keymap.set({ 'n', 'x', 'o' }, 'f', ts_repeat_move.builtin_f_expr, { expr = true })
+      vim.keymap.set({ 'n', 'x', 'o' }, 'F', ts_repeat_move.builtin_F_expr, { expr = true })
+      vim.keymap.set({ 'n', 'x', 'o' }, 't', ts_repeat_move.builtin_t_expr, { expr = true })
+      vim.keymap.set({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T_expr, { expr = true })
+
+      --  ─────────────────────────────────────────────────────── gitsigns ──
+      local gs = require('gitsigns')
+      local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(function()
+         gs.nav_hunk('next')
+      end, function()
+         gs.nav_hunk('prev')
+      end)
+
+      vim.keymap.set({ 'n', 'x', 'o' }, ']h', next_hunk_repeat)
+      vim.keymap.set({ 'n', 'x', 'o' }, '[h', prev_hunk_repeat)
+
+      --  ───────────────────────────────────────────────────── bufferline ──
+      local bl = require('bufferline')
+      local next_buffer, prev_buffer = ts_repeat_move.make_repeatable_move_pair(function()
+         bl.cycle(1)
+      end, function()
+         bl.cycle(-1)
+      end)
+
+      vim.keymap.set({ 'n', 'x', 'o' }, ']b', next_buffer)
+      vim.keymap.set({ 'n', 'x', 'o' }, '[b', prev_buffer)
    end,
 }
