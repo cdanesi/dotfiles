@@ -1,4 +1,4 @@
---  ───────────────────────────────────────( set leader key to space )─
+--  ────────────────────────────────────────────────────( leader key )─
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
@@ -94,7 +94,12 @@ keymap.set(
 )
 keymap.set('n', '<leader>xq', '<cmd>Trouble quickfix toggle<CR>', opts('Open trouble quickfix list'))
 keymap.set('n', '<leader>xl', '<cmd>Trouble loclist toggle<CR>', opts('Open trouble location list'))
-keymap.set('n', '<leader>xt', '<cmd>Trouble todo toggle<CR>', opts('Open todos in trouble'))
+keymap.set(
+   'n',
+   '<leader>xt',
+   '<cmd>Trouble todo toggle win.position=right focus=false<CR>',
+   opts('Open todos in trouble')
+)
 
 --  ─────────────────────────────────────────────────────( telescope )─
 keymap.set(
@@ -202,3 +207,6 @@ keymap.set(
    '<cmd>Telescope symbols initial_mode=normal theme=get_ivy<cr>',
    opts('Icon picker (Insert Mode)')
 )
+
+--  ──────────────────────────────────────────────────────( markdown )─
+keymap.set('n', '<leader>cr', '<cmd>MdEval<CR>', opts('Execute markdown codeblock'))
