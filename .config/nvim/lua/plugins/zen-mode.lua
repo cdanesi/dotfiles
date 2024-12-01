@@ -21,6 +21,7 @@ return {
          },
          kitty = {
             -- INFO: not working in tmux sessions
+            -- unable to get $KITTY_LISTEN_ON to update on attach
             enabled = true,
             font = '+4',
          },
