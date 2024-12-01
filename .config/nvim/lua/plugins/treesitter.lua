@@ -4,16 +4,12 @@ return {
    lazy = true,
    cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
    build = ':TSUpdate',
-   dependencies = {
-      'windwp/nvim-ts-autotag',
-   },
    opts = {
       highlight = {
          enable = true,
          additional_vim_regex_highlighting = false,
       },
       indent = { enable = true, disable = {} },
-      autotag = { enable = true },
       ensure_installed = {
          'bash',
          'css',
@@ -54,8 +50,4 @@ return {
          },
       },
    },
-
-   config = function(_, opts)
-      require('nvim-treesitter.configs').setup(opts)
-   end,
 }
