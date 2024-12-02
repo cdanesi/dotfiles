@@ -1,5 +1,9 @@
 return {
    {
+      'norcalli/nvim-colorizer.lua',
+      enabled = false,
+   },
+   {
       'ziontee113/icon-picker.nvim',
       enabled = false,
    },
