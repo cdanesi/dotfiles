@@ -208,5 +208,10 @@ keymap.set(
    opts('Icon picker (Insert Mode)')
 )
 
+--  ──────────────────────────────────────────────────( color picker )─
+keymap.set('n', '<leader>cp', '<cmd>CccPick<CR>', opts('Open color picker'))
+keymap.set({ 'n', 'v' }, '<leader>cv', '<cmd>CccConvert<CR>', opts('Convert color'))
+keymap.set('n', '<leader>cc', '<cmd>CccHighlighterToggle<CR>', opts('Toggle rendered colors'))
+
 --  ──────────────────────────────────────────────────────( markdown )─
 keymap.set('n', '<leader>cr', '<cmd>MdEval<CR>', opts('Execute markdown codeblock'))
