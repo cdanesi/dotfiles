@@ -154,6 +154,7 @@ keymap.set('n', '<leader>eo', '<cmd>Oil --float<CR>', opts('Browse with Oil'))
 --  ──────────────────────────────────────────────────────────( diff )─
 keymap.set('n', '<leader>hd', function()
    require('gitsigns').diffthis()
+   vim.cmd('windo set wrap')
 end, opts('Diff this'))
 keymap.set('n', '<leader>hD', function()
    require('gitsigns').diffthis('~')
