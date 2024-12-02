@@ -58,8 +58,8 @@ return {
          options = {
             icons_enabled = true,
             theme = 'onenord',
-            component_separators = { left = '', right = '' },
-            section_separators = { left = '', right = '' },
+            component_separators = { left = '', right = '' }, -- old separators:   
+            section_separators = { left = '', right = '' }, -- old separators:  
             disabled_filetypes = {
                statusline = { 'alpha', 'dashboard', 'Outline', 'NvimTree' },
                winbar = {},
