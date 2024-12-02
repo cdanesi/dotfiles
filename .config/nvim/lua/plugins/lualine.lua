@@ -107,9 +107,20 @@ return {
                },
             },
             lualine_x = {
-               -- TODO: spell indicator (when on)
-               -- TODO: LSP
                -- TODO: macro indicator
+               {
+                  -- spell status
+                  function()
+                     local icon = '󰓆'
+                     return icon .. ' ' .. vim.fn.toupper(string.sub(vim.bo.spelllang, 1, 2))
+                  end,
+                  cond = function()
+                     return vim.wo.spell
+                  end,
+                  color = { fg = '#ff6a71' },
+                  padding = 1,
+               },
+               -- TODO: LSP
                {
                   'diagnostics',
                   sources = { 'nvim_workspace_diagnostic' },
@@ -121,7 +132,7 @@ return {
                },
                {
                   lazy_status.updates,
-                  { { cond = lazy_status.has_updates and custom_components.min_window_width(120) } },
+                  cond = lazy_status.has_updates and custom_components.min_window_width(120),
                   color = { fg = '#ebcb8b' },
                },
                -- {
@@ -129,8 +140,8 @@ return {
                --       return require("auto-session.lib").current_session_name(true)
                --    end,
                -- },
-               { custom_components.encoding, { cond = custom_components.min_window_width(190) } },
-               { custom_components.fileformat, { cond = custom_components.min_window_width(180) } },
+               { custom_components.encoding, cond = custom_components.min_window_width(190) },
+               { custom_components.fileformat, cond = custom_components.min_window_width(180) },
                { 'filetype', cond = custom_components.min_window_width(120) },
             },
             lualine_y = {
