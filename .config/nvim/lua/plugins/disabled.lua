@@ -28,10 +28,6 @@ return {
       enabled = false,
    },
    {
-      'willothy/moveline.nvim',
-      enabled = false,
-   },
-   {
       'MeanderingProgrammer/render-markdown.nvim',
       enabled = false,
    },
