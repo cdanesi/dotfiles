@@ -4,9 +4,9 @@ return {
       doc_width = 80,
       box_width = 60,
       line_width = 70,
-      outer_blank_lines_above = true,
+      outer_blank_lines_above = false,
       outer_blank_lines_below = true,
-      inner_blank_lines = true,
+      inner_blank_lines = false,
    },
    keys = {
       { '<leader>Cd', '<cmd>CBd<CR>', desc = 'Delete comment decoration', mode = { 'n', 'v' } },
