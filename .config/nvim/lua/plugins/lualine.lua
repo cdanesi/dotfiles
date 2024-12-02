@@ -107,18 +107,15 @@ return {
                },
             },
             lualine_x = {
-               -- TODO: macro indicator
                {
-                  -- spell status
+                  -- show status when recording a macro
                   function()
-                     local icon = '󰓆'
-                     return icon .. ' ' .. vim.fn.toupper(string.sub(vim.bo.spelllang, 1, 2))
+                     local reg = vim.fn.reg_recording()
+                     if reg == '' then return '' end
+                     return '󰻃 recording to @' .. reg
                   end,
-                  cond = function()
-                     return vim.wo.spell
-                  end,
-                  color = { fg = '#ff6a71' },
-                  padding = 1,
+                  cond = custom_components.min_window_width(180),
+                  color = { fg = '#d08770' },
                },
                -- TODO: LSP
                {
@@ -140,6 +137,18 @@ return {
                --       return require("auto-session.lib").current_session_name(true)
                --    end,
                -- },
+               {
+                  -- spell status
+                  function()
+                     local icon = '󰓆'
+                     return icon .. ' ' .. vim.fn.toupper(string.sub(vim.bo.spelllang, 1, 2))
+                  end,
+                  cond = custom_components.min_window_width(120) and function()
+                     return vim.wo.spell
+                  end,
+                  color = { fg = '#81a1c1' },
+                  padding = 1,
+               },
                { custom_components.encoding, cond = custom_components.min_window_width(190) },
                { custom_components.fileformat, cond = custom_components.min_window_width(180) },
                { 'filetype', cond = custom_components.min_window_width(120) },
