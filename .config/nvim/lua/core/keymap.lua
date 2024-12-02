@@ -217,8 +217,15 @@ keymap.set('n', '<leader>cc', '<cmd>CccHighlighterToggle<CR>', opts('Toggle rend
 --  ──────────────────────────────────────────────────────( markdown )─
 keymap.set('n', '<leader>cr', '<cmd>MdEval<CR>', opts('Execute markdown codeblock'))
 
--- spellcheck
+--  ────────────────────────────────────────────────────( spellcheck )─
 keymap.set('n', '<leader>S', function()
+   if vim.wo.spell then
+      vim.opt_local.spell = false
+   else
+      vim.opt_local.spell = true
+   end
+end, opts('Toggle spell check'))
+keymap.set('i', '<C-s>', function()
    if vim.wo.spell then
       vim.opt_local.spell = false
    else
