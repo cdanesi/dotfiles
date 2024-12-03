@@ -3,11 +3,13 @@ return {
    dependencies = {
       'nvim-tree/nvim-web-devicons',
       'rmehri01/onenord.nvim',
+      'skwee357/nvim-prose',
    },
    event = 'VeryLazy',
    config = function()
       local lualine = require('lualine')
       local lazy_status = require('lazy.status')
+      local prose = require('nvim-prose')
 
       local custom_components = {
          -- ┌
@@ -53,6 +55,15 @@ return {
             end
          end,
       }
+
+      prose.setup({
+         wpm = 200.0,
+         filetypes = { 'markdown', 'asciidoc' },
+         placeholders = {
+            words = 'words',
+            minutes = 'min',
+         },
+      })
 
       lualine.setup({
          options = {
@@ -137,6 +148,20 @@ return {
                --       return require("auto-session.lib").current_session_name(true)
                --    end,
                -- },
+               {
+                  function()
+                     return '  ' .. prose.reading_time()
+                  end,
+                  cond = prose.is_available,
+                  color = { fg = '#81a1c1' },
+               },
+               {
+                  function()
+                     return '  ' .. prose.word_count()
+                  end,
+                  cond = prose.is_available,
+                  color = { fg = '#a3be8c' },
+               },
                {
                   -- spell status
                   function()
