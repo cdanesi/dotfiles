@@ -8,6 +8,10 @@ indent_style = space
 indent_size = 3
 max_line_length = 80
 trim_trailing_whitespace = true
+tab_width = 3
+
+[*.lua]
+max_line_length = 120
 
 [yaml]
 indent_size = 2
