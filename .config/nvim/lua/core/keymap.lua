@@ -12,6 +12,7 @@ end
 keymap.set('i', 'jk', '<ESC>', opts('Exit insert mode with jk'))
 keymap.set('n', '<leader>nh', ':nohl<CR>', opts('Clear search highlights'))
 keymap.set({ 'n', 'v' }, '<leader>cm', '<cmd>Noice dismiss<CR>', opts('Dismiss notifications'))
+keymap.set('n', '<leader>?', '<cmd>Telescope help_tags<CR>', opts('Search documentation'))
 
 --  ────────────────────────────────────────────────────( formatting )─
 keymap.set({ 'n', 'v' }, '<leader>F', function()
