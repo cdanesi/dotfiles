@@ -8,6 +8,10 @@ return {
       enabled = false,
    },
    {
+      'ThePrimeagen/harpoon',
+      enabled = false,
+   },
+   {
       'renerocksai/telekasten.nvim',
       enabled = false,
    },
@@ -16,7 +20,7 @@ return {
       enabled = false,
    },
    {
-      'ThePrimeagen/harpoon',
+      'jakewvincent/mkdnflow.nvim',
       enabled = false,
    },
    {
@@ -25,10 +29,6 @@ return {
    },
    {
       'OXY2DEV/markview.nvim',
-      enabled = false,
-   },
-   {
-      'jakewvincent/mkdnflow.nvim',
       enabled = false,
    },
    {
