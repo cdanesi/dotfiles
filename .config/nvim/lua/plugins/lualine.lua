@@ -41,6 +41,24 @@ return {
          end,
 
          -- ┌
+         -- │ get width of statusline
+         -- │ from https://github.com/wookayin/dotfiles/blob/master/nvim/lua/config/statusline.lua
+         -- └
+         min_statusline_width = function(width)
+            return function()
+               local statusline_width
+               if vim.opt.laststatus:get() == 3 then
+                  -- global statusline: editor width
+                  statusline_width = vim.opt.columns:get()
+               else
+                  -- local statusline: window width
+                  statusline_width = vim.fn.winwidth(0)
+               end
+               return statusline_width > width
+            end
+         end,
+
+         -- ┌
          -- │ get diff for current buffer from gitsigns
          -- │ doing this for yadm integration from gitsigns
          -- └
@@ -86,7 +104,7 @@ return {
             },
          },
          sections = {
-            lualine_a = { { 'mode', cond = custom_components.min_window_width(40) } },
+            lualine_a = { { 'mode', cond = custom_components.min_statusline_width(60) } },
             lualine_b = {
                {
                   'filename',
@@ -97,24 +115,24 @@ return {
                      modified = '[+]',
                      readonly = '[-]',
                   },
-                  cond = custom_components.min_window_width(100),
+                  cond = custom_components.min_statusline_width(80),
                },
             },
             lualine_c = {
                -- {
                --    'branch',
-               --    cond = custom_components.min_window_width(180),
+               --    cond = custom_components.min_statusline_width(180),
                -- },
                {
                   'b:gitsigns_head',
                   icon = '',
                   color = { fg = '#8fbcbb' },
-                  cond = custom_components.min_window_width(180),
+                  cond = custom_components.min_statusline_width(120),
                },
                {
                   'diff',
                   source = custom_components.gitsigns_diff,
-                  cond = custom_components.min_window_width(60),
+                  cond = custom_components.min_statusline_width(70),
                },
             },
             lualine_x = {
@@ -123,9 +141,9 @@ return {
                   function()
                      local reg = vim.fn.reg_recording()
                      if reg == '' then return '' end
-                     return '󰻃 recording to @' .. reg
+                     return '󰻃 recording @' .. reg
                   end,
-                  cond = custom_components.min_window_width(180),
+                  cond = custom_components.min_statusline_width(70),
                   color = { fg = '#d08770' },
                },
                -- TODO: LSP
@@ -136,30 +154,36 @@ return {
                   --symbols = { error = " ", warn = " ", info = " ", hint = "󰠠 " },
                   colored = true,
                   always_visible = false,
-                  cond = custom_components.min_window_width(120),
+                  cond = custom_components.min_statusline_width(80),
                },
                {
+                  -- display a notification if there are plugins to update
                   lazy_status.updates,
-                  cond = lazy_status.has_updates and custom_components.min_window_width(120),
+                  cond = lazy_status.has_updates and custom_components.min_statusline_width(120),
                   color = { fg = '#ebcb8b' },
                },
                -- {
+               --    -- display the name of the currently loaded session
                --    function()
                --       return require("auto-session.lib").current_session_name(true)
                --    end,
                -- },
                {
+                  -- display estimated reading time
                   function()
                      return '  ' .. prose.reading_time()
                   end,
-                  cond = prose.is_available,
+                  -- TODO: fix display if on small windows
+                  cond = prose.is_available, -- and custom_components.min_statusline_width(100),
                   color = { fg = '#81a1c1' },
                },
                {
+                  -- display a word count for the document
                   function()
                      return '  ' .. prose.word_count()
                   end,
-                  cond = prose.is_available,
+                  -- TODO: fix display if on small windows
+                  cond = prose.is_available, --custom_components.min_statusline_width(90),
                   color = { fg = '#a3be8c' },
                },
                {
@@ -168,29 +192,37 @@ return {
                      local icon = '󰓆'
                      return icon .. ' ' .. vim.fn.toupper(string.sub(vim.bo.spelllang, 1, 2))
                   end,
-                  cond = custom_components.min_window_width(120) and function()
+                  cond = function()
                      return vim.wo.spell
                   end,
                   color = { fg = '#81a1c1' },
                   padding = 1,
                },
-               { custom_components.encoding, cond = custom_components.min_window_width(190) },
-               { custom_components.fileformat, cond = custom_components.min_window_width(180) },
-               { 'filetype', cond = custom_components.min_window_width(120) },
+               { custom_components.encoding, cond = custom_components.min_statusline_width(190) },
+               { custom_components.fileformat, cond = custom_components.min_statusline_width(180) },
+               { 'filetype', cond = custom_components.min_statusline_width(90) },
             },
             lualine_y = {
-               { 'searchcount', cond = custom_components.min_window_width(180) },
-               { 'progress', cond = custom_components.min_window_width(180) },
+               { 'searchcount', cond = custom_components.min_statusline_width(160) },
+               { 'progress', cond = custom_components.min_statusline_width(120) },
             },
             lualine_z = {
-               { 'selectioncount', cond = custom_components.min_window_width(180) },
-               { 'location', cond = custom_components.min_window_width(190) },
+               { 'selectioncount', cond = custom_components.min_statusline_width(160) },
+               { 'location', cond = custom_components.min_statusline_width(100) },
             },
          },
          inactive_sections = {
             lualine_a = {},
             lualine_b = {},
-            lualine_c = { 'filename' },
+            lualine_c = {
+               { 'filename' },
+               {
+                  'diff',
+                  source = custom_components.gitsigns_diff,
+                  cond = custom_components.min_statusline_width(60),
+                  colored = false,
+               },
+            },
             lualine_x = {
                {
                   'diagnostics',
@@ -200,9 +232,10 @@ return {
                   colored = false,
                   always_visible = false,
                },
+               { 'filetype', colored = false },
             },
             lualine_y = {},
-            lualine_z = { 'location' },
+            lualine_z = {},
          },
          tabline = {},
          winbar = {},
