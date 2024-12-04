@@ -11,25 +11,7 @@ return {
       local lazy_status = require('lazy.status')
       local prose = require('nvim-prose')
 
-      local custom_components = {
-         -- ┌
-         -- │ do not show encoding if UTF-8
-         -- │ from https://github.com/wookayin/dotfiles/blob/master/nvim/lua/config/statusline.lua
-         -- └
-         encoding = function()
-            local ret, _ = (vim.bo.fenc or vim.go.enc):gsub('^utf%-8$', '')
-            return ret
-         end,
-
-         -- ┌
-         -- │ only show non-unix file format
-         -- │ from https://github.com/wookayin/dotfiles/blob/master/nvim/lua/config/statusline.lua
-         -- └
-         fileformat = function()
-            local ret, _ = vim.bo.fileformat:gsub('^unix$', '')
-            return ret
-         end,
-
+      local conditions = {
          -- ┌
          -- │ get width of current window
          -- │ from https://github.com/wookayin/dotfiles/blob/master/nvim/lua/config/statusline.lua
@@ -56,6 +38,32 @@ return {
                end
                return statusline_width > width
             end
+         end,
+
+         -- check if buffer is empty
+         -- from https://github.com/nvim-lualine/lualine.nvim/blob/master/examples/evil_lualine.lua
+         buffer_not_empty = function()
+            return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+         end,
+      }
+
+      local custom_components = {
+         -- ┌
+         -- │ do not show encoding if UTF-8
+         -- │ from https://github.com/wookayin/dotfiles/blob/master/nvim/lua/config/statusline.lua
+         -- └
+         encoding = function()
+            local ret, _ = (vim.bo.fenc or vim.go.enc):gsub('^utf%-8$', '')
+            return ret
+         end,
+
+         -- ┌
+         -- │ only show non-unix file format
+         -- │ from https://github.com/wookayin/dotfiles/blob/master/nvim/lua/config/statusline.lua
+         -- └
+         fileformat = function()
+            local ret, _ = vim.bo.fileformat:gsub('^unix$', '')
+            return ret
          end,
 
          -- ┌
@@ -104,7 +112,9 @@ return {
             },
          },
          sections = {
-            lualine_a = { { 'mode', cond = custom_components.min_statusline_width(60) } },
+            lualine_a = {
+               { 'mode', icon = '', cond = conditions.min_statusline_width(60) },
+            },
             lualine_b = {
                {
                   'filename',
@@ -115,24 +125,26 @@ return {
                      modified = '[+]',
                      readonly = '[-]',
                   },
-                  cond = custom_components.min_statusline_width(80),
+                  cond = conditions.min_statusline_width(80),
                },
             },
             lualine_c = {
-               -- {
-               --    'branch',
-               --    cond = custom_components.min_statusline_width(180),
-               -- },
                {
                   'b:gitsigns_head',
                   icon = '',
                   color = { fg = '#8fbcbb' },
-                  cond = custom_components.min_statusline_width(120),
+                  cond = conditions.min_statusline_width(120),
                },
                {
                   'diff',
                   source = custom_components.gitsigns_diff,
-                  cond = custom_components.min_statusline_width(70),
+                  colored = true,
+                  diff_color = {
+                     added = { fg = '#a3be8c' },
+                     modified = { fg = '#ebcb8b' },
+                     removed = { fg = '#bf616a' },
+                  },
+                  cond = conditions.min_statusline_width(70),
                },
             },
             lualine_x = {
@@ -143,38 +155,32 @@ return {
                      if reg == '' then return '' end
                      return '󰻃 recording @' .. reg
                   end,
-                  cond = custom_components.min_statusline_width(70),
+                  cond = conditions.min_statusline_width(70),
                   color = { fg = '#d08770' },
                },
                -- TODO: LSP
                {
                   'diagnostics',
                   sources = { 'nvim_workspace_diagnostic' },
-                  sections = { 'error', 'warn', 'info', 'hint' },
+                  sections = { 'error', 'warn', 'info' },
                   --symbols = { error = " ", warn = " ", info = " ", hint = "󰠠 " },
                   colored = true,
                   always_visible = false,
-                  cond = custom_components.min_statusline_width(80),
+                  cond = conditions.min_statusline_width(80),
                },
                {
                   -- display a notification if there are plugins to update
                   lazy_status.updates,
-                  cond = lazy_status.has_updates and custom_components.min_statusline_width(120),
+                  cond = lazy_status.has_updates and conditions.min_statusline_width(120),
                   color = { fg = '#ebcb8b' },
                },
-               -- {
-               --    -- display the name of the currently loaded session
-               --    function()
-               --       return require("auto-session.lib").current_session_name(true)
-               --    end,
-               -- },
                {
                   -- display estimated reading time
                   function()
                      return '  ' .. prose.reading_time()
                   end,
                   -- TODO: fix display if on small windows
-                  cond = prose.is_available, -- and custom_components.min_statusline_width(100),
+                  cond = prose.is_available, -- and conditions.min_statusline_width(100),
                   color = { fg = '#81a1c1' },
                },
                {
@@ -183,7 +189,7 @@ return {
                      return '  ' .. prose.word_count()
                   end,
                   -- TODO: fix display if on small windows
-                  cond = prose.is_available, --custom_components.min_statusline_width(90),
+                  cond = prose.is_available, --conditions.min_statusline_width(90),
                   color = { fg = '#a3be8c' },
                },
                {
@@ -196,19 +202,24 @@ return {
                      return vim.wo.spell
                   end,
                   color = { fg = '#81a1c1' },
-                  padding = 1,
+                  -- padding = 1,
                },
-               { custom_components.encoding, cond = custom_components.min_statusline_width(190) },
-               { custom_components.fileformat, cond = custom_components.min_statusline_width(180) },
-               { 'filetype', cond = custom_components.min_statusline_width(90) },
+               { custom_components.encoding, cond = conditions.min_statusline_width(190) },
+               { custom_components.fileformat, cond = conditions.min_statusline_width(180) },
+               {
+                  'filetype',
+                  colored = true,
+                  icon_only = true,
+                  cond = conditions.min_statusline_width(90),
+               },
             },
             lualine_y = {
-               { 'searchcount', cond = custom_components.min_statusline_width(160) },
-               { 'progress', cond = custom_components.min_statusline_width(120) },
+               { 'searchcount', cond = conditions.min_statusline_width(160) },
+               { 'progress', cond = conditions.min_statusline_width(120) },
             },
             lualine_z = {
-               { 'selectioncount', cond = custom_components.min_statusline_width(160) },
-               { 'location', cond = custom_components.min_statusline_width(100) },
+               { 'selectioncount', cond = conditions.min_statusline_width(160) },
+               { 'location', cond = conditions.min_statusline_width(100) },
             },
          },
          inactive_sections = {
@@ -219,7 +230,7 @@ return {
                {
                   'diff',
                   source = custom_components.gitsigns_diff,
-                  cond = custom_components.min_statusline_width(60),
+                  cond = conditions.min_statusline_width(60),
                   colored = false,
                },
             },
@@ -227,7 +238,7 @@ return {
                {
                   'diagnostics',
                   sources = { 'nvim_lsp', 'nvim_workspace_diagnostic', 'nvim_diagnostic' },
-                  sections = { 'error', 'warn', 'info', 'hint' },
+                  sections = { 'error', 'warn' },
                   --symbols = { error = " ", warn = " ", info = " ", hint = "󰠠 " },
                   colored = false,
                   always_visible = false,
