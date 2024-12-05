@@ -179,8 +179,10 @@ return {
                   function()
                      return '  ' .. prose.reading_time()
                   end,
-                  -- TODO: fix display if on small windows
-                  cond = prose.is_available, -- and conditions.min_statusline_width(100),
+                  cond = function()
+                     local window_size = conditions.min_statusline_width(100)
+                     return prose.is_available() and window_size()
+                  end,
                   color = { fg = '#81a1c1' },
                },
                {
@@ -188,8 +190,10 @@ return {
                   function()
                      return '  ' .. prose.word_count()
                   end,
-                  -- TODO: fix display if on small windows
-                  cond = prose.is_available, --conditions.min_statusline_width(90),
+                  cond = function()
+                     local window_size = conditions.min_statusline_width(90)
+                     return prose.is_available() and window_size()
+                  end,
                   color = { fg = '#a3be8c' },
                },
                {
