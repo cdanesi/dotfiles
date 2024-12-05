@@ -1,76 +1,55 @@
+--  ──────────────────────────────────────────────────────── helpers ──
 local o = vim.opt
 local g = vim.g
-
--- environment
-o.showmode = false
+--  ──────────────────────────────────────────────────── environment ──
 g.netrw_liststyle = 3
 g.netrw_banner = 0
-
--- :cd shows cwd
-o.cdhome = false
-
--- line numbers
+o.clipboard:append('unnamedplus') -- use system clipboard as the default register
+o.cdhome = false -- :cd shows cwd
+o.backspace = 'indent,eol,start'
+o.spelllang = 'en_us'
+--  ───────────────────────────────────────────────────── appearance ──
+o.showmode = false
+o.termguicolors = true
+o.background = 'dark'
+vim.diagnostic.config({
+   float = {
+      border = 'rounded',
+   },
+})
+--  ─────────────────────────────────────────────────── line numbers ──
 o.number = true
 o.relativenumber = true
-
--- tabs & indents
+--  ──────────────────────────────────────────────────── sign column ──
+o.signcolumn = 'yes'
+--  ─────────────────────────────────────────────────────── markdown ──
+vim.api.nvim_create_autocmd('BufWinEnter', {
+   pattern = { '*.md' },
+   callback = function()
+      o.colorcolumn = '+1,+2'
+      o.textwidth = 80
+   end,
+})
+--  ──────────────────────────────────────────────────── cursor line ──
+o.cursorline = true
+-- o.scrolloff = 999 -- keep cursor line centered
+--  ───────────────────────────────────────────────── tabs & indents ──
 o.tabstop = 3
 o.softtabstop = 3
 o.shiftwidth = 3
 o.expandtab = true
 o.smartindent = true
 o.autoindent = true
-
--- line wrapping
+--  ────────────────────────────────────────────────── line wrapping ──
 o.wrap = false
 o.breakindent = true
-
--- keep cursor line centered
-o.scrolloff = 999
-
--- search
-o.ignorecase = true
-o.smartcase = true
-o.iskeyword:append('-') -- consider string-string as a whole word
-
--- cursor line
-o.cursorline = true
-
--- appearance
-o.termguicolors = true
-o.background = 'dark'
-o.signcolumn = 'yes'
-o.colorcolumn = '80'
-vim.diagnostic.config({
-   float = {
-      border = 'rounded',
-   },
-})
-
--- virtualedit
-o.virtualedit = 'block'
-
--- backspace
-o.backspace = 'indent,eol,start'
-
--- clipboard
-o.clipboard:append('unnamedplus') -- use system clipboard as the default register
-
--- split windows
-o.splitright = true
-o.splitbelow = true
-
--- save me
--- o.undodir = { os.getenv("HOME") .. "/.undo/" }
--- set undo dir under nvim app folder
--- o.undodir = { vim.fn.stdpath('config') .. '/.undo/' }
--- undodir is in .local/state/nvim/undo (default)
-o.undodir = { vim.fn.stdpath('state') .. '/undo/' }
-o.undofile = true
-
--- folding
+-- o.textwidth = 0
+o.wrapmargin = 10
+--  ──────────────────────────────────────────────────────── conceal ──
+o.conceallevel = 2
+--  ──────────────────────────────────────────────────────── folding ──
 o.foldcolumn = '0'
-o.foldlevel = 10
+o.foldlevel = 15
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
 o.fillchars = {
@@ -80,6 +59,40 @@ o.fillchars = {
    foldsep = ' ',
    eob = ' ',
 }
+--  ──────────────────────────────────────────────────── virtualedit ──
+o.virtualedit = 'block'
+--  ─────────────────────────────────────────────────────────── undo ──
 
--- session management
-o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+-- ┌
+-- │
+-- │ o.undodir = { os.getenv("HOME") .. "/.undo/" }
+-- │ set undo dir under nvim app folder
+-- │ o.undodir = { vim.fn.stdpath('config') .. '/.undo/' }
+-- │ undodir is in .local/state/nvim/undo (default)
+-- │
+-- └
+
+-- FIX: undofiles saving but always saying 'at latest
+-- change' when trying to undo
+
+o.undolevels = 10000
+o.undofile = true
+o.undodir = { vim.fn.stdpath('state') .. '/undo/' .. '/' }
+--  ───────────────────────────────────────────── session management ──
+-- ┌
+-- │ can not include 'globals' or it breaks auto-session
+-- │ because NvimTree
+-- │ adds 2 variables to session file that prevents
+-- │ NvimTree from working
+-- │ after session is restored.
+-- └
+o.sessionoptions = 'buffers,curdir,folds,localoptions,help,tabpages,terminal,winsize,winpos'
+--  ────────────────────────────────────────────────── split windows ──
+o.splitright = true
+o.splitbelow = true
+--  ───────────────────────────────────────────────────────── search ──
+o.ignorecase = true
+o.smartcase = true
+o.iskeyword:append('-') -- consider string-string as a whole word
+--  ───────────────────────────────────────────────────── completion ──
+o.completeopt = 'menu,preview,noselect'
