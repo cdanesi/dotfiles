@@ -105,12 +105,12 @@ return {
             end, { 'i', 's' }),
          }),
          sources = cmp.config.sources({
-            { name = 'nvim_lsp', priority = 1 },
+            { name = 'nvim_lsp' },
             { name = 'luasnip' },
             { name = 'nvim_lsp_signature_help' },
             { name = 'nvim_lua' },
             { name = 'nerdfont' },
-            { name = 'buffer', keyword_length = 3 },
+            { name = 'buffer', keyword_length = 5 },
             { name = 'path' },
             { name = 'calc' },
          }),
@@ -142,6 +142,8 @@ return {
                      path = '[Path]',
                      latex_symbols = '[Latex]',
                      spell = '[Spell]',
+                     nerdfont = '[NF]',
+                     calc = '[Calc]',
                   },
                })(entry, vim_item)
             end,
