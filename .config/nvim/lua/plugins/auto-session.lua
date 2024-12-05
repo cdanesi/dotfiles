@@ -7,6 +7,7 @@ return {
    opts = {
       auto_save = true,
       auto_restore = false, -- don't auto restore the last session
+      auto_create = true,
       lazy_support = true,
       session_lens = {
          load_on_setup = true,
@@ -18,8 +19,11 @@ return {
          },
       },
       show_auto_restore_notif = true,
+      close_unsupported_windows = true,
       bypass_save_filetypes = { 'alpha', 'dashboard' }, -- don't save dashboard/greeter to a session
       -- Folders listed here will not have sessions created within.
       suppress_dirs = { '~/', '~/Downloads', '~/Desktop', '/' },
+      pre_save_cmds = {},
+      post_restore_cmds = {},
    },
 }
