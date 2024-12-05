@@ -86,8 +86,8 @@ return {
          wpm = 200.0,
          filetypes = { 'markdown', 'asciidoc' },
          placeholders = {
-            words = 'words',
-            minutes = 'min',
+            words = nil,
+            minutes = nil,
          },
       })
 
@@ -177,7 +177,7 @@ return {
                {
                   -- display estimated reading time
                   function()
-                     return '  ' .. prose.reading_time()
+                     return '󰁫 ' .. prose.reading_time()
                   end,
                   cond = function()
                      local window_size = conditions.min_statusline_width(100)
@@ -188,7 +188,7 @@ return {
                {
                   -- display a word count for the document
                   function()
-                     return '  ' .. prose.word_count()
+                     return '󰆙 ' .. prose.word_count()
                   end,
                   cond = function()
                      local window_size = conditions.min_statusline_width(90)
