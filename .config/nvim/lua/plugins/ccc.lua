@@ -1,28 +1,31 @@
 return {
    'uga-rosa/ccc.nvim',
-   ft = {
-      'markdown',
-      'javascript',
-      'html',
-      'css',
-      'python',
-      'json',
-      'lua',
-      'toml',
-      'yaml',
-   },
-   cmd = { 'CccPick', 'CccConvert', 'CccHighlighterToggle', 'CccHighlighterEnable', 'CccHighlighterDisable' },
+   event = 'VeryLazy',
+   -- cmd = { 'CccPick', 'CccConvert', 'CccHighlighterToggle', 'CccHighlighterEnable', 'CccHighlighterDisable' },
    opts = {
       highlighter = {
          auto_enable = true,
          lsp = true,
          update_insert = true,
+         filetypes = {
+            'markdown',
+            'javascript',
+            'html',
+            'css',
+            'python',
+            'json',
+            'lua',
+            'toml',
+            'yaml',
+            'asciidoc',
+         },
          excludes = {
+            --[[ 'lazy',
             'NvimTree',
             'alpha',
             'dashboard',
             'help',
-            'man',
+            'man', ]]
          },
       },
       recognize = {
