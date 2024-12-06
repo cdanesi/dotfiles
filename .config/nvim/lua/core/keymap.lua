@@ -14,6 +14,11 @@ keymap.set('n', '<leader>nh', ':nohl<CR>', opts('Clear search highlights'))
 keymap.set({ 'n', 'v' }, '<leader>cm', '<cmd>Noice dismiss<CR>', opts('Dismiss notifications'))
 keymap.set('n', '<leader>?', '<cmd>Telescope help_tags<CR>', opts('Search documentation'))
 
+--  ──────────────────────────────────────────────────────( run code )─
+keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>', opts('Execute the current file'))
+keymap.set('n', '<leader>cx', ':.lua<CR>', opts('Execute current line'))
+keymap.set('v', '<leader>cx', ':lua<CR>', opts('Execute selected code'))
+
 --  ────────────────────────────────────────────────────( formatting )─
 keymap.set({ 'n', 'v' }, '<leader>F', function()
    require('conform').format({
