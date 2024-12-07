@@ -1,5 +1,11 @@
 return {
    'rmagatti/auto-session',
+   -- ┌
+   -- │ add nvim-tree as a dependency to stop sessions to
+   -- │ reload with nvim-tree commands unavailable when saving
+   -- │ with sessionopts+='globals'
+   -- └
+   dependencies = { 'nvim-tree/nvim-tree.lua' },
    lazy = false,
 
    ---@module "auto-session"

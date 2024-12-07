@@ -86,7 +86,7 @@ o.undodir = { vim.fn.stdpath('state') .. '/undo/' .. '/' }
 -- │ NvimTree from working
 -- │ after session is restored.
 -- └
-o.sessionoptions = 'buffers,curdir,folds,localoptions,help,tabpages,terminal,winsize,winpos'
+o.sessionoptions = 'globals,buffers,curdir,folds,localoptions,help,tabpages,terminal,winsize,winpos'
 --  ────────────────────────────────────────────────── split windows ──
 o.splitright = true
 o.splitbelow = true
