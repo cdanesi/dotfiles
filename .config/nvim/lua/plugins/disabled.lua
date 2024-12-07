@@ -1,17 +1,21 @@
 return {
    {
+      -- disabled while testing ccc
       'norcalli/nvim-colorizer.lua',
       enabled = false,
    },
    {
+      -- replaced with telescope-symbols
       'ziontee113/icon-picker.nvim',
       enabled = false,
    },
    {
+      -- TODO: configure this properly
       'ThePrimeagen/harpoon',
       enabled = false,
    },
    {
+      -- TODO: decide between this, obsidian, and mkdnflow
       'renerocksai/telekasten.nvim',
       enabled = false,
    },
@@ -24,10 +28,12 @@ return {
       enabled = false,
    },
    {
+      -- I don't think I'm going to need this
       'tadmccorkle/markdown.nvim',
       enabled = false,
    },
    {
+      -- torn between this and render-markdown,
       'OXY2DEV/markview.nvim',
       enabled = false,
    },
@@ -36,6 +42,12 @@ return {
       enabled = false,
    },
    {
+      -- does the same thing as git_files for yadm
+      'pschmitt/telescope-yadm.nvim',
+      enabled = false,
+   },
+   {
+      -- couldn't get this working..
       'JoosepAlviste/nvim-ts-context-commentstring',
       dependencies = { 'numToStr/Comment.nvim' },
       event = 'VeryLazy',
