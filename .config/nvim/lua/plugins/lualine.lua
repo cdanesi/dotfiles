@@ -113,9 +113,26 @@ return {
          },
          sections = {
             lualine_a = {
-               { 'mode', icon = '', cond = conditions.min_statusline_width(60) },
+               {
+                  'mode',
+                  -- format mode string to only display first 2 chars.
+                  -- i.e., INSERT = IN, NORMAL = NO
+                  -- change to res:sub(1,1) to display only the first letter
+                  fmt = function(res)
+                     return res:sub(1, 2)
+                  end,
+                  icon = ' ',
+                  cond = conditions.min_statusline_width(60),
+               },
             },
             lualine_b = {
+               {
+                  'filetype',
+                  colored = true,
+                  icon_only = true,
+                  cond = conditions.min_statusline_width(90),
+                  separator = '',
+               },
                {
                   'filename',
                   file_status = true,
@@ -210,12 +227,6 @@ return {
                },
                { custom_components.encoding, cond = conditions.min_statusline_width(190) },
                { custom_components.fileformat, cond = conditions.min_statusline_width(180) },
-               {
-                  'filetype',
-                  colored = true,
-                  icon_only = true,
-                  cond = conditions.min_statusline_width(90),
-               },
             },
             lualine_y = {
                { 'searchcount', cond = conditions.min_statusline_width(160) },
