@@ -99,16 +99,16 @@ return {
             section_separators = { left = '', right = '' }, -- old separators:  
             disabled_filetypes = {
                statusline = { 'alpha', 'dashboard', 'Outline', 'NvimTree' },
-               winbar = {},
+               winbar = { 'alpha', 'dashboard', 'Outline', 'NvimTree' },
             },
             ignore_focus = {},
             always_divide_middle = true,
             always_show_tabline = true,
             globalstatus = false,
             refresh = {
-               statusline = 1000,
-               tabline = 1000,
-               winbar = 1000,
+               statusline = 100,
+               tabline = 100,
+               winbar = 100,
             },
          },
          sections = {
@@ -129,7 +129,7 @@ return {
                {
                   'filetype',
                   colored = true,
-                  icon_only = true,
+                  icon_only = false,
                   cond = conditions.min_statusline_width(90),
                   separator = '',
                },
@@ -264,7 +264,14 @@ return {
             lualine_z = {},
          },
          tabline = {},
-         winbar = {},
+         winbar = {
+            lualine_a = {},
+            lualine_b = { { 'navic', color_correction = 'nil' } },
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {},
+         },
          inactive_winbar = {},
          extensions = { 'nvim-tree', 'lazy', 'trouble', 'quickfix', 'fzf', 'mason' },
       })
