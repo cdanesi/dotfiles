@@ -31,8 +31,8 @@ return {
       local lspkind = require('lspkind')
       local select_opts = { behavior = cmp.SelectBehavior.Select }
 
-      require('luasnip.loaders.from_vscode').lazy_load()
-      require('luasnip.loaders.from_lua').load({ paths = vim.fn.stdpath('config') .. '/snippets' })
+      require('luasnip.loaders.from_vscode').lazy_load() -- friendly-snippets
+      require('luasnip.loaders.from_lua').load({ paths = { vim.fn.stdpath('config') .. '/snippets' } }) -- my custom snippets
 
       cmp.setup({
          enabled = function()
