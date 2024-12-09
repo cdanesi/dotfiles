@@ -1,46 +1,619 @@
 {
-    "profiles": [
-        {
-            "complex_modifications": {
-                "rules": [
-                    {
-                        "manipulators": [
-                            {
-                                "description": "Change caps_lock to command+control+option+shift.",
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_control", "left_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "devices": [
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 637,
-                        "vendor_id": 1452
-                    },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "left_option" },
-                            "to": [{ "key_code": "left_alt" }]
-                        }
+  "global": {
+    "show_in_menu_bar": false
+  },
+  "profiles": [
+    {
+      "complex_modifications": {
+        "rules": [
+          {
+            "description": "Hyper Key (⌃⌥⇧⌘)",
+            "manipulators": [
+              {
+                "from": {
+                  "description": "capslock is Hyper",
+                  "key_code": "caps_lock",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": ["left_command", "left_control", "left_option"]
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "escape"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "left_command -> cmd+c if pressed alone",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "left_command"
+                },
+                "to": [
+                  {
+                    "key_code": "left_command"
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "c",
+                    "modifiers": ["command"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "left_option -> cmd+v if pressed alone",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "left_option"
+                },
+                "to": [
+                  {
+                    "key_code": "left_option"
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "v",
+                    "modifiers": ["command"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Hyper Key sublayer \"a\"",
+            "manipulators": [
+              {
+                "description": "Toggle Hyper sublayer a",
+                "type": "basic",
+                "from": {
+                  "key_code": "a",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control",
+                      "left_shift",
+                      "left_option"
                     ]
-                }
-            ],
-            "name": "Default profile",
-            "selected": true,
-            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+                  }
+                },
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "hyper_sublayer_a",
+                      "value": 0
+                    }
+                  }
+                ],
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "hyper_sublayer_a",
+                      "value": 1
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_r",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 0
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a 'kitty.app'"
+                  }
+                ],
+                "description": "Open kitty",
+                "type": "basic",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_a",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a 'Microsoft Edge.app'"
+                  }
+                ],
+                "description": "Open browser",
+                "type": "basic",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_a",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a 'Mail.app'"
+                  }
+                ],
+                "description": "Open email",
+                "type": "basic",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_a",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a 'Messages.app'"
+                  }
+                ],
+                "description": "Open iMessage",
+                "type": "basic",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_a",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a Reminders.app"
+                  }
+                ],
+                "description": "open Reminders",
+                "type": "basic",
+                "from": {
+                  "key_code": "y",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_a",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "unused"
+                  }
+                ],
+                "description": "unused",
+                "type": "basic",
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_a",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a Drafts.app"
+                  }
+                ],
+                "description": "Open Drafts",
+                "type": "basic",
+                "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_a",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a 'Obsidian.app'"
+                  }
+                ],
+                "description": "open Obsidian",
+                "type": "basic",
+                "from": {
+                  "key_code": "o",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_a",
+                    "value": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Hyper Key sublayer \"r\"",
+            "manipulators": [
+              {
+                "description": "Toggle Hyper sublayer r",
+                "type": "basic",
+                "from": {
+                  "key_code": "r",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control",
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                },
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "hyper_sublayer_r",
+                      "value": 0
+                    }
+                  }
+                ],
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "hyper_sublayer_r",
+                      "value": 1
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_a",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 0
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "raycast://extensions/koinzhang/paste-as-plain-text/paste-as-plain-text?arguments=%7B%22advancedPasteFormat%22%3A%22%22%7D"
+                  }
+                ],
+                "description": "unused",
+                "type": "basic",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_r",
+                    "value": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Hyper Key sublayer \"w\"",
+            "manipulators": [
+              {
+                "description": "Toggle Hyper sublayer w",
+                "type": "basic",
+                "from": {
+                  "key_code": "w",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control",
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                },
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "hyper_sublayer_w",
+                      "value": 0
+                    }
+                  }
+                ],
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "hyper_sublayer_w",
+                      "value": 1
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_a",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_r",
+                    "value": 0
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "unused"
+                  }
+                ],
+                "description": "unused",
+                "type": "basic",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "unused"
+                  }
+                ],
+                "description": "unused",
+                "type": "basic",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "unused"
+                  }
+                ],
+                "description": "unused",
+                "type": "basic",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a Calendar.app"
+                  }
+                ],
+                "description": "open Calendar",
+                "type": "basic",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a 'Microsoft Word.app'"
+                  }
+                ],
+                "description": "open Microsoft Word",
+                "type": "basic",
+                "from": {
+                  "key_code": "u",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a 'Microsoft Excel.app'"
+                  }
+                ],
+                "description": "open Microsoft Excel",
+                "type": "basic",
+                "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a 'Microsoft Teams.app'"
+                  }
+                ],
+                "description": "open Microsoft Teams",
+                "type": "basic",
+                "from": {
+                  "key_code": "o",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open -a 'Microsoft Outlook.app'"
+                  }
+                ],
+                "description": "open Microsoft Outlook",
+                "type": "basic",
+                "from": {
+                  "key_code": "p",
+                  "modifiers": {
+                    "mandatory": ["any"]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "devices": [
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 637,
+            "vendor_id": 1452
+          },
+          "simple_modifications": [
+            {
+              "from": { "key_code": "left_option" },
+              "to": [{ "key_code": "left_alt" }]
+            }
+          ]
         }
-    ]
+      ],
+      "name": "Default profile",
+      "selected": true,
+      "virtual_hid_keyboard": {
+        "keyboard_type_v2": "ansi"
+      }
+    }
+  ]
 }
