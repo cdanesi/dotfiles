@@ -174,6 +174,7 @@ end, opts('Diff this ~'))
 
 --  ───────────────────────────────────────────────────────────( git )─
 keymap.set('n', '<leader>Lg', '<cmd>LazyGit<cr>', opts('Open LazyGit'))
+vim.keymap.set('n', '<leader>hw', '<cmd>Gitsigns toggle_word_diff', opts('Toggle word diff'))
 keymap.set('n', ']h', function()
    require('gitsigns').nav_hunk('next')
 end, opts('Next hunk'))
