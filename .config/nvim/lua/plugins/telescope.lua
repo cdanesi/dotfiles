@@ -50,8 +50,10 @@ return {
             },
          },
          extensions = {
-            'fzf',
+            fzf = {},
          },
       })
+
+      telescope.load_extension('fzf')
    end,
 }

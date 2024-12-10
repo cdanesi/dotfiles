@@ -42,11 +42,6 @@ return {
       enabled = false,
    },
    {
-      -- does the same thing as git_files for yadm
-      'pschmitt/telescope-yadm.nvim',
-      enabled = false,
-   },
-   {
       -- couldn't get this working..
       'JoosepAlviste/nvim-ts-context-commentstring',
       dependencies = { 'numToStr/Comment.nvim' },
@@ -54,6 +49,10 @@ return {
       opts = {
          enable_autocmd = false,
       },
+      enabled = false,
+   },
+   {
+      'debugloop/telescope-undo.nvim',
       enabled = false,
    },
 }
