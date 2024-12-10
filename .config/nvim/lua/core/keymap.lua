@@ -131,9 +131,15 @@ keymap.set(
 )
 keymap.set(
    'n',
-   '<leader>bb',
+   '<leader>fb',
    '<cmd>Telescope buffers initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>',
    opts('Select from open buffers')
+)
+keymap.set(
+   'n',
+   '<leader>fn',
+   '<cmd>Telescope find_files cwd=' .. vim.fn.stdpath('config') .. '<cr>',
+   opts('Edit nvim config')
 )
 
 --  ────────────────────────────────────────────────────( substitute )─
