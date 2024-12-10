@@ -188,7 +188,10 @@ return {
                {
                   -- display a notification if there are plugins to update
                   lazy_status.updates,
-                  cond = lazy_status.has_updates and conditions.min_statusline_width(120),
+                  cond = function()
+                     local window_size = conditions.min_statusline_width(120)
+                     return lazy_status.has_updates() and window_size()
+                  end,
                   color = { fg = '#ebcb8b' },
                },
                {

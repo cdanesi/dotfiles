@@ -9,7 +9,7 @@ return {
       'ziontee113/icon-picker.nvim',
       enabled = false,
    },
-   --[[ {
+   {
       -- TODO: decide between this, obsidian, and mkdnflow
       'renerocksai/telekasten.nvim',
       enabled = false,
@@ -32,7 +32,7 @@ return {
       -- require('telekasten').setup({
       --    home = vim.fn.expand('~/vault'), -- Put the name of your notes directory here
       -- }),
-   }, ]]
+   },
    {
       'epwalsh/obsidian.nvim',
       enabled = false,
