@@ -3,11 +3,40 @@ return {
       -- disabled while testing ccc
       'norcalli/nvim-colorizer.lua',
       enabled = false,
+      ft = {
+         'markdown',
+         'javascript',
+         'html',
+         'css',
+         'python',
+         'json',
+         'lua',
+         'toml',
+         'yaml',
+      },
+      opts = {
+         'css',
+         'javascript',
+         'html',
+         'markdown',
+         'python',
+         'json',
+         'lua',
+         'toml',
+         'yaml',
+      },
    },
    {
       -- replaced with telescope-symbols
       'ziontee113/icon-picker.nvim',
       enabled = false,
+      dependencies = {
+         'stevearc/dressing.nvim',
+      },
+      cmd = { 'IconPickerNormal', 'IconPickerYank', 'IconPickerInsert' },
+      opts = {
+         disable_legacy_commands = true,
+      },
    },
    {
       -- TODO: decide between this, obsidian, and mkdnflow
