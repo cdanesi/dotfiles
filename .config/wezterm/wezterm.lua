@@ -1,8 +1,14 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+local mux = wezterm.mux
+
+wezterm.on("gui-startup", function()
+	local tab, pane, window = mux.spawn_window({})
+	window:gui_window():maximize()
+end)
 
 config = {
-	term = "xterm-kitty",
+	term = "xterm-256color",
 	enable_kitty_graphics = true,
 	max_fps = 60,
 	color_scheme = "nord",
