@@ -276,7 +276,7 @@ return {
             lualine_z = {},
          },
          inactive_winbar = {},
-         extensions = { 'nvim-tree', 'lazy', 'trouble', 'quickfix', 'fzf', 'mason' },
+         extensions = { 'nvim-tree', 'lazy', 'trouble', 'quickfix', 'fzf', 'mason', 'fugitive', 'oil' },
       })
    end,
 }
