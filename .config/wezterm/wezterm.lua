@@ -8,6 +8,7 @@ wezterm.on("gui-startup", function()
 end)
 
 config = {
+	window_close_confirmation = "NeverPrompt",
 	term = "xterm-256color",
 	enable_kitty_graphics = true,
 	max_fps = 60,
@@ -20,8 +21,8 @@ config = {
 	cursor_blink_rate = 0,
 	font = wezterm.font("JetBrainsMono Nerd Font"),
 	font_size = 14,
-	window_background_opacity = 0.6,
-	macos_window_background_blur = 15,
+	window_background_opacity = 0.85,
+	macos_window_background_blur = 9,
 	window_padding = {
 		left = 2,
 		right = 2,
