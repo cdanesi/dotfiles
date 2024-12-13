@@ -19,6 +19,10 @@ return {
             enabled = true,
             font = '16',
          },
+         wezterm = {
+            enabled = true,
+            font = '+4',
+         },
          kitty = {
             -- INFO: not working in tmux sessions
             -- unable to get $KITTY_LISTEN_ON to update on attach
