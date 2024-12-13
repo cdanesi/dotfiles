@@ -112,12 +112,12 @@ return {
          sources = cmp.config.sources({
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
+            { name = 'path' },
             { name = 'nvim_lsp_signature_help' },
             { name = 'nvim_lua' },
             { name = 'nerdfont' },
-            { name = 'buffer', keyword_length = 5 },
-            { name = 'path' },
             { name = 'calc' },
+            { name = 'buffer', keyword_length = 5 },
          }),
          ---@diagnostic disable-next-line: missing-fields
          formatting = {
@@ -125,7 +125,7 @@ return {
             expandable_indicator = true,
             format = function(entry, vim_item)
                if vim.tbl_contains({ 'path' }, entry.source.name) then
-                  local icon, hl_group = require('nvim-web-devicons').get_icon(entry:completion_item().label)
+                  local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
                   if icon then
                      vim_item.kind = icon
                      vim_item.kind_hl_group = hl_group
