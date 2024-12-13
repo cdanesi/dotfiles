@@ -41,26 +41,64 @@ return {
    {
       -- TODO: decide between this, obsidian, and mkdnflow
       'renerocksai/telekasten.nvim',
-      enabled = false,
-      dependencies = { 'nvim-telescope/telescope.nvim' },
+      enabled = true,
+      dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-telekasten/calendar-vim' },
       event = 'VeryLazy',
       opts = {
-         vaults = {
+         -- main notes locations
+         home = '~/notes',
+         dailies = 'dailies/',
+         weeklies = 'weeklies/',
+         templates = 'templates/',
+
+         -- specific note templates
+         template_new_note = nil,
+         template_new_daily = '~/notes/templates/daily.md',
+         template_new_weekly = '~/notes/templates/weekly.md',
+
+         -- enter any additional vaults here
+         --[[ vaults = {
             personal = {
-               home = '~/vaults',
+               home = '~/notes/personal/',
             },
             writing = {
-               home = '~/notes',
+               home = 'writing/',
             },
+         }, ]]
+
+         image_subdir = 'img',
+         extension = '.md',
+         new_note_filename = 'uuid-title',
+         uuid_type = '%Y%m%d%H%M',
+         uuid_sep = '-',
+
+         follow_creates_nonexisting = true,
+         dailies_create_nonexisting = true,
+         weeklies_create_nonexisting = true,
+
+         sort = 'modified',
+
+         command_palette_theme = 'dropdown',
+         show_tags_theme = 'get_cursor',
+
+         media_previewer = 'telescope-media-files',
+
+         plug_into_calendar = true,
+         calendar_opts = {
+            weeknm = 5,
+            calendar_monday = 1,
          },
       },
-
-      config = function(_, opts)
-         require('telekasten').setup({ opts })
-      end,
-      -- require('telekasten').setup({
-      --    home = vim.fn.expand('~/vault'), -- Put the name of your notes directory here
-      -- }),
+      vim.keymap.set('n', '<leader>z', '<cmd>Telekasten panel<cr>', { desc = 'Open Zettlekasten command palette' }),
+      vim.keymap.set('n', '<leader>zf', '<cmd>Telekasten find_notes<cr>', { desc = 'Find notes' }),
+      vim.keymap.set('n', '<leader>zs', '<cmd>Telekasten search_notes<cr>', { desc = 'Search in notes' }),
+      vim.keymap.set('n', '<leader>zd', '<cmd>Telekasten goto_today<cr>', { desc = "Open today's daily note" }),
+      vim.keymap.set('n', '<leader>zz', '<cmd>Telekasten follow_link<cr>', { desc = 'Follow this link' }),
+      vim.keymap.set('n', '<leader>zn', '<cmd>Telekasten new_note<cr>', { desc = 'Create a note in selected vault' }),
+      vim.keymap.set('n', '<leader>zc', '<cmd>Telekasten show_calendar<cr>', { desc = 'Show the calendar' }),
+      vim.keymap.set('n', '<leader>zb', '<cmd>Telekasten show_backlinks<cr>', { desc = 'Show backlinks to this note' }),
+      vim.keymap.set('n', '<leader>zI', '<cmd>Telekasten insert_img_link<cr>', { desc = 'Insert an image link' }),
+      -- vim.keymap.set('i', '[[', '<cmd>Telekasten insert_link<cr>', { desc = 'Insert a link' }),
    },
    {
       'epwalsh/obsidian.nvim',
