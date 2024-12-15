@@ -1,7 +1,20 @@
 return {
    'folke/zen-mode.nvim',
    dependencies = {
-      'folke/twilight.nvim',
+      {
+         'folke/twilight.nvim',
+         opts = {
+            context = 10,
+            treesitter = true,
+            expand = {
+               'function',
+               'method',
+               'table',
+               'if_statement',
+            },
+            exclude = {}, -- filetypes to exclude
+         },
+      },
    },
    cmd = 'ZenMode',
    opts = {
