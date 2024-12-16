@@ -1,7 +1,22 @@
 return {
    'nvim-tree/nvim-web-devicons',
    dependencies = {
-      'rachartier/tiny-devicons-auto-colors.nvim',
+      {
+         'rachartier/tiny-devicons-auto-colors.nvim',
+         opts = {
+            cache = {
+               enabled = true,
+               path = vim.fn.stdpath('cache') .. '/tiny-devicons-auto-colors-cache.json',
+            },
+            precise_search = {
+               enabled = true,
+               iteration = 10,
+               precision = 20,
+               threshold = 23,
+            },
+            autoreload = true,
+         },
+      },
    },
    lazy = true,
    opts = {
