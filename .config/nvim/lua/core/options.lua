@@ -22,14 +22,6 @@ o.number = true
 o.relativenumber = true
 --  ──────────────────────────────────────────────────── sign column ──
 o.signcolumn = 'yes'
---  ─────────────────────────────────────────────────────── markdown ──
-vim.api.nvim_create_autocmd('BufWinEnter', {
-   pattern = { '*.md' },
-   callback = function()
-      o.colorcolumn = '+1,+2'
-      o.textwidth = 80
-   end,
-})
 --  ──────────────────────────────────────────────────── cursor line ──
 o.cursorline = true
 -- o.scrolloff = 999 -- keep cursor line centered

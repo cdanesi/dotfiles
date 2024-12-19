@@ -39,7 +39,8 @@ return {
       numhl = true,
       linehl = false,
       word_diff = false,
-      show_deleted = false, -- turning this off for now as it seems to be slowing down neovim on MBP
+      trouble = true,
+      show_deleted = false,
       watch_gitdir = {
          interval = 1000,
          follow_files = true,

@@ -15,8 +15,4 @@ return {
          return buftype == 'terminal' or floating
       end,
    },
-
-   config = function(_, opts)
-      require('tint').setup(opts)
-   end,
 }

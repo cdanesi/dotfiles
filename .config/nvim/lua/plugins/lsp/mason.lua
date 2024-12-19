@@ -51,7 +51,6 @@ return {
       mason_tool_installer.setup({
          ensure_installed = {
             'ansible-lint',
-            'beautysh',
             'black',
             'eslint_d',
             'gitlint',

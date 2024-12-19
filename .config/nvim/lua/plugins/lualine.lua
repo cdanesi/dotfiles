@@ -84,7 +84,7 @@ return {
 
       prose.setup({
          wpm = 200.0,
-         filetypes = { 'markdown', 'asciidoc' },
+         filetypes = { 'markdown', 'asciidoc', 'text' },
          placeholders = {
             words = nil,
             minutes = nil,
@@ -165,6 +165,11 @@ return {
                },
             },
             lualine_x = {
+               --[[ {
+                  require('noice').api.status.mode.get,
+                  cond = require('noice').api.status.mode.has,
+                  color = { fg = '#d08770' },
+               }, ]]
                {
                   -- show status when recording a macro
                   function()
@@ -272,7 +277,16 @@ return {
             lualine_b = { { 'navic', color_correction = 'nil' } },
             lualine_c = {},
             lualine_x = {},
-            lualine_y = {},
+            lualine_y = {
+               {
+                  'diagnostics',
+                  sources = { 'nvim_lsp', 'nvim_workspace_diagnostic', 'nvim_diagnostic' },
+                  sections = { 'error', 'warn', 'info' },
+                  --symbols = { error = " ", warn = " ", info = " ", hint = "󰠠 " },
+                  colored = true,
+                  always_visible = true,
+               },
+            },
             lualine_z = {},
          },
          inactive_winbar = {},

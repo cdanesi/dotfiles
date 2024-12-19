@@ -3,7 +3,7 @@ return {
    event = { 'BufReadPre', 'BufNewFile' },
    opts = {
       providers = {
-         'lsp',
+         'nvim_lsp',
          'treesitter',
          'regex',
       },
@@ -14,6 +14,8 @@ return {
          'man',
          'markdown',
          'md',
+         'oil',
+         'fugitive',
       },
       under_cursor = true,
       min_count_to_highlight = 1,
