@@ -165,6 +165,7 @@ alias ystp='yadm stash pop'
 alias ysw='yadm switch'
 alias yswc='yadm switch -c'
 alias yswm='yadm switch main'
+alias yswd='yadm switch dev'
 
 # LazyGit (yadm)
 alias lazyy='lazygit -ucd ~/.local/share/yadm/lazygit -w ~ -g ~/.local/share/yadm/repo.git'
