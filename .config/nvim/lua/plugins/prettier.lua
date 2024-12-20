@@ -1,32 +1,35 @@
 return {
-   "stevearc/conform.nvim",
-   event = { "BufReadPre", "BufNewFile" },
-
-   config = function()
-      local conform = require "conform"
-
-      conform.setup {
-         formatters_by_ft = {
-            javascript = { "prettier" },
-            typescript = { "prettier" },
-            javascriptreact = { "prettier" },
-            typescriptreact = { "prettier" },
-            svelte = { "prettier" },
-            css = { "prettier" },
-            html = { "prettier" },
-            json = { "prettier" },
-            yaml = { "prettier" },
-            markdown = { "prettier" },
-            graphql = { "prettier" },
-            liquid = { "prettier" },
-            lua = { "stylua" },
-            python = { "sort", "black" },
-         },
-         format_on_save = {
-            lsp_fallback = true,
-            async = false,
-            timeout_ms = 1000,
-         },
-      }
-   end,
+   'stevearc/conform.nvim',
+   event = { 'BufReadPre', 'BufNewFile' },
+   opts = {
+      formatters_by_ft = {
+         sh = { 'shellharden', 'shfmt' },
+         bash = { 'shellharden', 'shfmt' },
+         zsh = { 'shellharden', 'shfmt' },
+         javascript = { 'prettier' },
+         typescript = { 'prettier' },
+         css = { 'prettier' },
+         html = { 'prettier' },
+         json = { 'prettier' },
+         yaml = { 'prettier' },
+         markdown = { 'markdownlint', 'prettier' },
+         graphql = { 'prettier' },
+         liquid = { 'prettier' },
+         lua = { 'stylua' },
+         python = { 'black', 'sort' },
+      },
+      formatters = {
+         --[[ shfmt = {
+            prepend_args = { '-i', '6' },
+         }, ]]
+      },
+      default_format_opts = {
+         lsp_format = 'fallback',
+      },
+      format_on_save = {
+         lsp_format = 'fallback',
+         async = false,
+         timeout_ms = 1000,
+      },
+   },
 }

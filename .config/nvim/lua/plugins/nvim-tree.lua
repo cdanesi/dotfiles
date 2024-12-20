@@ -36,7 +36,7 @@ return {
                   color = true,
                },
             },
-            git_placement = 'after',
+            git_placement = 'signcolumn',
             modified_placement = 'after',
             diagnostics_placement = 'signcolumn',
             padding = ' ',

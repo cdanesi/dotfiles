@@ -9,18 +9,55 @@ local function opts(desc)
 end
 
 --  ───────────────────────────────────────────────────( general use )─
-keymap.set('i', 'jk', '<ESC>', opts('Exit insert mode with jk'))
+keymap.set('i', 'jk', '<ESC>', opts('Exit insert mode'))
 keymap.set('n', '<leader>nh', ':nohl<CR>', opts('Clear search highlights'))
-keymap.set({ 'n', 'v' }, '<leader>cm', '<cmd>Noice dismiss<CR>', opts('Dismiss notifications'))
-keymap.set('n', '<leader>?', '<cmd>Telescope help_tags<CR>', opts('Search documentation'))
+keymap.set({ 'n', 'v' }, '<leader>cm', '<cmd>NoiceDismiss<CR>', opts('Dismiss notifications'))
+
+--  ─────────────────────────────────────────────────────( telescope )─
+keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', opts('Search documentation'))
+keymap.set(
+   'n',
+   '<leader>ff',
+   '<cmd>Telescope find_files initial_mode=insert sort_mru=true sort_lastused=true select_current=true<cr>',
+   opts('Fuzzy find files in cwd')
+)
+keymap.set(
+   'n',
+   '<leader>fr',
+   '<cmd>Telescope oldfiles initial_mode=insert sort_mru=true sort_lastused=true select_current=true<cr>',
+   opts('Fuzzy find recent files')
+)
+keymap.set('n', '<leader>fs', '<cmd>Telescope current_buffer_fuzzy_find<cr>', opts('Find string in this buffer'))
+keymap.set('n', '<leader>fS', '<cmd>Telescope live_grep<cr>', opts('Find string in cwd'))
+keymap.set('n', '<leader>fc', '<cmd>Telescope grep_string<cr>', opts('Find string under cursor in cwd'))
+keymap.set(
+   'n',
+   '<leader>ft',
+   '<cmd>TodoTelescope initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>',
+   opts('Find todos')
+)
+keymap.set(
+   'n',
+   '<leader>fb',
+   '<cmd>Telescope buffers initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>',
+   opts('Select from open buffers')
+)
+keymap.set(
+   'n',
+   '<leader>fn',
+   '<cmd>Telescope find_files cwd=' .. vim.fn.stdpath('config') .. '<cr>',
+   opts('Edit nvim config')
+)
+keymap.set('n', '<leader>fm', '<cmd>NoiceTelescope<cr>', opts('Open messages with Telescope'))
 
 --  ──────────────────────────────────────────────────────( run code )─
+keymap.set('n', '<leader>cr', '<cmd>MdEval<CR>', opts('Execute markdown codeblock'))
 keymap.set('n', '<leader><leader>x', '<cmd>source %<CR>', opts('Execute the current file'))
 keymap.set('n', '<leader>cx', ':.lua<CR>', opts('Execute current line'))
 keymap.set('v', '<leader>cx', ':lua<CR>', opts('Execute selected code'))
 
 --  ────────────────────────────────────────────────────( formatting )─
-keymap.set({ 'n', 'v' }, '<leader>F', function()
+keymap.set({ 'n', 'v' }, '<leader>cF', function()
    require('conform').format({
       lsp_fallback = true,
       async = false,
@@ -29,13 +66,23 @@ keymap.set({ 'n', 'v' }, '<leader>F', function()
 end, opts('Format file or selection'))
 
 --  ───────────────────────────────────────────────────────( linting )─
-keymap.set('n', '<leader>l', function()
+keymap.set('n', '<leader>cl', function()
    require('lint').try_lint()
 end, opts('Trigger linting for current file'))
 
 --  ───────────────────────────────────────────────( inc/dec numbers )─
 keymap.set('n', '<leader>+', '<C-a>', opts('Increment number'))
 keymap.set('n', '<leader>-', '<C-x>', opts('Decrement number'))
+
+--  ────────────────────────────────────────────────────( bufferline )─
+keymap.set('n', '<leader>bp', '<cmd>BufferLineTogglePin<CR>', opts('Toggle pinned tab'))
+keymap.set('n', '<leader>bg', '<cmd>BufferLinePick<CR>', opts('Pick tab'))
+keymap.set('n', '<leader>bx', '<cmd>bdelete<CR>', opts('Close tab'))
+keymap.set('n', '<leader>bX', '<cmd>BufferLineCloseOthers<CR>', opts('Close other tabs'))
+keymap.set('n', ']b', '<cmd>BufferLineCycleNext<CR>', opts('Next tab'))
+keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts('Previous tab'))
+keymap.set('n', '<S-L>', '<cmd>BufferLineMoveNext<CR>', opts('Move tab to the right'))
+keymap.set('n', '<S-H>', '<cmd>BufferLineMovePrev<CR>', opts('Move tab to the left'))
 
 --  ──────────────────────────────────────────────( split management )─
 keymap.set('n', '<leader>sv', '<C-w>v', opts('Split window vertically'))
@@ -50,16 +97,6 @@ keymap.set('n', '<leader>tx', '<cmd>tabclose<CR>', opts('Close current tab'))
 -- keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", opts("Go to next tab"))
 -- keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", opts("Go to previous tab"))
 keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', opts('Open current buffer in new tab'))
-
---  ────────────────────────────────────────────────────( bufferline )─
-keymap.set('n', '<leader>bp', '<cmd>BufferLineTogglePin<CR>', opts('Toggle pinned tab'))
-keymap.set('n', '<leader>bg', '<cmd>BufferLinePick<CR>', opts('Pick tab'))
-keymap.set('n', '<leader>bx', '<cmd>bdelete<CR>', opts('Close tab'))
-keymap.set('n', '<leader>bX', '<cmd>BufferLineCloseOthers<CR>', opts('Close other tabs'))
-keymap.set('n', ']b', '<cmd>BufferLineCycleNext<CR>', opts('Next tab'))
-keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts('Previous tab'))
-keymap.set('n', '<S-L>', '<cmd>BufferLineMoveNext<CR>', opts('Move tab to the right'))
-keymap.set('n', '<S-H>', '<cmd>BufferLineMovePrev<CR>', opts('Move tab to the left'))
 
 --  ────────────────────────────────────────────( session management )─
 keymap.set('n', '<leader>wa', '<cmd>SessionToggleAutoSave<CR>', opts('Toggle session autosave'))
@@ -107,41 +144,6 @@ keymap.set(
    opts('Open todos in trouble')
 )
 
---  ─────────────────────────────────────────────────────( telescope )─
-keymap.set(
-   'n',
-   '<leader>ff',
-   '<cmd>Telescope find_files initial_mode=insert sort_mru=true sort_lastused=true select_current=true<cr>',
-   opts('Fuzzy find files in cwd')
-)
-keymap.set(
-   'n',
-   '<leader>fr',
-   '<cmd>Telescope oldfiles initial_mode=insert sort_mru=true sort_lastused=true select_current=true<cr>',
-   opts('Fuzzy find recent files')
-)
-keymap.set('n', '<leader>fs', '<cmd>Telescope current_buffer_fuzzy_find<cr>', opts('Find string in this buffer'))
-keymap.set('n', '<leader>fS', '<cmd>Telescope live_grep<cr>', opts('Find string in cwd'))
-keymap.set('n', '<leader>fc', '<cmd>Telescope grep_string<cr>', opts('Find string under cursor in cwd'))
-keymap.set(
-   'n',
-   '<leader>ft',
-   '<cmd>TodoTelescope initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>',
-   opts('Find todos')
-)
-keymap.set(
-   'n',
-   '<leader>fb',
-   '<cmd>Telescope buffers initial_mode=normal sort_mru=true sort_lastused=true select_current=true<cr>',
-   opts('Select from open buffers')
-)
-keymap.set(
-   'n',
-   '<leader>fn',
-   '<cmd>Telescope find_files cwd=' .. vim.fn.stdpath('config') .. '<cr>',
-   opts('Edit nvim config')
-)
-
 --  ────────────────────────────────────────────────────( substitute )─
 keymap.set('n', 's', function()
    require('substitute').operator()
@@ -156,7 +158,7 @@ keymap.set('x', 's', function()
    require('substitute').visual()
 end, opts('Substitute in visual mode'))
 
---  ─────────────────────────────────────────────────────( nvim-tree )─
+--  ──────────────────────────────────────────────────( file browser )─
 keymap.set('n', '<leader>ee', '<cmd>NvimTreeToggle<CR>', opts('Toggle file explorer'))
 keymap.set('n', '<leader>ef', '<cmd>NvimTreeFindFileToggle<CR>', opts('Toggle file explorer on current file'))
 keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', opts('Collapse file explorer'))
@@ -171,10 +173,10 @@ end, opts('Diff this'))
 keymap.set('n', '<leader>hD', function()
    require('gitsigns').diffthis('~')
 end, opts('Diff this ~'))
+vim.keymap.set('n', '<leader>hw', '<cmd>Gitsigns toggle_word_diff', opts('Toggle word diff'))
 
 --  ───────────────────────────────────────────────────────────( git )─
 keymap.set('n', '<leader>Lg', '<cmd>LazyGit<cr>', opts('Open LazyGit'))
-vim.keymap.set('n', '<leader>hw', '<cmd>Gitsigns toggle_word_diff', opts('Toggle word diff'))
 keymap.set('n', ']h', function()
    require('gitsigns').nav_hunk('next')
 end, opts('Next hunk'))
@@ -226,9 +228,6 @@ keymap.set(
 keymap.set('n', '<leader>cp', '<cmd>CccPick<CR>', opts('Open color picker'))
 keymap.set({ 'n', 'v' }, '<leader>cv', '<cmd>CccConvert<CR>', opts('Convert color'))
 keymap.set('n', '<leader>cc', '<cmd>CccHighlighterToggle<CR>', opts('Toggle rendered colors'))
-
---  ──────────────────────────────────────────────────────( markdown )─
-keymap.set('n', '<leader>cr', '<cmd>MdEval<CR>', opts('Execute markdown codeblock'))
 
 --  ────────────────────────────────────────────────────( spellcheck )─
 keymap.set('n', '<leader>S', function()

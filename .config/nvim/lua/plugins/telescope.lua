@@ -3,9 +3,11 @@ return {
    branch = '0.1.x',
    dependencies = {
       'nvim-lua/plenary.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       'nvim-tree/nvim-web-devicons',
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       'folke/todo-comments.nvim',
+      'pschmitt/telescope-yadm.nvim',
+      { 'nvim-telescope/telescope-media-files.nvim', dependencies = 'nvim-lua/popup.nvim' },
    },
    event = 'VeryLazy',
    config = function()
@@ -51,9 +53,16 @@ return {
          },
          extensions = {
             fzf = {},
+            media_files = {
+               find_cmd = 'rg',
+            },
          },
       })
 
       telescope.load_extension('fzf')
+      telescope.load_extension('media_files')
+      telescope.load_extension('yadm_files')
+      telescope.load_extension('git_or_files')
+      telescope.load_extension('git_or_yadm_files')
    end,
 }

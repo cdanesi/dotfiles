@@ -1,15 +1,13 @@
 return {
    'stevearc/dressing.nvim',
-   dependencies = {
-      'nvim-telescope/telescope.nvim',
-   },
    event = 'VeryLazy',
    opts = {
       input = {
          enabled = true,
-         -- default_prompt = 'Prompt',
          prompt_align = 'left',
+         trim_prompt = 'true',
          insert_only = false,
+         -- start_mode = 'insert',
          start_in_insert = true,
          border = 'rounded',
          relative = 'cursor',
@@ -27,9 +25,6 @@ return {
                ['<Down>'] = 'HistoryNext',
             },
          },
-         override = function(conf)
-            return conf
-         end,
       },
       select = {
          enabled = true,
@@ -44,9 +39,11 @@ return {
                ['<CR>'] = 'Confirm',
             },
          },
-         override = function(conf)
-            return conf
-         end,
+      },
+      nui = {
+         win_options = {
+            winblend = 0.7,
+         },
       },
    },
 }

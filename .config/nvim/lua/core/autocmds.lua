@@ -1,23 +1,25 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local o = vim.opt_local
 
 --  ──────────────────[ set options for markdown files ]───────────────
 autocmd('FileType', {
    pattern = 'markdown',
    callback = function()
-      vim.opt_local.textwidth = 80
-      vim.opt_local.spell = true
+      o.colorcolumn = '+1,+2'
+      o.textwidth = 80
+      o.spell = true
    end,
 })
 
---  ─────────────────────[ set options for gitcommit ]─────────────────────
+--[[ --  ─────────────────────[ set options for gitcommit ]─────────────────────
 autocmd('FileType', {
    pattern = 'gitcommit',
    callback = function()
       vim.opt_local.textwidth = 78
       vim.opt_local.spell = true
    end,
-})
+}) ]]
 
 -- ┌
 -- │ Highlight on yank

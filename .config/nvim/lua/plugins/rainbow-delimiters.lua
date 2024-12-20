@@ -1,21 +1,25 @@
 return {
-   "hiphish/rainbow-delimiters.nvim",
-   event = { "BufReadPre", "BufNewFile" },
+   'hiphish/rainbow-delimiters.nvim',
+   event = { 'BufReadPre', 'BufNewFile' },
+   main = 'rainbow-delimiters.setup',
    opts = {
-      strategy = {},
-      query = {},
       highlight = {
-         "RainbowDelimiterCyan",
-         "RainbowDelimiterBlue",
-         "RainbowDelimiterGreen",
-         "RainbowDelimiterViolet",
-         "RainbowDelimiterYellow",
-         "RainbowDelimiterRed",
-         "RainbowDelimiterOrange",
+         'RainbowDelimiterCyan',
+         'RainbowDelimiterBlue',
+         'RainbowDelimiterGreen',
+         'RainbowDelimiterViolet',
+         'RainbowDelimiterYellow',
+         'RainbowDelimiterRed',
+         'RainbowDelimiterOrange',
+      },
+      query = {
+         [''] = 'rainbow-delimiters',
+         lua = 'rainbow-blocks',
+         help = 'rainbow-blocks',
+         query = function(bufnr)
+            local is_nofile = vim.bo[bufnr].buftype == 'nofile'
+            return is_nofile and 'rainbow-blocks' or 'rainbow-delimiters'
+         end,
       },
    },
-
-   config = function(_, opts)
-      require("rainbow-delimiters.setup").setup(opts)
-   end,
 }

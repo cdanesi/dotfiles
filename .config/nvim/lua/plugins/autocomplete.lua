@@ -182,12 +182,11 @@ return {
          },
       })
 
-      -- FIX: on my Arch laptop, 't' as first character on cmdline escapes
-      -- the cmdline and destructively prints xx:xx to the document
       cmp.setup.cmdline(':', {
          enabled = function()
             local disabled = {
                -- list of commands to disable completions
+               wa = true,
                wq = true,
                wqa = true,
             }
