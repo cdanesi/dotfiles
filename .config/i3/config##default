@@ -4,7 +4,7 @@ include $HOME/.config/i3/theme.conf
 include $HOME/.config/i3/i3bar-`hostname`.conf
 include $HOME/.config/i3/autorun.conf
 
-set $myTerm             "alacritty"
+set $myTerm             "wezterm"
 set $myBrowser          "chromium"
 set $fileManager        "thunar"
 set $mod                Mod4

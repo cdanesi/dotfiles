@@ -76,19 +76,19 @@ save_to_clipboard = true
 size = 8.0
 
 [font.bold]
-family = "Sauce Code Pro Nerd Font"
+family = "JetBrainsMono NF"
 style = "Bold"
 
 [font.bold_italic]
-family = "Sauce Code Pro Nerd Font"
+family = "JetBrainsMono NF"
 style = "Bold Italic"
 
 [font.italic]
-family = "Sauce Code Pro Nerd Font"
+family = "JetBrainsMono NF"
 style = "Italic"
 
 [font.normal]
-family = "Sauce Code Pro Nerd Font"
+family = "JetBrainsMono NF"
 style = "Regular"
 
 [[keyboard.bindings]]
@@ -107,8 +107,8 @@ dynamic_padding = false
 opacity = 0.65
 
 [window.padding]
-x = 6
-y = 6
+x = 3
+y = 3
 
 [general]
 live_config_reload = true
