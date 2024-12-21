@@ -1,6 +1,9 @@
 return {
    'stevearc/oil.nvim',
-   dependencies = { 'nvim-tree/nvim-web-devicons' },
+   dependencies = {
+      -- 'echasnovski/mini.icons',
+      'nvim-tree/nvim-web-devicons',
+   },
    cmd = 'Oil',
    opts = {
       default_file_explorer = false,
@@ -15,7 +18,7 @@ return {
       win_options = {
          wrap = false,
          signcolumn = 'yes',
-         cursorcolumn = true,
+         cursorcolumn = false,
          foldcolumn = '0',
          spell = false,
          list = false,
