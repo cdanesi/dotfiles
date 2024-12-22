@@ -1,10 +1,10 @@
 [global]
     monitor = 0
     follow = none
-    width = 300
-    height = 300
+    width = (0, 300)
+    height = (0, 300)
     origin = top-right
-    offset = 10x40
+    offset = (10, 40)
     scale = 0
     notification_limit = 20
     progress_bar = true
@@ -14,19 +14,19 @@
     progress_bar_max_width = 300
     progress_bar_corner_radius = 5
     icon_corner_radius = 12
-    indicate_hidden = yes
-    transparency = 20
+    indicate_hidden = true
+    transparency = 30
     separator_height = 2
     padding = 8
     horizontal_padding = 8
     text_icon_padding = 0
     frame_width = 0
-    frame_color = "#aaaaaa"
+    frame_color = "#2465aa"
     gap_size = 4
     separator_color = frame
-    sort = yes
-    idle_threshold = 120
-    font = SpaceMono Nerd Font 10
+    sort = true
+    idle_threshold = 0
+    font = SpaceMono Nerd Font 11
     line_height = 0
     markup = full
     format = "<b>%s</b>\n%b"
@@ -43,7 +43,7 @@
     icon_position = left
     min_icon_size = 32
     max_icon_size = 128
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/
     sticky_history = yes
     history_length = 20
     dmenu = /usr/bin/dmenu -p dunst:
@@ -55,9 +55,9 @@
     ignore_dbusclose = false
     force_xwayland = false
     force_xinerama = false
-    mouse_left_click = close_current
+    mouse_left_click = do-action, close_current
     mouse_middle_click = do_action, close_current
-    mouse_right_click = close_all
+    mouse_right_click = context, close_all
 
 [experimental]
     per_monitor_dpi = false
@@ -70,13 +70,13 @@
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#285577"
+    background = "#81a1c1"
     foreground = "#ffffff"
     timeout = 10
     #default_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#900000"
+    background = "#d08770"
     foreground = "#ffffff"
     frame_color = "#ff0000"
     timeout = 0
