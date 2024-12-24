@@ -1,0 +1,57 @@
+local wezterm = require('wezterm')
+local config = wezterm.config_builder()
+local mux = wezterm.mux
+
+wezterm.on('gui-startup', function()
+   local tab, pane, window = mux.spawn_window({})
+   window:gui_window():maximize()
+end)
+
+-- required to allow nvim zen-mode to change the font size
+wezterm.on('user-var-changed', function(window, pane, name, value)
+   local overrides = window:get_config_overrides() or {}
+   if name == 'ZEN_MODE' then
+      local incremental = value:find('+')
+      local number_value = tonumber(value)
+      if incremental ~= nil then
+         while number_value > 0 do
+            window:perform_action(wezterm.action.IncreaseFontSize, pane)
+            number_value = number_value - 1
+         end
+      elseif number_value < 0 then
+         window:perform_action(wezterm.action.ResetFontSize, pane)
+         overrides.font_size = nil
+      else
+         overrides.font_size = number_value
+      end
+   end
+   window:set_config_overrides(overrides)
+end)
+
+config = {
+   window_close_confirmation = 'NeverPrompt',
+   term = 'xterm-256color',
+   enable_kitty_graphics = true,
+   max_fps = 60,
+   color_scheme = 'nord',
+   window_decorations = 'RESIZE',
+   enable_tab_bar = false,
+   default_cursor_style = 'SteadyBlock',
+   cursor_blink_ease_out = 'Constant',
+   cursor_blink_ease_in = 'Constant',
+   cursor_blink_rate = 0,
+   font = wezterm.font('JetBrainsMono Nerd Font'),
+   font_size = 14,
+   -- font_dirs = { "~/.local/share/fonts/NerdFonts/" },
+   window_background_opacity = 0.85,
+   macos_window_background_blur = 9,
+   window_padding = {
+      left = 2,
+      right = 2,
+      top = 7,
+      bottom = 0,
+   },
+}
+
+return config
+
