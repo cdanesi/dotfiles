@@ -98,8 +98,8 @@ return {
             component_separators = { left = '', right = '' }, -- old separators:   
             section_separators = { left = '', right = '' }, -- old separators:  
             disabled_filetypes = {
-               statusline = { 'alpha', 'dashboard', 'Outline', 'NvimTree' },
-               winbar = { 'alpha', 'dashboard', 'Outline', 'NvimTree' },
+               statusline = { 'alpha', 'dashboard', 'Outline', 'NvimTree', 'undotree', 'diff' },
+               winbar = { 'alpha', 'dashboard', 'Outline', 'NvimTree', 'undotree', 'diff' },
             },
             ignore_focus = {},
             always_divide_middle = true,
