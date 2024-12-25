@@ -30,6 +30,7 @@ end)
 
 config = {
    window_close_confirmation = 'NeverPrompt',
+   warn_about_missing_glyphs = false,
    term = 'xterm-256color',
    enable_kitty_graphics = true,
    max_fps = 60,
