@@ -53,8 +53,8 @@ return {
 
          -- specific note templates
          template_new_note = nil,
-         template_new_daily = '~/notes/templates/daily.md',
-         template_new_weekly = '~/notes/templates/weekly.md',
+         template_new_daily = '~/notes/templates/dailytemplate.md',
+         template_new_weekly = '~/notes/templates/weeklytemplate.md',
 
          -- enter any additional vaults here
          --[[ vaults = {
@@ -170,14 +170,8 @@ return {
    },
    {
       'mbbill/undotree',
-      enabled = false,
+      enabled = true,
       cmd = { 'UndotreeToggle', 'UndotreeShow', 'UndotreeHide' },
-
-      config = function()
-         local undotree = require('undotree')
-
-         undotree.setup()
-      end,
    },
    {
       'debugloop/telescope-undo.nvim',

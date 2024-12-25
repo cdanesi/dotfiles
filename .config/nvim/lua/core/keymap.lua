@@ -165,6 +165,9 @@ keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', opts('Collapse file e
 keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', opts('Refresh file explorer'))
 keymap.set('n', '<leader>eo', '<cmd>Oil --float<CR>', opts('Browse with Oil'))
 
+--  ─────────────────────────────────────────────────────( undo tree )─
+vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<CR>', opts('Undo tree'))
+
 --  ──────────────────────────────────────────────────────────( diff )─
 keymap.set('n', '<leader>hd', function()
    require('gitsigns').diffthis()
