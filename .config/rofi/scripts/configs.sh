@@ -50,7 +50,7 @@ if [[ "$choice" == "quit" ]]; then
    echo "Exiting" && exit 1
 elif [ "$choice" ]; then
    cfg=$(printf '%s\n' "$choice" | awk '{print $NF}')
-   "$DMEDITOR" "$cfg"
+   eval "$DMEDITOR" "$cfg"
 else
    echo "Exiting" && exit 1
 fi
