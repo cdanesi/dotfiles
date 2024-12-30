@@ -46,15 +46,15 @@ return {
       event = 'VeryLazy',
       opts = {
          -- main notes locations
-         home = '~/notes',
+         home = os.getenv('HOME') .. '/notes',
          dailies = 'dailies/',
          weeklies = 'weeklies/',
          templates = 'templates/',
 
          -- specific note templates
          template_new_note = nil,
-         template_new_daily = '~/notes/templates/dailytemplate.md',
-         template_new_weekly = '~/notes/templates/weeklytemplate.md',
+         template_new_daily = os.getenv('HOME') .. '/notes/templates/dailytemplate.md',
+         template_new_weekly = os.getenv('HOME') .. '/notes/templates/weeklytemplate.md',
 
          -- enter any additional vaults here
          --[[ vaults = {
