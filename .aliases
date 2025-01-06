@@ -7,7 +7,6 @@ alias less='less --use-color'
 alias diff='delta --color-only'
 alias hexedit='hexedit --color'
 alias ip='ip --color'
-alias yay='yay --color=auto'
 
 # ls aliases
 alias ls="eza -ho --time-style='+%Y-%m-%d %H:%M' --icons --git"
@@ -40,7 +39,7 @@ alias pcat='bat --paging=auto --style=auto'
 alias t='$(which todo.sh) -a'
 
 # Arch
-alias yay='nocorrect yay'
+alias yay='nocorrect yay --color=auto'
 alias pacman='nocorrect pacman'
 
 # Ubuntu
