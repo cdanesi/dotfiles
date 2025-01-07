@@ -3,9 +3,9 @@ return {
    event = { 'BufReadPre', 'BufNewFile' },
    opts = {
       formatters_by_ft = {
-         sh = { 'shellharden', 'shfmt' },
-         bash = { 'shellharden', 'shfmt' },
-         zsh = { 'shellharden', 'shfmt' },
+         sh = { 'beautysh', 'shellharden' },
+         bash = { 'beautysh', 'shellharden' },
+         zsh = { 'beautysh' },
          javascript = { 'prettier' },
          typescript = { 'prettier' },
          css = { 'prettier' },

@@ -10,7 +10,6 @@ return {
          html = { 'htmlhint' },
          json = { 'jsonlint' },
          sh = { 'shellcheck' },
-         zsh = { 'shellcheck' },
          bash = { 'shellcheck' },
          javascript = { 'eslint_d', 'trivy' },
          typescript = { 'eslint_d' },
