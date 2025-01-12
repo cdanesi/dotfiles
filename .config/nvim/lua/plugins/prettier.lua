@@ -12,7 +12,7 @@ return {
          html = { 'prettier' },
          json = { 'prettier' },
          yaml = { 'prettier' },
-         markdown = { 'markdownlint', 'prettier' },
+         markdown = { 'prettier', 'markdownlint' },
          graphql = { 'prettier' },
          liquid = { 'prettier' },
          lua = { 'stylua' },

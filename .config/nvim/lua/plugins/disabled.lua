@@ -44,6 +44,7 @@ return {
       enabled = true,
       dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-telekasten/calendar-vim' },
       event = 'VeryLazy',
+      cmd = 'Telekasten',
       opts = {
          -- main notes locations
          home = os.getenv('HOME') .. '/notes',
@@ -116,17 +117,17 @@ return {
    {
       -- torn between this and render-markdown,
       'OXY2DEV/markview.nvim',
-      enabled = false,
+      enabled = true,
       dependencies = {
          'nvim-treesitter/nvim-treesitter',
          'nvim-tree/nvim-web-devicons',
       },
-      lazy = false,
       ft = 'markdown',
    },
    {
       'MeanderingProgrammer/render-markdown.nvim',
       enabled = false,
+      ft = 'markdown',
    },
    {
       'nvim-telescope/telescope-frecency.nvim',
