@@ -59,7 +59,6 @@ cask "balenaetcher"
 cask "basictex"
 cask "bitwarden"
 cask "blender"
-cask "chromium"
 cask "docker"
 cask "espanso"
 cask "font-0xproto-nerd-font"
@@ -141,6 +140,7 @@ cask "openvpn-connect"
 cask "qlmarkdown"
 cask "raspberry-pi-imager"
 cask "raycast"
+cask "vivaldi"
 
 mas "Bitwarden", id: 1352778147
 #mas "CopyClip", id: 595191960
