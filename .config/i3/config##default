@@ -55,11 +55,11 @@ for_window [class="GParted"] floating enable, resize set 1550 900, border pixel 
 for_window [class="Streamdeck UI"] floating enable, resize set 500 508
 for_window [class="org.remmina.Remmina|vlc|Thunar|MultiMC|PrismLauncher"] floating enable, border pixel 3
 for_window [class="fm|vol|mus|Bitwarden"] floating enable, resize set 1250 700, move scratchpad, border pixel 5
-for_window [class="Chromium" window_role="pop-up"] floating enable
+for_window [class="Chromium|^[Vv]ivaldi-*" window_role="pop-up"] floating enable
 for_window [class="file-roller|Xarchiver"] floating enable, resize set 1250 700, border pixel 5
 
 # Assign workspaces
-assign [class="LibreWolf|^[Ff]irefox.*|^Brave.*|firedragon|Chromium"] 2
+assign [class="LibreWolf|^[Ff]irefox.*|^Brave.*|firedragon|Chromium|^[Vv]ivaldi*"] 2
 assign [class="Code"] 3
 assign [class="obsidian"] 4
 assign [class="obs$"] 6
