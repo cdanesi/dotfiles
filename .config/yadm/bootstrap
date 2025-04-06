@@ -11,35 +11,39 @@ case $(uname -s) in
          echo "Installing Homebrew"
          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       fi
-   
+
       if [ -f "$HOME/.Brewfile" ]; then
          echo "Installing/Updating homebrew bundle"
          brew bundle --global
       fi
       ;;
-      
+
+      # espanso
+      espanso service register
+      espanso service start
+
    Linux)
-   
+
       # First, we need to distinguish between Arch and Debian/Ubuntu
       # I'm not sure the best way to do this yet, but as I primarily use Arch and
       # Debian based distros, I'm going to separate them by package manager..
-      
+
       if [ ! command -v pacman >/dev/null 2>&1 ]; then # Arch-based
-   
+
          # Add BlackArch repositories
          if [ ! -f /etc/blackarch-mirrorlist ]; then
             echo "Installing BlackArch repositories"
             curl -O https://blackarch.org/strap.sh && sudo sh ./strap.sh
          fi
-   
+
       elif [ $(which apt-get) || $(which apt) ]; then # Debian-based
 
          echo "nothing to do yet"
-   
+
       else
 
          echo "nothing to do yet"
-   
+
       fi
       ;;
 
@@ -79,6 +83,14 @@ if ! [ -d "$HOME/.zsh/powerlevel10k" ]; then
    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.zsh/powerlevel10k
 fi
 
+if ! [ -d "$HOME/.oh-my-zsh/" ]; then
+   echo "Installing oh-my-zsh"
+   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+   rm "$HOME/.zshrc"
+   mv "$HOME/.zshrc.pre-oh-my-zsh" "$HOME/.zshrc"
+   source "$HOME/.zshrc"
+fi
+
 read -qs "ans?Change yadm origin remote to SSH url? (y/N) "
 case $ans in
    y)
@@ -91,4 +103,9 @@ esac
 if ! [ -d "$HOME/.config/ranger/plugins/ranger_devicons" ]; then
    echo "Installing ranger_devicons"
    git clone https://github.com/alexanderjeurissen/ranger_devicons $HOME/.config/ranger/plugins/ranger_devicons
+fi
+
+if ! [ -d "$HOME/.config/tmux/plugins/tpm/" ]; then
+   echo "Installing Tmux Plugin Manager (TPM)"
+   git clone https://github.com/tmux-plugins/tpm $HOME/config/tmux/plugins/tpm
 fi
