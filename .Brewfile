@@ -1,10 +1,5 @@
 cask_args appdir: "/Applications"
 
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-tap "homebrew/services"
-tap "espanso/espanso"
-tap "jesseduffield/lazygit"
 tap "koekeishiya/formulae"
 tap "teamookla/speedtest"
 
@@ -20,7 +15,9 @@ brew "fzf"
 brew "gcc"
 brew "git-delta"
 brew "go"
-brew "jesseduffield/lazygit/lazygit"
+brew "lazydocker"
+brew "lazygit"
+brew "k9s"
 brew "keyring"
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
@@ -49,12 +46,12 @@ brew "tpm"
 brew "w3m"
 brew "wget"
 brew "yadm"
+brew "yarn"
 brew "ykman"
 brew "yq"
 brew "zoxide"
 brew "zsh"
 
-cask "alacritty"
 cask "balenaetcher"
 cask "basictex"
 cask "bitwarden"
@@ -140,7 +137,9 @@ cask "openvpn-connect"
 cask "qlmarkdown"
 cask "raspberry-pi-imager"
 cask "raycast"
+cask "signal"
 cask "vivaldi"
+cask "wezterm"
 
 mas "Bitwarden", id: 1352778147
 #mas "CopyClip", id: 595191960
@@ -148,10 +147,4 @@ mas "Drafts", id: 1435957248
 mas "Hidden Bar", id: 1452453066
 mas "Home Assistant", id: 1099568401
 mas "Hyperduck", id: 6444667067
-mas "Instapaper Save", id: 1481302432
-#mas "Microsoft Excel", id: 462058435
-#mas "Microsoft Outlook", id: 985367838
-#mas "Microsoft PowerPoint", id: 462062816
-#mas "Microsoft Word", id: 462054704
-#mas "OneDrive", id: 823766827
 mas "Unsplash Wallpapers", id: 1284863847
