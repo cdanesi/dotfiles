@@ -40,7 +40,6 @@ return {
       linehl = false,
       word_diff = false,
       trouble = true,
-      show_deleted = false,
       watch_gitdir = {
          interval = 1000,
          follow_files = true,
