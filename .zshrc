@@ -98,7 +98,7 @@ case $(uname -s) in
       
       zstyle ':omz:plugins:ssh-agent' ssh-add-args --apple-load-keychain
 
-      eval "$(brew shellenv)"
+      eval "$(/opt/homebrew/bin/brew shellenv)"
 
       if command -v gdircolors >/dev/null 2>&1; then
          test -f "$HOME/.dircolors" && eval "$(gdircolors "$HOME/.dircolors")" || eval "$(gdircolors)"
