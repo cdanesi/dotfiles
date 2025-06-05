@@ -4,7 +4,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias less='less --use-color'
-alias diff='delta --color-only'
+alias diff='delta -s --color-only'
 alias hexedit='hexedit --color'
 alias ip='ip --color'
 
@@ -39,11 +39,11 @@ alias pcat='bat --paging=auto --style=auto'
 # todo.txt
 case $(uname -s) in
    Darwin)
-      alias t='/opt/homebrew/bin/todo.sh -a'
+      alias t='/opt/homebrew/bin/todo.sh -P'
       ;;
    *)
       TODO_BIN='$(which todo.sh)'
-      alias t='$TODO_BIN -a'
+      alias t='$TODO_BIN -P'
       ;;
 esac
 
