@@ -37,15 +37,7 @@ alias cat='bat --paging=never --style=plain'
 alias pcat='bat --paging=auto --style=auto'
 
 # todo.txt
-case $(uname -s) in
-   Darwin)
-      alias t='/opt/homebrew/bin/todo.sh -aP@'
-      ;;
-   *)
-      TODO_BIN='$(which todo.sh)'
-      alias t='$TODO_BIN -aP@'
-      ;;
-esac
+alias t='todo.sh -aP@'
 
 # Arch
 alias yay='nocorrect yay --color=auto'
@@ -59,6 +51,16 @@ alias agu='sudo apt update'
 alias agud='sudo apt update && sudo apt dist-upgrade'
 alias agug='sudo apt upgrade'
 alias aguu='sudo apt update && sudo apt upgrade'
+
+# systemd
+alias scstart='sudo systemctl start'
+alias scstop='sudo systemctl stop'
+alias scs='systemctl status'
+alias screstart='sudo systemctl restart'
+alias screload='sudo systemctl reload'
+alias scdr='sudo systemctl daemon-reload'
+alias scenable='sudo systemctl enable'
+alias scdisable='sudo systemctl disable'
 
 # nocorrect
 alias man='nocorrect man'
