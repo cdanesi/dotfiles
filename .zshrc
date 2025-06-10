@@ -75,9 +75,7 @@ function zvm_config() {
 plugins=(
    alias-finder
    aliases
-   ansible
    colored-man-pages
-   dotenv
    genpass
    ssh
    ssh-agent
