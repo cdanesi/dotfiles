@@ -39,11 +39,11 @@ alias pcat='bat --paging=auto --style=auto'
 # todo.txt
 case $(uname -s) in
    Darwin)
-      alias t='/opt/homebrew/bin/todo.sh -P'
+      alias t='/opt/homebrew/bin/todo.sh -aP@'
       ;;
    *)
       TODO_BIN='$(which todo.sh)'
-      alias t='$TODO_BIN -P'
+      alias t='$TODO_BIN -aP@'
       ;;
 esac
 
@@ -177,6 +177,26 @@ alias yswc='yadm switch -c'
 alias yswm='yadm switch main'
 alias yswd='yadm switch dev'
 
+# ansible
+alias a='ansible'
+alias ap='ansible-playbook'
+alias al='ansible-pull'
+alias avc='ansible-vault create'
+alias ave='ansible-vault edit'
+alias avr='ansible-vault rekey'
+alias avenc='ansible-vault encrypt'
+alias avdec='ansible-vault decrypt'
+alias avv='ansible-vault view'
+alias aga='ansible-galaxy'
+alias agad='ansible-galaxy delete'
+alias agai='ansible-galaxy install'
+alias agaim='ansible-galaxy import'
+alias againf='ansible-galaxy info'
+alias agal='ansible-galaxy list'
+alias agalog='ansible-galaxy login'
+alias agar='ansible-galaxy remove'
+alias agas='ansible-galaxy search'
+
 # LazyGit (yadm)
 alias lazyy='lazygit -ucd ~/.local/share/yadm/lazygit -w ~ -g ~/.local/share/yadm/repo.git'
 
@@ -190,3 +210,7 @@ alias tns='tmux new -s'
 
 # SSH
 alias ssh='ssh -o AddKeysToAgent=yes'
+
+# Caffeinate (MacOS)
+alias caf='caffeinate -dims'
+alias caffproc='caffeinate -dims -w'
