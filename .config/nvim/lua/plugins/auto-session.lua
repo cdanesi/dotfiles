@@ -28,7 +28,7 @@ return {
       close_unsupported_windows = true,
       bypass_save_filetypes = { 'alpha', 'dashboard' }, -- don't save dashboard/greeter to a session
       -- Folders listed here will not have sessions created within.
-      suppress_dirs = { '~/', '~/Downloads', '~/Desktop', '/' },
+      suppress_dirs = { os.getenv('HOME'), '~/Downloads', '~/Desktop', '/' },
       pre_save_cmds = {},
       post_restore_cmds = {},
    },
