@@ -5,7 +5,7 @@ local g = vim.g
 g.netrw_liststyle = 3
 g.netrw_banner = 0
 o.clipboard:append('unnamedplus') -- use system clipboard as the default register
-o.cdhome = false -- :cd shows cwd
+o.cdhome = false                  -- :cd shows cwd
 o.backspace = 'indent,eol,start'
 o.spelllang = 'en_us'
 --  ───────────────────────────────────────────────────── appearance ──
@@ -54,22 +54,8 @@ o.fillchars = {
 --  ──────────────────────────────────────────────────── virtualedit ──
 o.virtualedit = 'block'
 --  ─────────────────────────────────────────────────────────── undo ──
-
--- ┌
--- │
--- │ o.undodir = { os.getenv("HOME") .. "/.undo/" }
--- │ set undo dir under nvim app folder
--- │ o.undodir = { vim.fn.stdpath('config') .. '/.undo/' }
--- │ undodir is in .local/state/nvim/undo (default)
--- │
--- └
-
--- FIX: undofiles saving but always saying 'at latest
--- change' when trying to undo
-
 o.undolevels = 10000
 o.undofile = true
-o.undodir = { vim.fn.stdpath('state') .. '/undo/' .. '/' }
 --  ───────────────────────────────────────────── session management ──
 -- ┌
 -- │ can not include 'globals' or it breaks auto-session
