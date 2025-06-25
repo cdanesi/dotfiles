@@ -12,6 +12,7 @@ tab_width = 3
 
 [*.lua]
 max_line_length = 120
+insert_final_newline = false
 
 [{*.yaml,*.yml}]
 indent_size = 2
@@ -24,3 +25,4 @@ indent_style = tab
 [*.md]
 indent_size = 4
 trim_trailing_whitespace = false
+insert_final_newline = true

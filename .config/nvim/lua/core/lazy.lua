@@ -17,7 +17,6 @@ require('lazy').setup({
    { import = 'core.colorscheme' },
    { import = 'plugins' },
    { import = 'plugins.treesitter' },
-   { import = 'plugins.lsp' },
 }, {
    install = {
       colorscheme = { 'nord' },
