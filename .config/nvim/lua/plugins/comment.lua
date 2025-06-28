@@ -1,5 +1,8 @@
 return {
    'numToStr/Comment.nvim',
+   dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+   },
    event = { 'BufReadPre', 'BufNewFile' },
    opts = {
       padding = true,
@@ -24,7 +27,9 @@ return {
          basic = true,
          extra = true,
       },
-      pre_hook = nil,
+      pre_hook = function()
+         require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+      end,
       post_hook = nil,
    },
 }

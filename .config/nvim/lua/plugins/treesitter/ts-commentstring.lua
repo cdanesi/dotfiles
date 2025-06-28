@@ -1,7 +1,9 @@
 return {
    'JoosepAlviste/nvim-ts-context-commentstring',
-   enabled = true,
-   dependencies = { 'numToStr/Comment.nvim' },
+   dependencies = {
+      'numToStr/Comment.nvim',
+      'nvim-treesitter/nvim-treesitter',
+   },
    event = 'VeryLazy',
    opts = {
       enable_autocmd = false,
