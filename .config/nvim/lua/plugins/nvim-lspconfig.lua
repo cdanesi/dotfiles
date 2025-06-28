@@ -1,24 +1,18 @@
 return {
    'neovim/nvim-lspconfig',
-   event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
+   lazy = false,
    dependencies = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'hrsh7th/cmp-nvim-lsp',
       { 'antosha417/nvim-lsp-file-operations', config = true },
-      { 'folke/neodev.nvim', config = true },
+      { 'folke/lazydev.nvim',                  config = true },
    },
 
    config = function()
-      local lspconfig = require('lspconfig')
-      local mason_lspconfig = require('mason-lspconfig')
-      local cmp_nvim_lsp = require('cmp_nvim_lsp')
       local keymap = vim.keymap
 
       vim.api.nvim_create_autocmd('LspAttach', {
          group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-         callback = function(ev)
-            local opts = { buffer = ev.buf, silent = true }
+         callback = function(args)
+            local opts = { buffer = args.buf, silent = true }
 
             opts.desc = 'Show LSP references'
             keymap.set('n', 'gR', '<cmd>Telescope lsp_references<CR>', opts)
@@ -47,12 +41,6 @@ return {
             opts.desc = 'Show line diagnostics'
             keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
 
-            opts.desc = 'Go to previous diagnostic'
-            keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-
-            opts.desc = 'Go to next diagnostic'
-            keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-
             opts.desc = 'Show documentation for what is under cursor'
             keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 
@@ -61,13 +49,21 @@ return {
          end,
       })
 
-      local capabilities = cmp_nvim_lsp.default_capabilities()
-
-      -- local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
-      -- for type, icon in pairs(signs) do
-      --    local hl = 'DiagnosticSign' .. type
-      -- vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
       vim.diagnostic.config({
+         virtual_text = {
+            prefix = '●',
+         },
+         update_in_insert = true,
+         underline = true,
+         severity_sort = true,
+         float = {
+            focusable = false,
+            style = 'minimal',
+            border = 'rounded',
+            source = true,
+            show_header = true,
+            prefix = '',
+         },
          signs = {
             text = {
                [vim.diagnostic.severity.ERROR] = ' ',
@@ -87,66 +83,6 @@ return {
                [vim.diagnostic.severity.HINT] = '',
                [vim.diagnostic.severity.INFO] = '',
             },
-         },
-      })
-      -- end
-
-      mason_lspconfig.setup_handlers({
-         -- default handler for installed servers
-         function(server_name)
-            lspconfig[server_name].setup({
-               capabilities = capabilities,
-            })
-         end,
-         ['emmet_ls'] = function()
-            -- configure emmet language server
-            lspconfig['emmet_ls'].setup({
-               capabilities = capabilities,
-               filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte' },
-            })
-         end,
-         ['bashls'] = function()
-            lspconfig['bashls'].setup({
-               capabilities = capabilities,
-               filetypes = { 'sh', 'bash', 'zsh' },
-            })
-         end,
-         ['lua_ls'] = function()
-            -- configure lua server (with special settings)
-            lspconfig['lua_ls'].setup({
-               capabilities = capabilities,
-               settings = {
-                  Lua = {
-                     -- make the language server recognize "vim" global
-                     diagnostics = {
-                        globals = { 'vim' },
-                     },
-                     completion = {
-                        callSnippet = 'Replace',
-                     },
-                  },
-               },
-            })
-         end,
-      })
-
-      vim.diagnostic.config({
-         virtual_text = {
-            prefix = '●',
-         },
-         signs = {
-            active = signs,
-         },
-         update_in_insert = true,
-         underline = true,
-         severity_sort = true,
-         float = {
-            focusable = false,
-            style = 'minimal',
-            border = 'rounded',
-            source = true,
-            show_header = true,
-            prefix = '',
          },
       })
    end,
