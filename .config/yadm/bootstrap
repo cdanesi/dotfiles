@@ -16,11 +16,11 @@ case $(uname -s) in
          echo "Installing/Updating homebrew bundle"
          brew bundle --global
       fi
-      ;;
 
       # espanso
       espanso service register
       espanso service start
+      ;;
 
    Linux)
 
@@ -28,15 +28,15 @@ case $(uname -s) in
       # I'm not sure the best way to do this yet, but as I primarily use Arch and
       # Debian based distros, I'm going to separate them by package manager..
 
-      if [ ! command -v pacman >/dev/null 2>&1 ]; then # Arch-based
+      if command -v pacman >/dev/null 2>&1; then # Arch-based
 
          # Add BlackArch repositories
-         if [ ! -f /etc/blackarch-mirrorlist ]; then
+         if [ ! -f /etc/pacman.d/blackarch-mirrorlist ]; then
             echo "Installing BlackArch repositories"
             curl -O https://blackarch.org/strap.sh && sudo sh ./strap.sh
          fi
 
-      elif [ $(which apt-get) || $(which apt) ]; then # Debian-based
+      elif [ ! command -v apt >/dev/null 2>&1 ]; then # Debian-based
 
          echo "nothing to do yet"
 
@@ -107,5 +107,6 @@ fi
 
 if ! [ -d "$HOME/.config/tmux/plugins/tpm/" ]; then
    echo "Installing Tmux Plugin Manager (TPM)"
-   git clone https://github.com/tmux-plugins/tpm $HOME/config/tmux/plugins/tpm
+   mkdir -p "$HOME/.config/tmux/plugins/tpm"
+   git clone https://github.com/tmux-plugins/tpm $HOME/.config/tmux/plugins/tpm
 fi
