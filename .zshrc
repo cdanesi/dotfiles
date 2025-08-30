@@ -40,8 +40,13 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 zstyle ':omz:plugins:alias-finder' autoload yes
 zstyle ':omz:plugins:alias-finder' exact yes
 zstyle ':omz:plugins:ssh-agent' agent-forwarding yes
-zstyle ':omz:plugins:ssh-agent' lifetime 2h
+zstyle ':omz:plugins:ssh-agent' lifetime 1h
 zstyle ':omz:plugins:ssh-agent' quiet yes
+
+# Only export SSH_AUTH_SOCK if agent is running
+if [ -S "$SSH_AUTH_SOCK" ]; then
+  export SSH_AUTH_SOCK
+fi
 
 # DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
