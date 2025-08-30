@@ -12,6 +12,7 @@ return {
             'javascript',
             'html',
             'css',
+            'scss',
             'python',
             'json',
             'lua',

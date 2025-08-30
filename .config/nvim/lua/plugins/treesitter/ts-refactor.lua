@@ -1,7 +1,7 @@
 return {
    'nvim-treesitter/nvim-treesitter-refactor',
-   event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
-   dependencies = 'nvim-treesitter',
+   event = { 'BufReadPre', 'BufNewFile' },
+   dependencies = { 'nvim-treesitter/nvim-treesitter' },
    opts = {
       refactor = {
          highlight_definitions = {

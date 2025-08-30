@@ -39,6 +39,10 @@ return {
       },
    },
    {
+      'mzlogin/vim-markdown-toc',
+      ft = 'markdown',
+   },
+   {
       'epwalsh/obsidian.nvim',
       enabled = false,
    },
@@ -59,12 +63,12 @@ return {
          'nvim-treesitter/nvim-treesitter',
          'nvim-tree/nvim-web-devicons',
       },
-      ft = 'markdown',
+      ft = { 'markdown', 'telekasten' },
    },
    {
       'MeanderingProgrammer/render-markdown.nvim',
       enabled = false,
-      ft = 'markdown',
+      ft = { 'markdown', 'telekasten' },
    },
    {
       'nvim-telescope/telescope-frecency.nvim',
@@ -95,16 +99,6 @@ return {
          })
          require('telescope').load_extension('frecency')
       end,
-   },
-   {
-      -- couldn't get this working..
-      'JoosepAlviste/nvim-ts-context-commentstring',
-      enabled = false,
-      dependencies = { 'numToStr/Comment.nvim' },
-      event = 'VeryLazy',
-      opts = {
-         enable_autocmd = false,
-      },
    },
    {
       'mbbill/undotree',

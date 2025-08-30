@@ -7,7 +7,7 @@ return {
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       'folke/todo-comments.nvim',
       'pschmitt/telescope-yadm.nvim',
-      { 'nvim-telescope/telescope-media-files.nvim', dependencies = 'nvim-lua/popup.nvim' },
+      { 'cdanesi/telescope-media-files.nvim', dependencies = 'nvim-lua/popup.nvim' },
    },
    event = 'VeryLazy',
    config = function()

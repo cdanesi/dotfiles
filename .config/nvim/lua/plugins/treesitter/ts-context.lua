@@ -1,6 +1,5 @@
 return {
    'nvim-treesitter/nvim-treesitter-context',
-   enabled = false,
    dependencies = {
       'nvim-treesitter/nvim-treesitter',
    },
@@ -8,8 +7,9 @@ return {
    config = true,
    opts = {
       enable = true,
-      mode = 'cursor',
+      line_numbers = true,
+      mode = 'topline',
       max_lines = 3,
-      -- separator = '',
+      separator = '',
    },
 }

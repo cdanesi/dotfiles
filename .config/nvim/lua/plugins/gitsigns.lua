@@ -5,18 +5,14 @@ return {
       {
          'purarue/gitsigns-yadm.nvim',
          opts = {
-            shell_timeout_ms = 2000,
+            shell_timeout_ms = 1000,
          },
       },
    },
-   event = { 'BufReadPre', 'BufNewFile' },
+   event = { 'BufEnter' },
    opts = {
-      _on_attach_pre = function(_, callback)
-         if vim.fn.executable('yadm') == 1 then
-            require('gitsigns-yadm').yadm_signs(callback)
-         else
-            callback()
-         end
+      _on_attach_pre = function(bufnr, callback)
+         require("gitsigns-yadm").yadm_signs(callback, { bufnr = bufnr })
       end,
       signs = {
          add = { text = '+' },
