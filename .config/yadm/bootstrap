@@ -60,6 +60,8 @@ if ! [ -d "$HOME/.zsh/zsh-autosuggestions" ]; then
    git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
 fi
 
+# git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git
+
 if ! [ -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
    echo "Installing zsh-syntax-highlighting"
    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.zsh/zsh-syntax-highlighting
@@ -83,6 +85,8 @@ if ! [ -d "$HOME/.zsh/powerlevel10k" ]; then
    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.zsh/powerlevel10k
 fi
 
+# git clone https://github.com/Freed-Wu/zsh-help.git ~/.zsh/zsh-help
+
 if ! [ -d "$HOME/.oh-my-zsh/" ]; then
    echo "Installing oh-my-zsh"
    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -90,15 +94,6 @@ if ! [ -d "$HOME/.oh-my-zsh/" ]; then
    mv "$HOME/.zshrc.pre-oh-my-zsh" "$HOME/.zshrc"
    source "$HOME/.zshrc"
 fi
-
-read -qs "ans?Change yadm origin remote to SSH url? (y/N) "
-case $ans in
-   y)
-      echo "\n\nSetting remote origin to use SSH"
-      yadm remote set-url origin "git@github.com:cdanesi/dotfiles.git"
-      ;;
-   *) ;;
-esac
 
 if ! [ -d "$HOME/.config/ranger/plugins/ranger_devicons" ]; then
    echo "Installing ranger_devicons"
@@ -110,3 +105,12 @@ if ! [ -d "$HOME/.config/tmux/plugins/tpm/" ]; then
    mkdir -p "$HOME/.config/tmux/plugins/tpm"
    git clone https://github.com/tmux-plugins/tpm $HOME/.config/tmux/plugins/tpm
 fi
+
+read -qs "ans?Change yadm origin remote to SSH url? (y/N) "
+case $ans in
+   y)
+      echo "\n\nSetting remote origin to use SSH"
+      yadm remote set-url origin "git@github.com:cdanesi/dotfiles.git"
+      ;;
+   *) ;;
+esac
