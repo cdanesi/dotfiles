@@ -57,4 +57,4 @@ export PRI_A=$YELLOW
 export PRI_B=$LIGHTCYAN
 export PRI_C=$BLUE
 export PRI_D=$GREEN
-export PRI_E=$DEFAULT
+export PRI_E=$LIGHTMAGENTA
