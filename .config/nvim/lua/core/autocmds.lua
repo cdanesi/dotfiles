@@ -6,7 +6,7 @@ local o = vim.opt_local
 autocmd('FileType', {
    pattern = 'markdown',
    callback = function()
-      o.colorcolumn = '+1,+2'
+      -- o.colorcolumn = '+1,+2'
       o.textwidth = 80
       o.spell = true
    end,
