@@ -30,25 +30,49 @@ return {
          })
 
          mason_tool_installer.setup({
-            automatic_installation = true,
-            automatic_enable = true,
-            automatic_cleanup = true,
+            auto_update = true,
+            run_on_start = true,
+            start_delay = 5000,
+            -- debounce_hours = 2,
             ensure_installed = {
-               -- 'ansible-lint',
-               -- 'black',
-               -- 'eslint_d',
-               -- 'gitlint',
-               -- 'htmlhint',
-               -- 'isort',
-               -- 'jsonlint',
-               -- 'markdownlint',
-               -- 'prettier',
-               -- 'pylint',
-               -- 'shellcheck',
-               -- 'shellharden',
-               -- 'stylua',
-               -- 'trivy',
-               -- 'yamllint',
+               -- Shell / Bash / Zsh
+               'shellcheck',
+               'beautysh',
+
+               -- Markdown
+               'markdownlint',
+
+               -- Web / Frontend
+               'eslint_d',
+               'stylelint',
+               'htmlhint',
+               'prettier',
+
+               -- YAML / Ansible
+               'yamllint',
+               'ansible-lint',
+
+               -- Docker
+               'hadolint',
+               'trivy',
+
+               -- JSON / Config
+               'jsonlint',
+               'jq',
+
+               -- Python
+               'black',
+               'isort',
+               'pylint',
+
+               -- Lua
+               'stylua',
+
+               -- commit messages
+               'gitlint',
+
+               -- systemd units
+               'systemdlint',
             },
          })
       end,
@@ -68,68 +92,57 @@ return {
          local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
          mason_lspconfig.setup({
-            automatic_installation = true,
-            automatic_enable = true,
-            automatic_cleanup = true,
             ensure_installed = {
+               -- Core
                'lua_ls',
-               -- 'ansiblels',
-               -- 'bashls',
-               -- 'css_variables',
-               -- 'cssls',
-               -- 'cssmodules_ls',
-               -- 'docker_compose_language_service',
-               -- 'dockerls',
-               -- 'emmet_ls',
-               -- 'eslint',
-               -- 'html',
-               -- 'jsonls',
-               -- 'markdown_oxide',
-               -- 'marksman',
-               -- 'pylsp',
-               -- 'vimls',
-               -- 'yamlls',
-            },
-         })
+               'marksman',
+               'bashls',
 
-         --[[ mason_lspconfig.setup_handlers({
-            -- default handler for installed servers
-            function(server_name)
-               lspconfig[server_name].setup({
-                  capabilities = capabilities,
-               })
-            end,
-            ['emmet_ls'] = function()
-               -- configure emmet language server
-               lspconfig['emmet_ls'].setup({
-                  capabilities = capabilities,
-                  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte' },
-               })
-            end,
-            ['bashls'] = function()
-               lspconfig['bashls'].setup({
-                  capabilities = capabilities,
-                  filetypes = { 'sh', 'bash', 'zsh' },
-               })
-            end,
-            ['lua_ls'] = function()
-               -- configure lua server (with special settings)
-               lspconfig['lua_ls'].setup({
-                  capabilities = capabilities,
-                  settings = {
-                     Lua = {
-                        -- make the language server recognize "vim" global
-                        diagnostics = {
-                           globals = { 'vim' },
-                        },
-                        completion = {
-                           callSnippet = 'Replace',
+               -- Infra / configs
+               'ansiblels',
+               'dockerls',
+               'yamlls',
+               'jsonls',
+               'taplo',
+               'systemd_ls',
+
+               -- Web / frontend
+               'html',
+               'cssls',
+               'eslint',
+               'emmet_ls',
+               'stylelint_lsp',
+
+               -- Python
+               'pyright',
+            },
+            handlers = {
+               -- default handler
+               function(server_name)
+                  lspconfig[server_name].setup({
+                     capabilities = capabilities,
+                  })
+               end,
+               -- overrides
+               bashls = function()
+                  lspconfig.bashls.setup({
+                     capabilities = capabilities,
+                     filetypes = { 'sh', 'bash', 'zsh' },
+                  })
+               end,
+               lua_ls = function()
+                  lspconfig.lua_ls.setup({
+                     capabilities = capabilities,
+                     settings = {
+                        Lua = {
+                           diagnostics = { globals = { 'vim' } },
+                           completion = { callSnippet = 'Replace' },
                         },
                      },
-                  },
-               })
-            end,
-         }) ]]
+                  })
+               end,
+            },
+         })
       end,
    },
 }
