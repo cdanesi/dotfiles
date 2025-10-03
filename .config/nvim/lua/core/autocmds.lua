@@ -12,14 +12,15 @@ autocmd('FileType', {
    end,
 })
 
---[[ --  ─────────────────────[ set options for gitcommit ]─────────────────────
+--  ─────────────────────[ set options for gitcommit ]─────────────────────
 autocmd('FileType', {
    pattern = 'gitcommit',
    callback = function()
-      vim.opt_local.textwidth = 78
-      vim.opt_local.spell = true
+      o.colorcolumn = '+1,+2'
+      o.textwidth = 78
+      o.spell = true
    end,
-}) ]]
+})
 
 -- ┌
 -- │ Highlight on yank
