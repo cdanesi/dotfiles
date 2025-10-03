@@ -1,5 +1,7 @@
-vim.opt_local.textwidth = 78
-vim.opt_local.spell = true
+local o = vim.opt_local
+
+o.textwidth = 78
+o.spell = true
 
 return {
    require('cmp').setup.buffer({
