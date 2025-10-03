@@ -5,25 +5,32 @@ return {
    build = ':TSUpdate',
 
    opts = {
-      sync_install = true,
+      sync_install = false,
       auto_install = true,
       ensure_installed = {
+         -- Core / scripting
          'lua',
-         -- 'markdown',
-         -- 'markdown_inline',
-         -- 'css',
-         -- 'html',
-         -- 'javascript',
-         -- 'json',
-         -- 'xml',
-         -- 'toml',
-         -- 'yaml',
-         -- 'python',
-         -- 'bash',
-         -- 'diff',
-         -- 'regex',
-         -- 'sql',
+         'bash',
+         'python',
+
+         -- Markdown
+         'markdown',
+         'markdown_inline',
+
+         -- Web / Frontend
+         'html',
+         'css',
+         'javascript',
+         'json',
+
+         -- YAML / Configs
+         'yaml',
+         'toml',
+
+         -- Docker
+         'dockerfile',
       },
+      matchup = { enable = true },
       highlight = {
          enable = true,
          additional_vim_regex_highlighting = false,
