@@ -47,14 +47,12 @@ return {
                'stylelint',
                'htmlhint',
                'prettier',
+               'trivy', -- PHP
+               'phpcbf', -- PHP
 
                -- YAML / Ansible
                'yamllint',
                'ansible-lint',
-
-               -- Docker
-               'hadolint',
-               'trivy',
 
                -- JSON / Config
                'jsonlint',
@@ -68,11 +66,11 @@ return {
                -- Lua
                'stylua',
 
-               -- commit messages
+               -- Git commit messages
                'gitlint',
 
-               -- systemd units
-               'systemdlint',
+               -- SQL
+               'sqlfluff',
             },
          })
       end,
