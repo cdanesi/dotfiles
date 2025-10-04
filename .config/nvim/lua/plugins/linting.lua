@@ -6,20 +6,37 @@ return {
       local lint = require('lint')
 
       lint.linters_by_ft = {
-         -- markdown = { 'markdownlint' },
-         -- html = { 'htmlhint' },
-         -- json = { 'jsonlint' },
-         -- sh = { 'shellharden', 'shellcheck' },
-         -- bash = { 'shellharden', 'shellcheck' },
-         -- javascript = { 'eslint_d', 'trivy' },
-         -- typescript = { 'eslint_d' },
-         -- python = { 'pylint', 'trivy' },
-         -- ansible = { 'ansiblelint' },
-         -- gitcommit = { 'gitlint' },
-         -- docker = { 'trivy' },
-         -- yaml = { 'trivy', 'yamllint' },
-         -- editorconfig = { 'editorconfig-checker' },
-         -- systemd = { 'systemdlint' },
+         -- Lua
+         lua = {},
+
+         -- Shell / Bash / Zsh
+         sh = { 'shellcheck' },
+         bash = { 'shellcheck' },
+
+         -- Markdown
+         markdown = { 'markdownlint' },
+         -- markdown_inline = { 'markdownlint' },
+
+         -- Web / Frontend
+         html = { 'htmlhint' },
+         css = { 'stylelint' },
+         javascript = { 'eslint_d' },
+         php = { 'trivy' },
+
+         -- YAML
+         yaml = { 'yamllint' },
+
+         -- JSON
+         json = { 'jsonlint', 'jq' },
+
+         -- Python
+         python = { 'pylint' },
+
+         -- Git commit messages
+         gitcommit = { 'gitlint' },
+
+         -- SQL
+         sql = { 'sqlfluff' },
       }
 
       local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
