@@ -11,6 +11,10 @@ return {
       'hrsh7th/cmp-nvim-lsp-document-symbol',
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'chrisgrieser/cmp-nerdfont', -- triggered by ':' (insert mode)
+      {
+         'Dynge/gitmoji.nvim',
+         ft = 'gitcommit',
+      },
       'onsails/lspkind.nvim',
       {
          'L3MON4D3/LuaSnip',
