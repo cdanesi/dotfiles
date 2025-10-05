@@ -22,6 +22,7 @@ return {
          signcolumn = 'yes',
       },
       renderer = {
+         highlight_git = true,
          indent_markers = {
             enable = true,
          },
