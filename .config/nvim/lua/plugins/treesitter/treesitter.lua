@@ -22,6 +22,7 @@ return {
          'css',
          'javascript',
          'json',
+         'jinja',
 
          -- YAML / Configs
          'yaml',
