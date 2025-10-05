@@ -106,6 +106,12 @@ case $(uname -s) in
       if command -v gdircolors >/dev/null 2>&1; then
          test -f "$HOME/.dircolors" && eval "$(gdircolors "$HOME/.dircolors")" || eval "$(gdircolors)"
       fi
+
+      # Enable Docker completions (Docker Desktop)
+      fpath=(/Users/cdanesi/.docker/completions $fpath)
+      autoload -Uz compinit
+      compinit
+
       ;;
 
    Linux)
