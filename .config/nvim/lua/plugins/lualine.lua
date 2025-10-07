@@ -121,7 +121,7 @@ return {
                   fmt = function(res)
                      return res:sub(1, 2)
                   end,
-                  icon = ' ',
+                  icon = ' ', -- added icon cuz why not
                   cond = conditions.min_statusline_width(60),
                },
             },
@@ -163,6 +163,10 @@ return {
                   },
                   cond = conditions.min_statusline_width(70),
                },
+               --[[ {
+                  'diff',
+                  source = 'fugative',
+               } ]]
             },
             lualine_x = {
                --[[ {
@@ -180,7 +184,6 @@ return {
                   cond = conditions.min_statusline_width(70),
                   color = { fg = '#d08770' },
                },
-               -- TODO: LSP
                {
                   'diagnostics',
                   sources = { 'nvim_workspace_diagnostic' },
@@ -233,6 +236,20 @@ return {
                   color = { fg = '#81a1c1' },
                   -- padding = 1,
                },
+               --[[ {
+                  'lsp_status',
+                  icon = '', -- f013
+                  symbols = {
+                     -- Standard unicode symbols to cycle through for LSP progress:
+                     spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+                     -- Standard unicode symbol for when LSP is done:
+                     done = '✓',
+                     -- Delimiter inserted between LSP names:
+                     separator = ' ',
+                  },
+                  -- List of LSP names to ignore (e.g., `null-ls`):
+                  ignore_lsp = {},
+               }, ]]
                { custom_components.encoding, cond = conditions.min_statusline_width(190) },
                { custom_components.fileformat, cond = conditions.min_statusline_width(180) },
             },
