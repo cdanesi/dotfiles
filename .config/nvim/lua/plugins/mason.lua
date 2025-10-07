@@ -33,7 +33,7 @@ return {
             auto_update = true,
             run_on_start = true,
             start_delay = 5000,
-            -- debounce_hours = 2,
+            debounce_hours = 2,
             ensure_installed = {
                -- Shell / Bash / Zsh
                'shellcheck',
