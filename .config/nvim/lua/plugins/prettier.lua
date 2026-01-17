@@ -29,8 +29,8 @@ return {
 
          -- Web / Frontend
          html = { 'prettier' },
-         css = { 'prettier', 'stylelint' },
-         javascript = { 'prettier', 'eslint_d' },
+         css = { 'prettier' },
+         javascript = { 'prettier' },
          php = { 'phpcbf' },
 
          -- YAML
@@ -44,6 +44,9 @@ return {
 
          -- SQL
          sql = { 'sqlfluff' },
+
+         -- Beancount
+         beancount = { 'bean_format' },
       },
       format_injected = true,
       default_format_opts = {
@@ -52,6 +55,13 @@ return {
       format_after_save = {
          lsp_format = 'fallback',
          timeout_ms = 1000,
+      },
+      formatters = {
+         bean_format = {
+            command = 'bean-format',
+            args = { '-' },
+            stdin = true,
+         },
       },
    },
 

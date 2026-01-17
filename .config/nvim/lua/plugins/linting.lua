@@ -37,6 +37,19 @@ return {
 
          -- SQL
          sql = { 'sqlfluff' },
+
+         -- Custom linters
+         -- Beancount
+         beancount = { 'beancount' },
+      }
+
+      lint.linters.beancount = {
+         cmd = 'bean-check',
+         stdin = false,
+         args = { '--' },
+         stream = 'stderr',
+         ignore_exitcode = true,
+         parser = require('lint.parser').from_errorformat('%f:%l: %m', { source = 'bean-check' }),
       }
 
       local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
