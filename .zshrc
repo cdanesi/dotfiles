@@ -99,7 +99,7 @@ case $(uname -s) in
          macos
       )
       
-      export PATH="$(brew --prefix bison)/bin:$PATH"
+      export PATH="$(/opt/homebrew/bin/brew --prefix bison)/bin:$PATH"
 
       zstyle ':omz:plugins:ssh-agent' ssh-add-args --apple-load-keychain
 
