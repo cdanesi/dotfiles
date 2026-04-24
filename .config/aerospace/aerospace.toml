@@ -12,7 +12,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 automatically-unhide-macos-hidden-apps = true
 
 default-root-container-layout = 'tiles' # Possible values: tiles|accordion
-default-root-container-orientation = 'auto' # Possible values: horizontal|vertical|audio
+default-root-container-orientation = 'auto' # Possible values: horizontal|vertical|auto
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
@@ -179,6 +179,11 @@ accordion-padding = 15
     if.app-id = 'com.vivaldi.Vivaldi'
     run = [ 'move-node-to-workspace 1' ]
     check-further-callbacks = false
+
+[[on-window-detected]]
+   if.app-id = 'com.apple.Safari'
+   run = [ 'move-node-to-workspace 1' ]
+   check-further-callbacks = false
 
 [[on-window-detected]]
     if.app-id = 'com.github.wez.wezterm'
