@@ -1,20 +1,99 @@
+local zettel = os.getenv('HOME') .. '/zettel'
+
+local function render_template(template_path, vars)
+   local lines = vim.fn.readfile(template_path)
+   local text = table.concat(lines, '\n')
+
+   for key, value in pairs(vars) do
+      text = text:gsub('{{' .. key .. '}}', value)
+   end
+
+   return vim.split(text, '\n', { plain = true })
+end
+
+local function open_review(kind, filename, template, vars)
+   local path = zettel .. '/journal/' .. kind .. '/' .. filename .. '.md'
+
+   vim.fn.mkdir(vim.fn.fnamemodify(path, ':h'), 'p')
+   vim.cmd('edit ' .. vim.fn.fnameescape(path))
+
+   if vim.fn.filereadable(path) == 0 or vim.fn.getfsize(path) == 0 then
+      local lines = render_template(zettel .. '/templates/' .. template, vars)
+      vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+      vim.cmd('write')
+   end
+end
+
+vim.keymap.set('n', '<leader>zM', function()
+   local y = os.date('%Y')
+   local m = os.date('%m')
+
+   open_review('monthly', y .. '-' .. m, 'monthly-review.md', {
+      title = os.date('%B %Y'),
+      date = os.date('%Y-%m-%d'),
+      year = y,
+      month = m,
+   })
+end, { desc = 'Open monthly review' })
+
+vim.keymap.set('n', '<leader>zQ', function()
+   local y = os.date('%Y')
+   local m = tonumber(os.date('%m'))
+   local q = tostring(math.floor((m - 1) / 3) + 1)
+
+   open_review('quarterly', y .. '-Q' .. q, 'quarterly-review.md', {
+      title = y .. ' Q' .. q,
+      date = os.date('%Y-%m-%d'),
+      year = y,
+      quarter = q,
+   })
+end, { desc = 'Open quarterly review' })
+
+vim.keymap.set('n', '<leader>zY', function()
+   local y = os.date('%Y')
+
+   open_review('yearly', y, 'yearly-review.md', {
+      title = y .. ' Yearly Review',
+      date = os.date('%Y-%m-%d'),
+      year = y,
+   })
+end, { desc = 'Open yearly review' })
+
+vim.api.nvim_create_autocmd('BufEnter', {
+   callback = function(args)
+      local file = vim.api.nvim_buf_get_name(args.buf)
+
+      if vim.startswith(file, zettel .. '/') and file:match('%.md$') then
+         vim.keymap.set('i', '[[', function()
+            vim.cmd('stopinsert')
+            vim.cmd('Telekasten insert_link')
+         end, {
+            buffer = args.buf,
+            desc = 'Telekasten insert note link',
+         })
+      end
+   end,
+})
+
 return {
    'renerocksai/telekasten.nvim',
-   enabled = true,
-   dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-telekasten/calendar-vim' },
+   dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-telekasten/calendar-vim',
+   },
    event = 'VeryLazy',
    cmd = 'Telekasten',
    opts = {
       -- default vault (notebook)
-      home = os.getenv('HOME') .. '/notes',
-      dailies = 'dailies/',
-      weeklies = 'weeklies/',
-      templates = 'templates/',
+      home = zettel,
+      dailies = 'journal/daily',
+      weeklies = 'journal/weekly',
+      templates = 'templates',
 
       -- default templates
-      template_new_note = nil,
-      template_new_daily = os.getenv('HOME') .. '/notes/templates/dailytemplate.md',
-      template_new_weekly = os.getenv('HOME') .. '/notes/templates/weeklytemplate.md',
+      template_new_note = zettel .. '/templates/zettel.md',
+      template_new_daily = zettel .. '/templates/journal-entry.md',
+      template_new_weekly = zettel .. '/templates/weekly-review.md',
 
       image_subdir = '_resources',
       image_link_style = 'wiki',
@@ -26,14 +105,15 @@ return {
       subdirs_in_links = false,
 
       extension = '.md',
-      auto_set_filetype = true,
+      auto_set_filetype = false,
       new_note_filename = 'uuid-title', -- possible choices 'title', 'uuid', 'uuid-title', 'title-uuid'
       uuid_type = '%Y%m%d%H%M%S',
-      uuid_sep = ' ',
+      -- uuid_sep = ' ',
       filename_small_case = true,
-      sort = 'modified', -- or 'filename'
+      filename_space_subst = '-',
+      sort = 'filename', -- or 'modified' or 'created'
       command_palette_theme = 'dropdown',
-      show_tags_theme = 'get_cursor',
+      show_tags_theme = 'ivy',
       rename_update_links = true,
 
       follow_creates_nonexisting = true,
@@ -43,7 +123,7 @@ return {
       -- enter any additional vaults here
       vaults = {
          blog = {
-            home = os.getenv('HOME') .. '/blog/content/posts',
+            home = os.getenv('HOME') .. '/code/projects/blog-danesi.dev/content/posts',
             dailies = nil,
             weeklies = nil,
             templates = vim.fn.expand('~/Templates/blog/'),
@@ -56,9 +136,6 @@ return {
             tag_notation = 'yaml-bare',
             auto_set_filetype = false,
             install_syntax = false,
-         },
-         testing = {
-            home = os.getenv('HOME') .. '/Evernote Export.2/notes',
          },
       },
 
@@ -132,5 +209,6 @@ return {
    ),
    vim.keymap.set({ 'n', 'v' }, '<leader>zt', '<cmd>Telekasten toggle_todo<cr>', { desc = 'Toggle todo' }),
 
+   vim.keymap.set('n', '<leader>zl', '<cmd>Telekasten insert_link<cr>', { desc = 'Link to a note' }),
    -- vim.keymap.set('i', '[[', '<ESC><cmd>Telekasten insert_link<cr>', { desc = 'Link to a note' }),
 }

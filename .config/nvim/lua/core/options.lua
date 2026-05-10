@@ -5,7 +5,7 @@ local g = vim.g
 g.netrw_liststyle = 3
 g.netrw_banner = 0
 o.clipboard:append('unnamedplus') -- use system clipboard as the default register
-o.cdhome = false                  -- :cd shows cwd
+o.cdhome = false -- :cd shows cwd
 o.backspace = 'indent,eol,start'
 o.spelllang = 'en_us'
 --  ───────────────────────────────────────────────────── appearance ──

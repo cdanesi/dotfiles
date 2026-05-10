@@ -4,9 +4,12 @@ local o = vim.opt_local
 
 --  ──────────────────[ set options for markdown files ]───────────────
 autocmd('FileType', {
-   pattern = 'markdown',
+   pattern = { 'markdown', 'telekasten' },
    callback = function()
-      -- o.colorcolumn = '+1,+2'
+      o.colorcolumn = '81'
+      o.wrap = true
+      o.linebreak = true
+      o.breakindent = true
       o.textwidth = 80
       o.spell = true
    end,
