@@ -1,15 +1,21 @@
+config-version = 2
+
 start-at-login = true
 
 after-login-command = []
 after-startup-command = [
    'exec-and-forget borders active_color=0xff88c0d0 inactive_color=0xff4c566a width=3.0',
+   'workspace 1',
+   'layout h_accordion',
    'workspace 3',
-   'layout accordion horizontal'
+   'layout h_accordion'
 ]
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 automatically-unhide-macos-hidden-apps = true
+
+persistent-workspaces = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 default-root-container-layout = 'tiles' # Possible values: tiles|accordion
 default-root-container-orientation = 'auto' # Possible values: horizontal|vertical|auto
