@@ -102,7 +102,6 @@ return {
                'yamlls',
                'jsonls',
                'taplo',
-               'systemd_ls',
 
                -- Web / frontend
                'html',
