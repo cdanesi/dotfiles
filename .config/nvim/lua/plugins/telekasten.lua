@@ -24,40 +24,21 @@ local function open_review(kind, filename, template, vars)
    end
 end
 
-vim.keymap.set('n', '<leader>zM', function()
-   local y = os.date('%Y')
-   local m = os.date('%m')
+local function tk(cmd)
+   vim.cmd('Telekasten ' .. cmd)
 
-   open_review('monthly', y .. '-' .. m, 'monthly-review.md', {
-      title = os.date('%B %Y'),
-      date = os.date('%Y-%m-%d'),
-      year = y,
-      month = m,
-   })
-end, { desc = 'Open monthly review' })
+   vim.schedule(function()
+      vim.cmd('filetype detect')
 
-vim.keymap.set('n', '<leader>zQ', function()
-   local y = os.date('%Y')
-   local m = tonumber(os.date('%m'))
-   local q = tostring(math.floor((m - 1) / 3) + 1)
+      if vim.bo.filetype == '' and vim.fn.expand('%:e') == 'md' then vim.bo.filetype = 'markdown' end
 
-   open_review('quarterly', y .. '-Q' .. q, 'quarterly-review.md', {
-      title = y .. ' Q' .. q,
-      date = os.date('%Y-%m-%d'),
-      year = y,
-      quarter = q,
-   })
-end, { desc = 'Open quarterly review' })
-
-vim.keymap.set('n', '<leader>zY', function()
-   local y = os.date('%Y')
-
-   open_review('yearly', y, 'yearly-review.md', {
-      title = y .. ' Yearly Review',
-      date = os.date('%Y-%m-%d'),
-      year = y,
-   })
-end, { desc = 'Open yearly review' })
+      vim.schedule(function()
+         vim.cmd('edit')
+         -- vim.cmd('doautocmd FileType markdown')
+         vim.cmd('redraw!')
+      end)
+   end)
+end
 
 vim.api.nvim_create_autocmd('BufEnter', {
    callback = function(args)
@@ -172,7 +153,10 @@ return {
       { desc = 'Find notes linking to note under the cursor' }
    ),
    vim.keymap.set('n', '<leader>zs', '<cmd>Telekasten search_notes<cr>', { desc = 'Search in notes' }),
-   vim.keymap.set('n', '<leader>zT', '<cmd>Telekasten goto_today<cr>', { desc = "Open today's daily note" }),
+   -- vim.keymap.set('n', '<leader>zT', '<cmd>Telekasten goto_today<cr>', { desc = "Open today's daily note" }),
+   vim.keymap.set('n', '<leader>zT', function()
+      tk('goto_today')
+   end, { desc = "Open today's daily note" }),
    vim.keymap.set(
       'n',
       '<leader>zW',
@@ -211,4 +195,39 @@ return {
 
    vim.keymap.set('n', '<leader>zl', '<cmd>Telekasten insert_link<cr>', { desc = 'Link to a note' }),
    -- vim.keymap.set('i', '[[', '<ESC><cmd>Telekasten insert_link<cr>', { desc = 'Link to a note' }),
+
+   vim.keymap.set('n', '<leader>zM', function()
+      local y = os.date('%Y')
+      local m = os.date('%m')
+
+      open_review('monthly', y .. '-' .. m, 'monthly-review.md', {
+         title = os.date('%B %Y'),
+         date = os.date('%Y-%m-%d'),
+         year = y,
+         month = m,
+      })
+   end, { desc = 'Open monthly review' }),
+
+   vim.keymap.set('n', '<leader>zQ', function()
+      local y = os.date('%Y')
+      local m = tonumber(os.date('%m'))
+      local q = tostring(math.floor((m - 1) / 3) + 1)
+
+      open_review('quarterly', y .. '-Q' .. q, 'quarterly-review.md', {
+         title = y .. ' Q' .. q,
+         date = os.date('%Y-%m-%d'),
+         year = y,
+         quarter = q,
+      })
+   end, { desc = 'Open quarterly review' }),
+
+   vim.keymap.set('n', '<leader>zY', function()
+      local y = os.date('%Y')
+
+      open_review('yearly', y, 'yearly-review.md', {
+         title = y .. ' Yearly Review',
+         date = os.date('%Y-%m-%d'),
+         year = y,
+      })
+   end, { desc = 'Open yearly review' }),
 }
