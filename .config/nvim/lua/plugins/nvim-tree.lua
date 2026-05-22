@@ -6,6 +6,7 @@ return {
       'NvimTreeFindFileToggle',
       'NvimTreeCollapse',
       'NvimTreeRefresh',
+      'NvimTreeFindFile',
    },
    init = function()
       vim.g.disable_netrw = false
