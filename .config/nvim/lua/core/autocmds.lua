@@ -12,6 +12,7 @@ autocmd('FileType', {
       o.breakindent = true
       o.textwidth = 80
       o.spell = true
+      o.scrolloff = 999 -- center active line
    end,
 })
 
