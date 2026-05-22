@@ -24,6 +24,7 @@ vim.api.nvim_create_autocmd({
    'BufLeave',
    'WinLeave',
    'FocusLost',
+   'InsertLeave',
 }, {
    group = group,
    callback = function(args)
