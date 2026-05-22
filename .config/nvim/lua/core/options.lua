@@ -8,6 +8,7 @@ o.clipboard:append('unnamedplus') -- use system clipboard as the default registe
 o.cdhome = false -- :cd shows cwd
 o.backspace = 'indent,eol,start'
 o.spelllang = 'en_us'
+o.updatetime = 30000 -- AutoSave interval = 30 seconds
 --  ───────────────────────────────────────────────────── appearance ──
 o.showmode = false
 o.termguicolors = true
