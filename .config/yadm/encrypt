@@ -1,0 +1,7 @@
+.config/espanso/match/_trg.yml
+.config/espanso/match/blog.yml
+.config/espanso/match/email.yml
+.config/espanso/match/phone.yml
+.config/espanso/match/sig.yml
+.config/espanso/match/templates.yml
+.ssh/config
