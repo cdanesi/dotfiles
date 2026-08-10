@@ -21,3 +21,12 @@
 
 [diff]
    colorMoved = default
+
+[alias]
+   co = checkout
+   ci = commit
+   st = status
+   br = branch
+   hist = log --pretty=format:'%C(bold yellow)%h%Creset %Cgreen%ad%Creset %C(white)|%Creset %C(bold white)%s%Creset%C(auto)%d%Creset [%Cblue%an%Creset]' --graph --date=short
+   type = cat-file -t
+   dump = cat-file -p
